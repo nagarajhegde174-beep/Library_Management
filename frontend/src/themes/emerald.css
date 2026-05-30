@@ -1,0 +1,178 @@
+/* ══════════════════════════════════════════════════════════
+   LIBNOVA EMERALD THEME — Green Enterprise Dashboard
+   ══════════════════════════════════════════════════════════ */
+
+[data-theme="emerald"] {
+
+  /* ── Core Backgrounds ─────────────────────────────────── */
+  --bg-primary:        #030F0A;
+  --bg-secondary:      #041410;
+  --bg-tertiary:       #051810;
+  --bg-card:           #071A12;
+  --bg-card-hover:     #0a2118;
+  --bg-input:          rgba(3, 15, 10, 0.6);
+  --bg-input-focus:    rgba(3, 15, 10, 0.8);
+  --bg-header:         rgba(4, 20, 16, 0.85);
+  --bg-dropdown:       rgba(7, 26, 18, 0.98);
+  --bg-toolbar:        rgba(4, 20, 16, 0.7);
+  --bg-table-header:   rgba(3, 15, 10, 0.5);
+  --bg-table-row-hover:rgba(16, 185, 129, 0.04);
+  --bg-overlay:        rgba(0, 0, 0, 0.7);
+  --surface:           #071A12;
+  --surface-alt:       #041410;
+
+  /* ── Public / Navbar Backgrounds ──────────────────────── */
+  --navbar-public-bg:  #041410;
+  --navbar-public-text:#ECFDF5;
+  --footer-bg:         #030F0A;
+  --public-section-alt:#051810;
+  --public-card-bg:    #071A12;
+  --public-text:       #ECFDF5;
+  --public-text-muted: #6EE7B7;
+  --public-primary:    #10B981;
+  --public-secondary:  #34D399;
+  --public-accent:     #6EE7B7;
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --text-primary:      #ECFDF5;
+  --text-secondary:    #6EE7B7;
+  --text-muted:        #064E34;
+  --text-on-accent:    #ffffff;
+  --text-inverse:      #030F0A;
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --border-subtle:     rgba(16, 185, 129, 0.05);
+  --border-color:      rgba(16, 185, 129, 0.1);
+  --border-medium:     rgba(16, 185, 129, 0.15);
+  --border-strong:     rgba(16, 185, 129, 0.25);
+  --border-accent:     rgba(16, 185, 129, 0.35);
+  --border-focus:      rgba(16, 185, 129, 0.65);
+  --border-danger:     rgba(239, 68, 68, 0.35);
+  --glass-border:      rgba(16, 185, 129, 0.3);
+
+  /* ── Brand Accents ────────────────────────────────────── */
+  --accent-primary:          #10B981;
+  --accent-primary-light:    #34D399;
+  --accent-primary-hover:    #059669;
+  --accent-primary-soft:     rgba(16, 185, 129, 0.1);
+  --accent-primary-soft2:    rgba(16, 185, 129, 0.15);
+  --accent-primary-soft3:    rgba(16, 185, 129, 0.22);
+  --accent-primary-glow:     rgba(16, 185, 129, 0.35);
+  --accent-secondary:        #34D399;
+  --accent-secondary-alt:    #6EE7B7;
+  --accent-secondary-soft:   rgba(52, 211, 153, 0.1);
+  --accent-tertiary:         #6EE7B7;
+  --accent-tertiary-soft:    rgba(110, 231, 183, 0.1);
+  --accent-purple:           #A78BFA;
+  --accent-purple-light:     #C4B5FD;
+  --accent-indigo:           #6366F1;
+  --accent-cyan:             #34D399;
+
+  /* ── Gradients ────────────────────────────────────────── */
+  --gradient-primary:    linear-gradient(135deg, #10B981, #34D399);
+  --gradient-btn:        linear-gradient(135deg, #10B981, #34D399);
+  --gradient-btn-purple: linear-gradient(135deg, #059669, #10B981);
+  --gradient-btn-add:    linear-gradient(135deg, #047857, #10B981);
+  --gradient-btn-report: linear-gradient(135deg, #065F46, #059669, #10B981);
+  --gradient-sidebar:    linear-gradient(180deg, #020A07 0%, #041410 50%, #051810 100%);
+  --gradient-hero-card:  linear-gradient(135deg, rgba(7, 26, 18, 0.95), rgba(4, 20, 16, 0.98));
+  --gradient-avatar:     linear-gradient(135deg, #6EE7B7, #10B981);
+  --gradient-active-nav: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.15));
+  --gradient-public-btn: linear-gradient(135deg, #047857, #10B981);
+  --gradient-report-icon:linear-gradient(135deg, rgba(110, 231, 183, 0.15), rgba(16, 185, 129, 0.12));
+
+  /* ── Sidebar Navigation ───────────────────────────────── */
+  --sidebar-active-bg:     linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.15));
+  --sidebar-active-bar:    #34D399;
+  --sidebar-active-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+  --sidebar-hover-bg:      rgba(16, 185, 129, 0.08);
+  --sidebar-hover-shadow:  0 0 20px rgba(52, 211, 153, 0.2);
+  --sidebar-section-label: rgba(110, 231, 183, 0.5);
+  --sidebar-nav-btn-bg:    rgba(16, 185, 129, 0.04);
+
+  /* ── Status Colors ────────────────────────────────────── */
+  --status-success:        #10B981;
+  --status-success-soft:   rgba(16, 185, 129, 0.12);
+  --status-success-border: rgba(16, 185, 129, 0.35);
+  --status-warning:        #F59E0B;
+  --status-warning-soft:   rgba(245, 158, 11, 0.1);
+  --status-warning-border: rgba(245, 158, 11, 0.3);
+  --status-danger:         #EF4444;
+  --status-danger-soft:    rgba(239, 68, 68, 0.1);
+  --status-danger-soft2:   rgba(239, 68, 68, 0.15);
+  --status-danger-border:  rgba(239, 68, 68, 0.3);
+  --status-info:           #10B981;
+  --status-info-soft:      rgba(16, 185, 129, 0.08);
+  --status-info-soft2:     rgba(16, 185, 129, 0.12);
+  --status-info-border:    rgba(16, 185, 129, 0.25);
+  --status-logout:         #fca5a5;
+  --status-logout-hover:   #fecaca;
+  --status-logout-bg:      rgba(239, 68, 68, 0.15);
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-sm:    0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-md:    0 8px 30px rgba(0, 0, 0, 0.6);
+  --shadow-lg:    0 14px 40px rgba(16, 185, 129, 0.25);
+  --shadow-glow:  0 0 30px rgba(16, 185, 129, 0.25);
+  --shadow-card:  0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-input-focus: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  --shadow-btn:   0 8px 20px rgba(16, 185, 129, 0.35);
+
+  /* ── Glass Effect ─────────────────────────────────────── */
+  --glass-bg:     rgba(16, 185, 129, 0.04);
+  --glass-bg2:    rgba(16, 185, 129, 0.06);
+  --glass-bg3:    rgba(16, 185, 129, 0.1);
+
+  /* ── Ambient Glows ────────────────────────────────────── */
+  --ambient-purple:  rgba(16, 185, 129, 0.08);
+  --ambient-cyan:    rgba(52, 211, 153, 0.07);
+  --ambient-purple2: rgba(16, 185, 129, 0.15);
+
+  /* ── Charts ───────────────────────────────────────────── */
+  --chart-1:          #34D399;
+  --chart-2:          #10B981;
+  --chart-3:          #6EE7B7;
+  --chart-4:          #F59E0B;
+  --chart-5:          #0EA5E9;
+  --chart-grid:       rgba(16, 185, 129, 0.1);
+  --chart-tick:       #6EE7B7;
+  --chart-legend:     #ECFDF5;
+  --chart-tooltip-bg: #041410;
+
+  /* ── Scrollbar ────────────────────────────────────────── */
+  --scrollbar-track:       #041410;
+  --scrollbar-thumb:       #10B981;
+  --scrollbar-thumb-hover: #34D399;
+
+  /* ── Preloader ────────────────────────────────────────── */
+  --preloader-bg:            #030F0A;
+  --preloader-spinner:       #10B981;
+  --preloader-spinner-track: rgba(16, 185, 129, 0.2);
+  --preloader-text:          #6EE7B7;
+
+  /* ── Structural ───────────────────────────────────────── */
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    20px;
+  --radius-xl:    24px;
+  --sidebar-width: 280px;
+
+  /* ── Legacy Aliases ───────────────────────────────────── */
+  --bg-main:       #030F0A;
+  --bg-sidebar:    #041410;
+  --primary:       #10B981;
+  --secondary:     #34D399;
+  --accent:        #6EE7B7;
+  --text-main:     #ECFDF5;
+  --text-dim:      #6EE7B7;
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-active: 0 14px 40px rgba(16, 185, 129, 0.25);
+  --primary-deep:  #ECFDF5;
+  --primary-glow:  rgba(16, 185, 129, 0.1);
+  --secondary-soft:#041410;
+  --accent-blue:   #34D399;
+  --gradient-btn:  linear-gradient(135deg, #10B981, #34D399);
+  --light:  #041410;
+  --dark:   #030F0A;
+  --gray:   #6EE7B7;
+}

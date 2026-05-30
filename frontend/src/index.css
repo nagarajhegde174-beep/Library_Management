@@ -1,0 +1,39 @@
+/* ── Reset ─────────────────────────────────────────────── */
+@import url('./animations.css');
+
+/* ── Theme Definitions ─────────────────────────────────── */
+@import url('./themes/default.css');
+@import url('./themes/deep-indigo.css');
+@import url('./themes/light.css');
+@import url('./themes/ocean.css');
+@import url('./themes/emerald.css');
+
+/* ── Base Reset ────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Global Body Theming ───────────────────────────────── */
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}

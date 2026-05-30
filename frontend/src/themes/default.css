@@ -1,0 +1,184 @@
+/* ══════════════════════════════════════════════════════════
+   LIBNOVA DEFAULT THEME — Deep Navy + Purple + Cyan
+   The official Default Theme. Preserves 100% of the current
+   LibNova appearance. All other themes deviate from this.
+   ══════════════════════════════════════════════════════════ */
+
+[data-theme="default"] {
+
+  /* ── Core Backgrounds ─────────────────────────────────── */
+  --bg-primary:        #090914;
+  --bg-secondary:      #121225;
+  --bg-tertiary:       #0B1120;
+  --bg-card:           #16162D;
+  --bg-card-hover:     #1a1a38;
+  --bg-input:          rgba(0, 0, 0, 0.25);
+  --bg-input-focus:    rgba(0, 0, 0, 0.4);
+  --bg-header:         rgba(15, 23, 42, 0.75);
+  --bg-dropdown:       rgba(15, 23, 42, 0.95);
+  --bg-toolbar:        rgba(17, 24, 39, 0.6);
+  --bg-table-header:   rgba(0, 0, 0, 0.2);
+  --bg-table-row-hover:rgba(255, 255, 255, 0.02);
+  --bg-overlay:        rgba(0, 0, 0, 0.6);
+  --surface:           #ffffff;
+  --surface-alt:       #ecf0f1;
+
+  /* ── Public / Navbar Backgrounds ──────────────────────── */
+  --navbar-public-bg:  #2c3e50;
+  --navbar-public-text:#ffffff;
+  --footer-bg:         #2c3e50;
+  --public-section-alt:#f8f9ff;
+  --public-card-bg:    #ffffff;
+  --public-text:       #333333;
+  --public-text-muted: #95a5a6;
+  --public-primary:    #2c3e50;
+  --public-secondary:  #3498db;
+  --public-accent:     #e74c3c;
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --text-primary:      #F3F4FF;
+  --text-secondary:    #8b8b9f;
+  --text-muted:        #6b6b80;
+  --text-on-accent:    #ffffff;
+  --text-inverse:      #0F172A;
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --border-subtle:     rgba(255, 255, 255, 0.03);
+  --border-color:      rgba(255, 255, 255, 0.05);
+  --border-medium:     rgba(255, 255, 255, 0.08);
+  --border-strong:     rgba(255, 255, 255, 0.1);
+  --border-accent:     rgba(157, 78, 221, 0.3);
+  --border-focus:      rgba(139, 92, 246, 0.6);
+  --border-danger:     rgba(239, 68, 68, 0.3);
+  --glass-border:      rgba(157, 78, 221, 0.35);
+
+  /* ── Brand Accents ────────────────────────────────────── */
+  --accent-primary:          #9D4EDD;
+  --accent-primary-light:    #C77DFF;
+  --accent-primary-hover:    #b055f5;
+  --accent-primary-soft:     rgba(157, 78, 221, 0.1);
+  --accent-primary-soft2:    rgba(157, 78, 221, 0.15);
+  --accent-primary-soft3:    rgba(157, 78, 221, 0.2);
+  --accent-primary-glow:     rgba(157, 78, 221, 0.35);
+  --accent-secondary:        #00E5FF;
+  --accent-secondary-alt:    #35F2FF;
+  --accent-secondary-soft:   rgba(0, 229, 255, 0.1);
+  --accent-tertiary:         #FF4D9D;
+  --accent-tertiary-soft:    rgba(255, 77, 157, 0.1);
+  --accent-purple:           #8B5CF6;
+  --accent-purple-light:     #A78BFA;
+  --accent-indigo:           #6366F1;
+  --accent-cyan:             #06b6d4;
+
+  /* ── Gradients ────────────────────────────────────────── */
+  --gradient-primary:    linear-gradient(135deg, #8B5CF6, #EC4899);
+  --gradient-btn:        linear-gradient(135deg, #8B5CF6, #EC4899);
+  --gradient-btn-purple: linear-gradient(135deg, #7C3AED, #5D26FF);
+  --gradient-btn-add:    linear-gradient(135deg, #7B2FF7, #5D26FF);
+  --gradient-btn-report: linear-gradient(135deg, #2563EB, #4F46E5, #7C3AED);
+  --gradient-sidebar:    linear-gradient(180deg, #050816 0%, #0B1023 50%, #11152B 100%);
+  --gradient-hero-card:  linear-gradient(135deg, rgba(22, 22, 45, 0.9), rgba(15, 15, 30, 0.95));
+  --gradient-avatar:     linear-gradient(135deg, #06b6d4, #8b5cf6);
+  --gradient-active-nav: linear-gradient(135deg, rgba(91, 120, 255, 0.22), rgba(123, 97, 255, 0.18));
+  --gradient-public-btn: linear-gradient(135deg, #2c3e50, #3d5166);
+  --gradient-report-icon:linear-gradient(135deg, rgba(53, 242, 255, 0.15), rgba(123, 97, 255, 0.15));
+
+  /* ── Sidebar Navigation ───────────────────────────────── */
+  --sidebar-active-bg:     linear-gradient(135deg, rgba(91, 120, 255, 0.22), rgba(123, 97, 255, 0.18));
+  --sidebar-active-bar:    #35F2FF;
+  --sidebar-active-shadow: 0 0 30px rgba(77, 163, 255, 0.35);
+  --sidebar-hover-bg:      rgba(255, 255, 255, 0.06);
+  --sidebar-hover-shadow:  0 0 25px rgba(53, 242, 255, 0.25);
+  --sidebar-section-label: rgba(255, 255, 255, 0.4);
+  --sidebar-nav-btn-bg:    rgba(255, 255, 255, 0.03);
+
+  /* ── Status Colors ────────────────────────────────────── */
+  --status-success:        #10B981;
+  --status-success-soft:   rgba(16, 185, 129, 0.1);
+  --status-success-border: rgba(16, 185, 129, 0.3);
+  --status-warning:        #F59E0B;
+  --status-warning-soft:   rgba(245, 158, 11, 0.1);
+  --status-warning-border: rgba(245, 158, 11, 0.3);
+  --status-danger:         #EF4444;
+  --status-danger-soft:    rgba(239, 68, 68, 0.1);
+  --status-danger-soft2:   rgba(239, 68, 68, 0.15);
+  --status-danger-border:  rgba(239, 68, 68, 0.3);
+  --status-info:           #3b82f6;
+  --status-info-soft:      rgba(59, 130, 246, 0.05);
+  --status-info-soft2:     rgba(59, 130, 246, 0.08);
+  --status-info-border:    rgba(59, 130, 246, 0.15);
+  --status-logout:         #fca5a5;
+  --status-logout-hover:   #fecaca;
+  --status-logout-bg:      rgba(239, 68, 68, 0.15);
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-sm:    0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-md:    0 8px 30px rgba(0, 0, 0, 0.5);
+  --shadow-lg:    0 14px 40px rgba(157, 78, 221, 0.25);
+  --shadow-glow:  0 0 30px rgba(157, 78, 221, 0.2);
+  --shadow-card:  0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-input-focus: 0 0 0 3px rgba(139, 92, 246, 0.15);
+  --shadow-btn:   0 8px 20px rgba(236, 72, 153, 0.3);
+
+  /* ── Glass Effect ─────────────────────────────────────── */
+  --glass-bg:     rgba(255, 255, 255, 0.03);
+  --glass-bg2:    rgba(255, 255, 255, 0.04);
+  --glass-bg3:    rgba(255, 255, 255, 0.06);
+
+  /* ── Ambient Glows (radial gradients used as backgrounds) */
+  --ambient-purple:  rgba(139, 92, 246, 0.08);
+  --ambient-cyan:    rgba(6, 182, 212, 0.08);
+  --ambient-purple2: rgba(123, 97, 255, 0.15);
+
+  /* ── Charts ───────────────────────────────────────────── */
+  --chart-1:          #00E5FF;
+  --chart-2:          #9D4EDD;
+  --chart-3:          #FF4D9D;
+  --chart-4:          #F59E0B;
+  --chart-5:          #10B981;
+  --chart-grid:       rgba(255, 255, 255, 0.05);
+  --chart-tick:       #8b8b9f;
+  --chart-legend:     #F3F4FF;
+  --chart-tooltip-bg: #121225;
+
+  /* ── Scrollbar ────────────────────────────────────────── */
+  --scrollbar-track:       #121225;
+  --scrollbar-thumb:       #9D4EDD;
+  --scrollbar-thumb-hover: #C77DFF;
+
+  /* ── Preloader ────────────────────────────────────────── */
+  --preloader-bg:            #090914;
+  --preloader-spinner:       #8b5cf6;
+  --preloader-spinner-track: rgba(228, 221, 245, 0.3);
+  --preloader-text:          #6b5e95;
+
+  /* ── Structural (same across themes) ─────────────────── */
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    20px;
+  --radius-xl:    24px;
+  --sidebar-width: 280px;
+
+  /* ── Legacy Aliases (AdminDashboard.css :root names) ───── */
+  --bg-main:       #090914;
+  --bg-sidebar:    #121225;
+  --primary:       #9D4EDD;
+  --secondary:     #00E5FF;
+  --accent:        #FF4D9D;
+  --text-main:     #F3F4FF;
+  --text-dim:      #8b8b9f;
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-active: 0 14px 40px rgba(157, 78, 221, 0.25);
+
+  /* ── Legacy Aliases (App.css :root names) ─────────────── */
+  --primary-deep:  #F8FAFC;
+  --primary-glow:  rgba(255, 255, 255, 0.05);
+  --secondary-soft:#0B1120;
+  --accent-blue:   #EC4899;
+  --accent-purple: #8B5CF6;
+
+  /* ── Legacy Aliases (home.css public theme) ───────────── */
+  --light:  #ecf0f1;
+  --dark:   #2c3e50;
+  --gray:   #95a5a6;
+}
