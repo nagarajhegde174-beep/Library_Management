@@ -2,18 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { Palette, Check, ChevronUp } from 'lucide-react';
 
-/* ══════════════════════════════════════════════════════════
-   LibNova ThemeSwitcher Component
-   - Floating button + slide-up panel
-   - Placed in both Admin header and Public Navbar
-   ══════════════════════════════════════════════════════════ */
 
 export default function ThemeSwitcher({ variant = 'floating' }) {
   const { theme, setTheme, themes } = useTheme();
   const [open, setOpen] = useState(false);
   const panelRef = useRef(null);
 
-  // Close on outside click
+ 
   useEffect(() => {
     const handler = (e) => {
       if (panelRef.current && !panelRef.current.contains(e.target)) {
@@ -24,7 +19,7 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  // Close on Escape
+  
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('keydown', handler);

@@ -1,8 +1,10 @@
 
+
 .about-page {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: var(--text-primary);
+  background: var(--bg-primary);
 }
 
 .about-container {
@@ -12,9 +14,9 @@
   padding: 0 15px;
 }
 
-
+/* Hero Section */
 .about-hero-section {
-  background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), 
+  background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)),
               url('/assets/library.avif') center/cover no-repeat;
   height: 50vh;
   min-height: 400px;
@@ -35,10 +37,10 @@
   opacity: 0.9;
 }
 
-
+/* Mission Section */
 .about-mission-section {
   padding: 80px 0;
-  background-color: #f9f9f9;
+  background-color: var(--bg-secondary);
 }
 
 .about-mission-content {
@@ -53,7 +55,7 @@
 
 .about-section-title {
   font-size: 2.2rem;
-  color: #2c3e50;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
 }
 
@@ -61,13 +63,14 @@
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
   line-height: 1.8;
+  color: var(--text-secondary);
 }
 
 .about-mission-image {
   flex: 1;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .about-mission-img {
@@ -76,15 +79,16 @@
   display: block;
 }
 
-
+/* History / Timeline Section */
 .about-history-section {
   padding: 80px 0;
-  background-color: white;
+  background-color: var(--bg-primary);
 }
 
 .about-history-title {
   text-align: center;
   margin-bottom: 3rem;
+  color: var(--text-primary);
 }
 
 .about-timeline {
@@ -97,7 +101,7 @@
   content: '';
   position: absolute;
   width: 2px;
-  background-color: #3498db;
+  background-color: var(--accent-secondary);
   top: 0;
   bottom: 0;
   left: 50%;
@@ -120,8 +124,8 @@
 }
 
 .about-timeline-year {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--accent-secondary);
+  color: var(--text-on-accent);
   padding: 10px 20px;
   border-radius: 50px;
   font-weight: bold;
@@ -131,25 +135,27 @@
 
 .about-timeline-content {
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: var(--bg-card);
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-color);
 }
 
 .about-timeline-event {
   margin-top: 0;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .about-timeline-description {
   margin-bottom: 0;
+  color: var(--text-secondary);
 }
 
-
+/* Stats Section */
 .about-stats-section {
   padding: 80px 0;
-  background-color: #2c3e50;
-  color: white;
+  background-color: var(--accent-primary);
+  color: var(--text-on-accent);
   text-align: center;
 }
 
@@ -191,16 +197,16 @@
   margin-bottom: 0;
 }
 
-
+/* Team Section */
 .about-team-section {
   padding: 80px 0;
-  background-color: white;
+  background-color: var(--bg-primary);
   text-align: center;
 }
 
 .about-team-subtitle {
   font-size: 1.2rem;
-  color: #7f8c8d;
+  color: var(--text-secondary);
   margin-bottom: 3rem;
 }
 
@@ -213,10 +219,11 @@
 }
 
 .about-team-member {
-  background-color: #f8f9fa;
+  background-color: var(--bg-card);
   padding: 30px 20px;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-color);
 }
 
 .about-team-img {
@@ -225,16 +232,16 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 20px;
-  border: 5px solid #ecf0f1;
+  border: 5px solid var(--border-medium);
 }
 
 .about-team-name {
-  color: #2c3e50;
+  color: var(--text-primary);
   margin-bottom: 5px;
 }
 
 .about-team-position {
-  color: #7f8c8d;
+  color: var(--text-secondary);
   margin-bottom: 15px;
 }
 
@@ -242,12 +249,13 @@
   font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: 0;
+  color: var(--text-secondary);
 }
 
-
+/* Facilities Section */
 .about-facilities-section {
   padding: 80px 0;
-  background-color: #f9f9f9;
+  background-color: var(--bg-secondary);
 }
 
 .about-facilities-grid {
@@ -257,11 +265,12 @@
 }
 
 .about-facility-card {
-  background-color: white;
+  background-color: var(--bg-card);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-card);
   transition: transform 0.3s ease;
+  border: 1px solid var(--border-color);
 }
 
 .about-facility-card:hover {
@@ -276,21 +285,21 @@
 
 .about-facility-name {
   padding: 20px 20px 10px;
-  color: #2c3e50;
+  color: var(--text-primary);
   margin-bottom: 10px;
 }
 
 .about-facility-description {
   padding: 0 20px 20px;
-  color: #7f8c8d;
+  color: var(--text-secondary);
   margin-bottom: 0;
 }
 
-
+/* CTA Section */
 .about-cta-section {
   padding: 80px 0;
-  background-color: #3498db;
-  color: white;
+  background-color: var(--accent-secondary);
+  color: var(--text-on-accent);
   text-align: center;
 }
 
@@ -322,20 +331,20 @@
 }
 
 .about-btn-primary {
-  background-color: white;
-  color: #3498db;
+  background-color: var(--bg-primary);
+  color: var(--accent-secondary);
 }
 
 .about-btn-primary:hover {
-  background-color: #ecf0f1;
+  filter: brightness(0.95);
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .about-btn-secondary {
   background-color: transparent;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid var(--text-on-accent);
+  color: var(--text-on-accent);
 }
 
 .about-btn-secondary:hover {
@@ -347,56 +356,56 @@
   margin-right: 8px;
 }
 
-
+/* Responsive */
 @media (max-width: 768px) {
   .about-mission-content {
-      flex-direction: column;
+    flex-direction: column;
   }
   
   .about-timeline::before {
-      left: 30px;
+    left: 30px;
   }
   
   .about-timeline-item {
-      width: 100%;
-      padding-left: 70px;
-      padding-right: 0;
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 0;
   }
   
   .about-timeline-item:nth-child(even) {
-      left: 0;
+    left: 0;
   }
   
   .about-cta-buttons {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
   
   .about-btn {
-      width: 100%;
-      max-width: 250px;
-      justify-content: center;
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
   }
 
   .about-hero-title {
-      font-size: 2.5rem;
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .about-hero-title {
-      font-size: 2rem;
+    font-size: 2rem;
   }
   
   .about-section-title {
-      font-size: 1.8rem;
+    font-size: 1.8rem;
   }
   
   .about-stats-grid {
-      grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   
   .about-facilities-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }

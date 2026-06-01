@@ -20,19 +20,19 @@ export default function AdminNavbar() {
     navigate("/login-portal");
   };
 
-  // Close profile on outside click
+  
   useEffect(() => {
     const h = (e) => { if (profileRef.current && !profileRef.current.contains(e.target)) setProfileOpen(false); };
     document.addEventListener("mousedown", h);
     return () => document.removeEventListener("mousedown", h);
   }, []);
 
-  // Close all menus on route change
+  
   useEffect(() => {
     setBooksOpen(false); setAdminOpen(false); setProfileOpen(false); setMenuOpen(false);
   }, [location.pathname]);
 
-  // Delay-based hover to prevent flicker when moving mouse between trigger and menu
+  
   const openBooks  = () => { clearTimeout(booksTimer.current); setBooksOpen(true); };
   const closeBooks = () => { booksTimer.current = setTimeout(() => setBooksOpen(false), 150); };
   const openAdmin  = () => { clearTimeout(adminTimer.current); setAdminOpen(true); };

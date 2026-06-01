@@ -1,8 +1,3 @@
-/* ══════════════════════════════════════════════════════════
-   LIBNOVA DEFAULT THEME — Deep Navy + Purple + Cyan
-   The official Default Theme. Preserves 100% of the current
-   LibNova appearance. All other themes deviate from this.
-   ══════════════════════════════════════════════════════════ */
 
 [data-theme="default"] {
 
@@ -152,14 +147,13 @@
   --preloader-spinner-track: rgba(228, 221, 245, 0.3);
   --preloader-text:          #6b5e95;
 
-  /* ── Structural (same across themes) ─────────────────── */
   --radius-sm:    8px;
   --radius-md:    14px;
   --radius-lg:    20px;
   --radius-xl:    24px;
   --sidebar-width: 280px;
 
-  /* ── Legacy Aliases (AdminDashboard.css :root names) ───── */
+  
   --bg-main:       #090914;
   --bg-sidebar:    #121225;
   --primary:       #9D4EDD;
@@ -170,15 +164,21 @@
   --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-active: 0 14px 40px rgba(157, 78, 221, 0.25);
 
-  /* ── Legacy Aliases (App.css :root names) ─────────────── */
+ 
   --primary-deep:  #F8FAFC;
   --primary-glow:  rgba(255, 255, 255, 0.05);
   --secondary-soft:#0B1120;
   --accent-blue:   #EC4899;
   --accent-purple: #8B5CF6;
 
-  /* ── Legacy Aliases (home.css public theme) ───────────── */
+ 
   --light:  #ecf0f1;
   --dark:   #2c3e50;
   --gray:   #95a5a6;
+
+ 
+  --bg-dark:         #121225;
+  --bg-footer:       #090914;
+  --shadow-color:    rgba(0, 0, 0, 0.3);
+  --bg-secondary-card: rgba(0, 0, 0, 0.15);
 }

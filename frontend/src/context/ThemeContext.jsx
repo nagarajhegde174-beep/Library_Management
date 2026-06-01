@@ -1,11 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-/* ══════════════════════════════════════════════════════════
-   LibNova Theme Context
-   - Reads from localStorage on mount
-   - Applies data-theme attribute to <html> instantly
-   - Provides useTheme() hook to all components
-   ══════════════════════════════════════════════════════════ */
 
 export const THEMES = [
   {
@@ -63,18 +57,18 @@ export function ThemeProvider({ children }) {
     }
   });
 
-  // Apply theme to <html> immediately on mount and change
+
   useEffect(() => {
     const root = document.documentElement;
     root.setAttribute('data-theme', theme);
     try {
       localStorage.setItem(STORAGE_KEY, theme);
     } catch {
-      // ignore storage errors
+      
     }
   }, [theme]);
 
-  // Apply stored theme before first render (SSR-safe)
+ 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
     document.documentElement.setAttribute('data-theme', stored);

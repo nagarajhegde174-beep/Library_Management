@@ -1,6 +1,3 @@
-/* ══════════════════════════════════════════════════════════
-   LIBNOVA LIGHT THEME — Professional Modern SaaS Interface
-   ══════════════════════════════════════════════════════════ */
 
 [data-theme="light"] {
 
@@ -175,4 +172,10 @@
   --light:  #F1F5F9;
   --dark:   #1E293B;
   --gray:   #94A3B8;
+
+  /* ── Utility Aliases (used by refactored CSS) ──────────── */
+  --bg-dark:         #1E293B;
+  --bg-footer:       #1E293B;
+  --shadow-color:    rgba(0, 0, 0, 0.1);
+  --bg-secondary-card: rgba(255, 255, 255, 0.6);
 }
