@@ -5,21 +5,21 @@ import { GraduationCap, BookCopy, Shield } from "lucide-react";
 const ROLES = [
   {
     key: "student",
-    icon: <GraduationCap size={32} color="#9333ea" />,
+    icon: <GraduationCap size={32} color="var(--accent-primary)" />,
     title: "Student",
     subtitle: "Access library & borrow books",
     to: "/login",
   },
   {
     key: "librarian",
-    icon: <BookCopy size={32} color="#9333ea" />,
+    icon: <BookCopy size={32} color="var(--accent-primary)" />,
     title: "Librarian",
     subtitle: "Manage issues & member requests",
     to: "/librarian-login",
   },
   {
     key: "admin",
-    icon: <Shield size={32} color="#9333ea" />,
+    icon: <Shield size={32} color="var(--accent-primary)" />,
     title: "Admin",
     subtitle: "System control & configuration",
     to: "/admin-login",
@@ -38,14 +38,14 @@ function RoleCardHorizontal({ role, delay }) {
       style={{
         display: "flex",
         alignItems: "center",
-        background: hov ? "#ffffff" : "rgba(255, 255, 255, 0.6)",
+        background: hov ? "var(--bg-card-hover)" : "var(--bg-secondary-card)",
         border: "1px solid",
-        borderColor: hov ? "#c084fc" : "rgba(255, 255, 255, 0.4)",
+        borderColor: hov ? "var(--accent-primary)" : "var(--border-color)",
         borderRadius: "20px",
         padding: "20px 24px",
         cursor: "pointer",
         transform: hov ? "translateY(-4px)" : "translateY(0)",
-        boxShadow: hov ? "0 15px 35px rgba(147, 51, 234, 0.15)" : "0 4px 15px rgba(0,0,0,0.02)",
+        boxShadow: hov ? "var(--shadow-md)" : "var(--shadow-sm)",
         transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         marginBottom: "16px",
         backdropFilter: "blur(10px)",
@@ -56,12 +56,12 @@ function RoleCardHorizontal({ role, delay }) {
           width: "65px",
           height: "65px",
           borderRadius: "50%",
-          background: hov ? "#f3e8ff" : "#ffffff",
+          background: hov ? "var(--accent-primary-soft2)" : "var(--bg-card)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           marginRight: "20px",
-          boxShadow: hov ? "0 8px 20px rgba(147,51,234,0.15)" : "0 4px 10px rgba(0,0,0,0.05)",
+          boxShadow: hov ? "var(--shadow-sm)" : "none",
           transition: "all 0.3s ease",
         }}
       >
@@ -74,7 +74,7 @@ function RoleCardHorizontal({ role, delay }) {
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 700,
             fontSize: "1.2rem",
-            color: "#1e1b4b",
+            color: "var(--text-primary)",
             margin: "0 0 4px 0",
           }}
         >
@@ -82,7 +82,7 @@ function RoleCardHorizontal({ role, delay }) {
         </h3>
         <p
           style={{
-            color: "#6b7280",
+            color: "var(--text-secondary)",
             fontSize: "0.9rem",
             margin: 0,
             fontWeight: 500,
@@ -100,8 +100,8 @@ function RoleCardHorizontal({ role, delay }) {
           width: "45px",
           height: "45px",
           borderRadius: "50%",
-          background: hov ? "#9333ea" : "transparent",
-          color: hov ? "#ffffff" : "#9ca3af",
+          background: hov ? "var(--accent-primary)" : "transparent",
+          color: hov ? "var(--text-on-accent)" : "var(--text-muted)",
           fontSize: "1.2rem",
           transition: "all 0.3s ease",
         }}
@@ -183,16 +183,8 @@ export default function LoginPortal() {
           width: 100vw;
           height: 100vh;
           z-index: -1;
-          background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #a18cd1, #fbc2eb);
-          background-size: 400% 400%;
-          animation: gradientBG 15s ease infinite;
+          background: var(--bg-primary);
           overflow: hidden;
-        }
-
-        @keyframes gradientBG {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
         }
 
         /* Floating Orbs */
@@ -200,13 +192,13 @@ export default function LoginPortal() {
           position: absolute;
           border-radius: 50%;
           filter: blur(80px);
-          opacity: 0.6;
+          opacity: 0.15;
           animation: float 10s ease-in-out infinite;
         }
-        .orb-1 { width: 400px; height: 400px; background: #9333ea; top: -10%; left: -10%; animation-delay: 0s; }
-        .orb-2 { width: 500px; height: 500px; background: #3b82f6; bottom: -20%; right: -10%; animation-delay: -2s; }
-        .orb-3 { width: 300px; height: 300px; background: #ec4899; top: 40%; left: 60%; animation-delay: -4s; }
-        .orb-4 { width: 450px; height: 450px; background: #8b5cf6; top: -20%; right: 20%; animation-delay: -6s; }
+        .orb-1 { width: 400px; height: 400px; background: var(--accent-primary); top: -10%; left: -10%; animation-delay: 0s; }
+        .orb-2 { width: 500px; height: 500px; background: var(--accent-secondary); bottom: -20%; right: -10%; animation-delay: -2s; }
+        .orb-3 { width: 300px; height: 300px; background: var(--accent-tertiary); top: 40%; left: 60%; animation-delay: -4s; }
+        .orb-4 { width: 450px; height: 450px; background: var(--accent-primary); top: -20%; right: 20%; animation-delay: -6s; }
 
         @keyframes float {
           0%, 100% { transform: translateY(0) scale(1); }
@@ -231,12 +223,12 @@ const styles = {
     width: "100%",
     maxWidth: "1150px",
     height: "720px",
-    backgroundColor: "rgba(255, 255, 255, 0.85)", // Glassmorphic card
+    backgroundColor: "var(--bg-secondary-card)", // Theme dynamic glass card
     backdropFilter: "blur(20px)",
     borderRadius: "32px",
     display: "flex",
     overflow: "hidden",
-    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) inset",
+    boxShadow: "var(--shadow-lg), 0 0 0 1px var(--border-color) inset",
   },
   
   // Left Panel
@@ -256,14 +248,14 @@ const styles = {
     justifyContent: "center",
   },
   title: {
-    color: "#1e1b4b",
+    color: "var(--text-primary)",
     fontSize: "30px",
     fontWeight: "800",
     margin: 0,
     letterSpacing: "-0.5px",
   },
   subtitle: {
-    color: "#6b7280",
+    color: "var(--text-secondary)",
     fontSize: "15px",
     margin: 0,
     lineHeight: 1.5,
@@ -272,7 +264,7 @@ const styles = {
   // Right Panel
   rightPanel: {
     width: "55%",
-    background: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)",
+    background: "var(--gradient-btn)",
     position: "relative",
     display: "flex",
     alignItems: "center",
@@ -289,7 +281,7 @@ const styles = {
     flexDirection: "column",
   },
   rightTitle: {
-    color: "#FFFFFF",
+    color: "var(--text-on-accent)",
     fontSize: "48px",
     fontWeight: "800",
     lineHeight: "1.1",
@@ -298,10 +290,11 @@ const styles = {
     marginTop: "40px",
   },
   rightSubtitle: {
-    color: "rgba(255,255,255,0.9)",
+    color: "var(--text-on-accent)",
     fontSize: "16px",
     fontWeight: 400,
     marginBottom: "auto",
+    opacity: 0.9,
   },
   imgWrapper: {
     width: "100%",
@@ -315,7 +308,7 @@ const styles = {
     width: "95%",
     maxHeight: "100%",
     objectFit: "contain",
-    filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.2))",
+    filter: "drop-shadow(0 20px 30px var(--shadow-color))",
   },
 
   // Blobs inside right panel
@@ -325,7 +318,7 @@ const styles = {
     left: "10%",
     width: "350px",
     height: "350px",
-    backgroundColor: "#a855f7",
+    backgroundColor: "var(--accent-primary-light)",
     borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
     filter: "blur(50px)",
     opacity: 0.8,
@@ -336,7 +329,7 @@ const styles = {
     right: "-10%",
     width: "450px",
     height: "450px",
-    backgroundColor: "#7e22ce",
+    backgroundColor: "var(--accent-primary-hover)",
     borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
     filter: "blur(60px)",
     opacity: 0.6,
@@ -347,7 +340,7 @@ const styles = {
     left: "15%",
     width: "250px",
     height: "250px",
-    backgroundColor: "#c084fc",
+    backgroundColor: "var(--accent-primary-soft2)",
     borderRadius: "50%",
     filter: "blur(50px)",
     opacity: 0.7,

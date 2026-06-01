@@ -72,7 +72,7 @@ export default function AdminLogin() {
                     onClick={() => setShowPass(!showPass)}
                     style={styles.eyeBtn}
                   >
-                    {showPass ? <Eye size={16} color="#7A7B82" /> : <EyeOff size={16} color="#7A7B82" />}
+                    {showPass ? <Eye size={16} color="var(--text-muted)" /> : <EyeOff size={16} color="var(--text-muted)" />}
                   </button>
                 </div>
                 {errors.password && <span style={styles.error}>{errors.password.message}</span>}
@@ -120,8 +120,8 @@ export default function AdminLogin() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
-        input::placeholder { color: #7A7B82; }
-        input:focus { border-bottom: 1px solid #D946EF !important; outline: none; }
+        input::placeholder { color: var(--text-muted); }
+        input:focus { border-bottom: 1px solid var(--accent-primary) !important; outline: none; }
         button:hover { opacity: 0.9; }
       `}</style>
     </div>
@@ -132,7 +132,7 @@ const styles = {
   page: {
     minHeight: "100vh",
     width: "100%",
-    backgroundColor: "#222327",
+    backgroundColor: "var(--bg-primary)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -142,17 +142,17 @@ const styles = {
     width: "100%",
     maxWidth: "1000px",
     height: "650px",
-    backgroundColor: "#1C1D21",
+    backgroundColor: "var(--bg-card)",
     borderRadius: "24px",
     display: "flex",
     overflow: "hidden",
-    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
+    boxShadow: "var(--shadow-lg)",
   },
   
   // Left Panel
   leftPanel: {
     width: "45%",
-    backgroundColor: "#1F2128",
+    backgroundColor: "var(--bg-secondary)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -168,14 +168,14 @@ const styles = {
     justifyContent: "center",
   },
   title: {
-    color: "#FFFFFF",
+    color: "var(--text-primary)",
     fontSize: "32px",
     fontWeight: "700",
     marginBottom: "10px",
     letterSpacing: "-0.5px",
   },
   subtitle: {
-    color: "#7A7B82",
+    color: "var(--text-muted)",
     fontSize: "13px",
     marginBottom: "40px",
   },
@@ -193,8 +193,8 @@ const styles = {
     padding: "10px 0",
     backgroundColor: "transparent",
     border: "none",
-    borderBottom: "1px solid #3A3B40",
-    color: "#FFFFFF",
+    borderBottom: "1px solid var(--border-color)",
+    color: "var(--text-primary)",
     fontSize: "14px",
     transition: "border-color 0.2s",
   },
@@ -211,24 +211,24 @@ const styles = {
     alignItems: "center",
   },
   error: {
-    color: "#EF4444",
+    color: "var(--status-danger)",
     fontSize: "12px",
     marginTop: "6px",
   },
   errorAlert: {
-    color: "#ef4444",
+    color: "var(--status-danger)",
     fontSize: "13px",
     textAlign: "center",
     fontWeight: "500",
-    backgroundColor: "rgba(239, 68, 68, 0.1)",
+    backgroundColor: "var(--status-danger-soft)",
     padding: "8px",
     borderRadius: "8px",
   },
   loginBtn: {
     width: "100%",
     padding: "14px",
-    backgroundColor: "#D946EF",
-    color: "#FFFFFF",
+    backgroundColor: "var(--accent-primary)",
+    color: "var(--text-on-accent)",
     border: "none",
     borderRadius: "8px",
     fontSize: "14px",
@@ -243,7 +243,7 @@ const styles = {
     width: "18px",
     height: "18px",
     border: "2px solid rgba(255,255,255,0.3)",
-    borderTop: "2px solid #fff",
+    borderTop: "2px solid var(--text-on-accent)",
     borderRadius: "50%",
     animation: "spin 0.8s linear infinite",
   },
@@ -255,12 +255,12 @@ const styles = {
     paddingBottom: "20px",
   },
   footerText: {
-    color: "#7A7B82",
+    color: "var(--text-muted)",
     fontSize: "12px",
   },
   signupBtn: {
-    backgroundColor: "#2C2D35",
-    color: "#C1C2C5",
+    backgroundColor: "var(--bg-primary)",
+    color: "var(--text-primary)",
     textDecoration: "none",
     padding: "8px 16px",
     borderRadius: "8px",
@@ -272,7 +272,7 @@ const styles = {
   // Right Panel
   rightPanel: {
     width: "55%",
-    backgroundColor: "#D946EF",
+    backgroundColor: "var(--accent-primary)",
     position: "relative",
     display: "flex",
     alignItems: "center",
@@ -289,7 +289,7 @@ const styles = {
     flexDirection: "column",
   },
   rightTitle: {
-    color: "#FFFFFF",
+    color: "var(--text-on-accent)",
     fontSize: "44px",
     fontWeight: "700",
     lineHeight: "1.1",
@@ -298,9 +298,10 @@ const styles = {
     marginTop: "40px",
   },
   rightSubtitle: {
-    color: "rgba(255,255,255,0.8)",
+    color: "var(--text-on-accent)",
     fontSize: "14px",
     marginBottom: "auto",
+    opacity: 0.8,
   },
   imgWrapper: {
     width: "100%",
@@ -315,14 +316,14 @@ const styles = {
     objectFit: "contain",
   },
 
-  // Blobs for background (Fuchsia)
+  // Blobs for background
   blob1: {
     position: "absolute",
     top: "-10%",
     left: "10%",
     width: "300px",
     height: "300px",
-    backgroundColor: "#F472B6",
+    backgroundColor: "var(--accent-primary-hover)",
     borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
     filter: "blur(40px)",
     opacity: 0.6,
@@ -333,7 +334,7 @@ const styles = {
     right: "-10%",
     width: "400px",
     height: "400px",
-    backgroundColor: "#C026D3",
+    backgroundColor: "var(--accent-primary-light)",
     borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
     filter: "blur(50px)",
     opacity: 0.5,
@@ -344,7 +345,7 @@ const styles = {
     left: "20%",
     width: "250px",
     height: "250px",
-    backgroundColor: "#E879F9",
+    backgroundColor: "var(--accent-primary-hover)",
     borderRadius: "50%",
     filter: "blur(60px)",
     opacity: 0.7,
