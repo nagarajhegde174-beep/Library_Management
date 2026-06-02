@@ -35,7 +35,6 @@
   opacity: 0.9;
 }
 
-/* Contact Info Section */
 .contact-info-section {
   padding: 60px 0;
   background-color: var(--bg-secondary);
@@ -77,7 +76,6 @@
   line-height: 1.6;
 }
 
-/* Contact Form Section */
 .contact-form-section {
   padding: 80px 0;
   background: var(--bg-primary);
@@ -177,7 +175,6 @@
   margin-right: 8px;
 }
 
-/* Map Section */
 .contact-map-section {
   padding: 60px 0;
   background-color: var(--bg-secondary);
@@ -196,7 +193,6 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Responsive */
 @media (max-width: 992px) {
   .contact-form-wrapper {
     grid-template-columns: 1fr;

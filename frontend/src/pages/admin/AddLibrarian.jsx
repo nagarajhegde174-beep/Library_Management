@@ -18,7 +18,7 @@ import {
 import { Server_URL } from "../../utils/config";
 import { getAuthToken } from "../../utils/auth";
 import { showErrorToast, showSuccessToast } from "../../utils/toasthelper";
-import "./staffaccounts.css"; // The new premium CSS file
+import "./staffaccounts.css"; 
 
 export default function AddLibrarian() {
   const [librarians, setLibrarians] = useState([]);
@@ -106,7 +106,6 @@ export default function AddLibrarian() {
           <p className="sa-subtitle">View all registered librarians or provision new administrative staff accounts.</p>
         </header>
 
-        {/* TAB SWITCHER */}
         <div className="sa-tab-container">
           <div className="sa-tab-group">
             <button
@@ -124,7 +123,7 @@ export default function AddLibrarian() {
           </div>
         </div>
 
-        {/* TAB CONTENT: LIST */}
+        
         {activeTab === "list" && (
           <div className="sa-glass-card">
             
@@ -213,7 +212,6 @@ export default function AddLibrarian() {
           </div>
         )}
 
-        {/* TAB CONTENT: ADD NEW */}
         {activeTab === "add" && (
           <div className="sa-glass-card sa-form-wrapper">
             <div className="sa-form-header">
@@ -222,7 +220,6 @@ export default function AddLibrarian() {
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-              {/* Full Name */}
               <div className="sa-form-group">
                 <label className="sa-label">
                   <User size={16} /> Full Name
@@ -243,7 +240,6 @@ export default function AddLibrarian() {
                 )}
               </div>
 
-              {/* Email Address */}
               <div className="sa-form-group">
                 <label className="sa-label">
                   <Mail size={16} /> Email Address
@@ -270,7 +266,6 @@ export default function AddLibrarian() {
                 )}
               </div>
 
-              {/* Password */}
               <div className="sa-form-group">
                 <label className="sa-label">
                   <Lock size={16} /> Account Password
@@ -297,7 +292,6 @@ export default function AddLibrarian() {
                 )}
               </div>
 
-              {/* Profile Picture */}
               <div className="sa-form-group">
                 <label className="sa-label">
                   <ImageIcon size={16} /> Profile Picture (Optional)

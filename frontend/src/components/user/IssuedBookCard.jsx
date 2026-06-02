@@ -12,7 +12,6 @@ export default function IssuedBookCard({ borrow, onRequestReturn, returningId })
   const isRenewalRejected = borrow.status === "renewal_rejected";
   const isAnyRejected = isBorrowRejected || isReturnRejected || isRenewalRejected;
 
-  // Determine badge colors based on Issued Book specific logic
   let bg = "rgba(56, 189, 248, 0.15)";
   let color = "#38BDF8";
   let border = "rgba(56, 189, 248, 0.3)";
@@ -50,7 +49,7 @@ export default function IssuedBookCard({ borrow, onRequestReturn, returningId })
       boxShadow: isOverdue ? "0 0 0 2px rgba(239, 68, 68, 0.2)" : "0 4px 16px rgba(0,0,0,0.3)",
       display: "flex", gap: "16px", alignItems: "flex-start"
     }}>
-      {/* Book Cover Image */}
+      
       <div style={{ flexShrink: 0, width: "60px", height: "85px", borderRadius: "8px", overflow: "hidden", background: "rgba(0,0,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
         {borrow.bookId?.coverImage ? (
           <img 

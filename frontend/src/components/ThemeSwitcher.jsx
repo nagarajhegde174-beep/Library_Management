@@ -39,7 +39,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
         zIndex: 9999,
       }}
     >
-      {/* ── Trigger Button ── */}
       <button
         className={`ts-trigger ${open ? 'ts-trigger--open' : ''}`}
         onClick={() => setOpen(o => !o)}
@@ -96,7 +95,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
             />
           </>
         )}
-        {/* Swatches preview on floating button */}
         {variant === 'floating' && (
           <div style={{
             position: 'absolute',
@@ -116,7 +114,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
         )}
       </button>
 
-      {/* ── Theme Panel ── */}
       <div
         style={{
           position: 'absolute',
@@ -139,7 +136,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
           zIndex: 10000,
         }}
       >
-        {/* Panel Header */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -166,7 +162,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
           </div>
         </div>
 
-        {/* Theme Options */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {themes.map((t) => {
             const isActive = t.id === theme;
@@ -199,7 +194,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
                   if (!isActive) e.currentTarget.style.background = 'transparent';
                 }}
               >
-                {/* Color Swatches */}
                 <div style={{
                   display: 'flex',
                   gap: '3px',
@@ -220,7 +214,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
                   ))}
                 </div>
 
-                {/* Theme Info */}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
                     fontSize: '0.85rem',
@@ -241,7 +234,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
                   </div>
                 </div>
 
-                {/* Active Check */}
                 {isActive && (
                   <div style={{
                     width: '20px', height: '20px',
@@ -258,7 +250,6 @@ export default function ThemeSwitcher({ variant = 'floating' }) {
           })}
         </div>
 
-        {/* Footer hint */}
         <div style={{
           marginTop: '12px',
           paddingTop: '10px',

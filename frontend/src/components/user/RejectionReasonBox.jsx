@@ -3,7 +3,6 @@ import { AlertTriangle } from "lucide-react";
 export default function RejectionReasonBox({ reason }) {
   if (!reason) return null;
 
-  // Clean up reason text if it's unprofessional or placeholder
   let displayReason = reason;
   const lowerReason = reason.toLowerCase();
   

@@ -13,7 +13,6 @@ body {
   background-color: var(--bg-primary);
 }
 
-/* Loading State */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -48,7 +47,6 @@ body {
   animation: spin 1s ease-in-out infinite;
 }
 
-/* Error & Not Found */
 .error-message {
   background-color: var(--status-danger-soft);
   color: var(--status-danger);
@@ -86,7 +84,6 @@ body {
   font-size: 1.1rem;
 }
 
-/* Book Details Layout */
 .book-details-container {
   max-width: 1200px;
   margin: 2rem auto;
@@ -104,7 +101,6 @@ body {
   border: 1px solid var(--border-color);
 }
 
-/* Book Cover Area */
 .book-cover {
   position: relative;
   padding: 2rem;
@@ -123,7 +119,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* Availability Badge */
 .availability-badge {
   position: absolute;
   top: 20px;
@@ -144,7 +139,6 @@ body {
   background-color: var(--status-danger);
 }
 
-/* Book Info Panel */
 .book-info {
   padding: 2rem;
   flex: 1;
@@ -172,7 +166,6 @@ body {
   font-style: italic;
 }
 
-/* Ratings */
 .rating-container {
   display: flex;
   align-items: center;
@@ -198,7 +191,6 @@ body {
   color: var(--text-secondary);
 }
 
-/* Meta Information */
 .book-meta {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -243,7 +235,6 @@ body {
   font-size: 1.1rem;
 }
 
-/* Description */
 .book-description {
   margin-bottom: 3rem;
 }
@@ -269,7 +260,6 @@ body {
   font-size: 1.1rem;
 }
 
-/* Action Buttons */
 .action-buttons {
   display: flex;
   gap: 1.5rem;
@@ -367,7 +357,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* Additional Sections */
 .additional-sections {
   margin-top: 3rem;
 }
@@ -417,7 +406,6 @@ body {
   color: var(--text-secondary);
 }
 
-/* Responsive Design */
 @media (min-width: 768px) {
   .book-details {
     flex-direction: row;

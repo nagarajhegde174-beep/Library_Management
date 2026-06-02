@@ -1,5 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-
+import { createContext, useContext } from 'react';
 
 export const THEMES = [
   {
@@ -39,51 +38,13 @@ export const THEMES = [
   },
 ];
 
-const STORAGE_KEY = 'libNova-theme';
 const DEFAULT_THEME = 'default';
 
-const ThemeContext = createContext({
+export const ThemeContext = createContext({
   theme: DEFAULT_THEME,
   setTheme: () => {},
   themes: THEMES,
 });
-
-export function ThemeProvider({ children }) {
-  const [theme, setThemeState] = useState(() => {
-    try {
-      return localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
-    } catch {
-      return DEFAULT_THEME;
-    }
-  });
-
-
-  useEffect(() => {
-    const root = document.documentElement;
-    root.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem(STORAGE_KEY, theme);
-    } catch {
-      
-    }
-  }, [theme]);
-
- 
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME;
-    document.documentElement.setAttribute('data-theme', stored);
-  }, []);
-
-  const setTheme = (newTheme) => {
-    setThemeState(newTheme);
-  };
-
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme, themes: THEMES }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
 
 export function useTheme() {
   const ctx = useContext(ThemeContext);

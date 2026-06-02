@@ -29,14 +29,12 @@ const Books = () => {
             showErrorToast("Please login to issue a book.");
             return;
         }
-           const url =Server_URL + 'borrow/request-issue/'+bookid;
            const response = await axios.post(`${Server_URL}books/borrow/request-issue/${bookid}`,{}, {
             headers: {
               Authorization: `Bearer ${authToken}`,
             },
           });
 
-          // alert(response.data);
           const {error,message} = response.data;
           if(error){
             console.log(error);
@@ -46,7 +44,6 @@ const Books = () => {
             showSuccessToast(message);
           }
         } catch (error) {
-          // console.error("Error:", error.response?.data || error.message);
           showErrorToast(error.response?.data?.message || "Something went wrong! Please try again.");
           
         }    
@@ -58,7 +55,6 @@ const Books = () => {
       }
 
   useEffect(() => {
-    setIsLoading(true);
     axios.get(`${Server_URL}books`)
       .then((response) => {
         if (!response.data.error) {

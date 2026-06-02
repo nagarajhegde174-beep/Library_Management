@@ -31,7 +31,6 @@ export default function ReservationCard({ reservation, onCancel, cancelingId }) 
       boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
       display: "flex", gap: "16px", alignItems: "flex-start"
     }}>
-      {/* Book Cover Image */}
       <div style={{ flexShrink: 0, width: "60px", height: "85px", borderRadius: "8px", overflow: "hidden", background: "rgba(0,0,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
         {reservation.bookId?.coverImage ? (
           <img 

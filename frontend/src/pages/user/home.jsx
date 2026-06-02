@@ -189,17 +189,14 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
               style={styles.heroImgWrapper}
             >
-              {/* Floating Overlays */}
               <img src="/student-3d.png" alt="Student" style={styles.heroImg} />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── MAIN DASHBOARD CONTAINER ── */}
       <div style={styles.dashboardContainer}>
         
-        {/* ── BENTO GRID STATS ── */}
         <section style={styles.statsBento}>
           {stats.map((s, i) => (
             <motion.div 
@@ -228,10 +225,8 @@ export default function Home() {
 
         <div style={styles.layoutGrid}>
           
-          {/* LEFT COLUMN: CAROUSELS */}
           <div style={styles.leftCol}>
             
-            {/* Continue Reading */}
             {continueReadingBooks.length > 0 && (
               <section style={styles.section}>
                 <div style={styles.sectionHeader}>
@@ -255,7 +250,6 @@ export default function Home() {
               </section>
             )}
 
-            {/* Trending / Netflix Style */}
             <section style={styles.section}>
               <div style={styles.sectionHeader}>
                 <h2 style={styles.sectionTitle}>Trending Now</h2>
@@ -279,7 +273,6 @@ export default function Home() {
 
           </div>
 
-          {/* RIGHT COLUMN: TIMELINE */}
           <div style={styles.rightCol}>
             <section style={styles.timelineSection}>
               <div style={styles.sectionHeader}>
@@ -288,7 +281,6 @@ export default function Home() {
               <div style={styles.timelineCard}>
                 {dynamicTimeline.map((item, idx) => (
                   <div key={item.id} style={styles.timelineItem}>
-                    {/* Vertical line connecting dots */}
                     {idx !== dynamicTimeline.length - 1 && <div style={styles.timelineLine} />}
                     
                     <div style={{ ...styles.timelineDot, boxShadow: `0 0 10px ${item.color}80`, background: item.color }} />
@@ -304,7 +296,6 @@ export default function Home() {
 
         </div>
         
-        {/* New Arrivals Bottom Carousel */}
         <section style={{...styles.section, marginTop: "20px"}}>
           <div style={styles.sectionHeader}>
             <h2 style={styles.sectionTitle}>New Arrivals</h2>
@@ -363,7 +354,6 @@ const styles = {
     animation: "spin 1s linear infinite",
   },
   
-  // HERO
   heroSection: {
     position: "relative",
     padding: "80px 24px 60px",
@@ -509,7 +499,6 @@ const styles = {
     zIndex: 10,
   },
 
-  // DASHBOARD CONTAINER
   dashboardContainer: {
     maxWidth: "1400px",
     margin: "0 auto",
@@ -518,7 +507,6 @@ const styles = {
     zIndex: 5,
   },
 
-  // BENTO STATS
   statsBento: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -577,7 +565,6 @@ const styles = {
     opacity: 0.5,
   },
 
-  // MAIN GRID
   layoutGrid: {
     display: "grid",
     gridTemplateColumns: "1fr 350px",
@@ -596,7 +583,6 @@ const styles = {
     flexDirection: "column",
   },
 
-  // SECTIONS
   section: {
     display: "flex",
     flexDirection: "column",
@@ -625,7 +611,6 @@ const styles = {
     paddingBottom: "16px",
   },
 
-  // CARDS (Continue & Netflix)
   continueCard: {
     minWidth: "280px",
     height: "160px",
@@ -752,7 +737,6 @@ const styles = {
     marginTop: "auto",
   },
 
-  // TIMELINE
   timelineSection: {
     background: "var(--bg-card)",
     border: "1px solid var(--border-color)",

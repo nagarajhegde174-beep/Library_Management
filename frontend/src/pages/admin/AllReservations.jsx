@@ -87,7 +87,6 @@ export default function AllReservations() {
     <div className="ar-page">
       <div className="ar-container">
         
-        {/* Hero Header */}
         <header className="ar-hero-header">
           <div className="ar-header-content">
             <h1>Reservation Queue</h1>
@@ -99,7 +98,6 @@ export default function AllReservations() {
           </div>
         </header>
 
-        {/* Stats Grid */}
         <div className="ar-stats-grid">
           {[
             { label: "Pending", status: "Pending", icon: Clock },
@@ -131,7 +129,6 @@ export default function AllReservations() {
           })}
         </div>
 
-        {/* Filters & Search Bar */}
         <div className="ar-filters-container">
           <div className="ar-tabs">
             {statuses.map(s => (
@@ -157,7 +154,6 @@ export default function AllReservations() {
           </div>
         </div>
 
-        {/* Main List Area */}
         {filtered.length === 0 ? (
           <div className="ar-empty-card">
             <AlertTriangle size={48} color="#64748b" style={{ marginBottom:"12px" }} />
@@ -174,7 +170,6 @@ export default function AllReservations() {
               return (
                 <div key={r._id} className="ar-row-card">
                   
-                  {/* Left: Book Details */}
                   <div className="ar-book-cell">
                     <div className="ar-book-icon">
                       <BookOpen size={20} />
@@ -185,7 +180,6 @@ export default function AllReservations() {
                     </div>
                   </div>
 
-                  {/* Center-Left: Member Information */}
                   <div className="ar-member-cell">
                     <div className="ar-member-avatar">
                       {userInitial}
@@ -196,13 +190,11 @@ export default function AllReservations() {
                     </div>
                   </div>
 
-                  {/* Center-Right: Timeline */}
                   <div className="ar-timeline-cell">
                     <Calendar size={16} />
                     {new Date(r.reservationDate).toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: 'numeric' })}
                   </div>
 
-                  {/* Right: Status Badge */}
                   <div>
                     <span 
                       className="ar-status-badge"
@@ -217,7 +209,6 @@ export default function AllReservations() {
                     </span>
                   </div>
 
-                  {/* Far-Right: Action Buttons */}
                   <div className="ar-actions-cell">
                     {r.status === "Pending" && (
                       <button 

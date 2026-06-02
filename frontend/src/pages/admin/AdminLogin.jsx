@@ -39,7 +39,6 @@ export default function AdminLogin() {
     <div style={styles.page}>
       <div style={styles.card}>
         
-        {/* ── LEFT PANEL ── */}
         <div style={styles.leftPanel}>
           <div style={styles.formContainer}>
             <h1 style={styles.title}>Admin Login</h1>
@@ -47,7 +46,6 @@ export default function AdminLogin() {
 
             <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
               
-              {/* Username / Email */}
               <div style={styles.fieldGroup}>
                 <input
                   type="email"
@@ -58,7 +56,6 @@ export default function AdminLogin() {
                 {errors.email && <span style={styles.error}>{errors.email.message}</span>}
               </div>
 
-              {/* Password */}
               <div style={styles.fieldGroup}>
                 <div style={{ position: "relative" }}>
                   <input
@@ -84,13 +81,11 @@ export default function AdminLogin() {
                 </div>
               )}
 
-              {/* Login Button */}
               <button type="submit" disabled={loading} style={styles.loginBtn}>
                 {loading ? <span style={styles.spinner} /> : "Login to Admin"}
               </button>
             </form>
 
-            {/* Footer / Back */}
             <div style={styles.footerRow}>
               <span style={styles.footerText}>Need to log in as another role?</span>
               <Link to="/login-portal" style={styles.signupBtn}>Login Portal</Link>
@@ -99,7 +94,6 @@ export default function AdminLogin() {
           </div>
         </div>
 
-        {/* ── RIGHT PANEL ── */}
         <div style={styles.rightPanel}>
           <div style={styles.blob1} />
           <div style={styles.blob2} />
@@ -149,7 +143,7 @@ const styles = {
     boxShadow: "var(--shadow-lg)",
   },
   
-  // Left Panel
+  
   leftPanel: {
     width: "45%",
     backgroundColor: "var(--bg-secondary)",
@@ -269,7 +263,7 @@ const styles = {
     transition: "background 0.2s",
   },
 
-  // Right Panel
+  
   rightPanel: {
     width: "55%",
     backgroundColor: "var(--accent-primary)",
@@ -316,7 +310,7 @@ const styles = {
     objectFit: "contain",
   },
 
-  // Blobs for background
+  
   blob1: {
     position: "absolute",
     top: "-10%",

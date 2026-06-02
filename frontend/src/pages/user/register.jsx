@@ -28,7 +28,7 @@ export default function Register() {
         formData.append("profilePicture", data.profilePicture[0]);
       }
 
-      const response = await axios.post(`${Server_URL}users/register`, formData, {
+      await axios.post(`${Server_URL}users/register`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -50,7 +50,6 @@ export default function Register() {
     <div style={styles.page}>
       <div style={styles.card}>
         
-        {/* ── LEFT PANEL (Form) ── */}
         <div style={styles.leftPanel} className="left-panel-scroll">
           <div style={styles.formContainer}>
             <div style={styles.header}>
@@ -60,7 +59,6 @@ export default function Register() {
 
             <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
               
-              {/* Full Name */}
               <div style={styles.fieldGroup}>
                 <input
                   type="text"
@@ -71,7 +69,6 @@ export default function Register() {
                 {errors.name && <span style={styles.error}>{errors.name.message}</span>}
               </div>
 
-              {/* Email */}
               <div style={styles.fieldGroup}>
                 <input
                   type="email"
@@ -82,7 +79,6 @@ export default function Register() {
                 {errors.email && <span style={styles.error}>{errors.email.message}</span>}
               </div>
 
-              {/* Password */}
               <div style={styles.fieldGroup}>
                 <div style={{ position: "relative" }}>
                   <input
@@ -102,7 +98,6 @@ export default function Register() {
                 {errors.password && <span style={styles.error}>{errors.password.message}</span>}
               </div>
 
-              {/* Stream & Year (Side by Side) */}
               <div style={styles.row}>
                 <div style={{...styles.fieldGroup, flex: 1}}>
                   <input
@@ -124,7 +119,6 @@ export default function Register() {
                 </div>
               </div>
 
-              {/* Profile Picture Upload */}
               <div style={styles.uploadBox}>
                 <input
                   type="file"
@@ -138,13 +132,11 @@ export default function Register() {
                 </p>
               </div>
 
-              {/* Register Button */}
               <button type="submit" disabled={loading} style={styles.loginBtn}>
                 {loading ? <span style={styles.spinner} /> : "Register"}
               </button>
             </form>
 
-            {/* Footer / Login Link */}
             <div style={styles.footerRow}>
               <span style={styles.footerText}>Already have an account?</span>
               <Link to="/login" style={styles.signupBtn}>Log in</Link>
@@ -153,7 +145,6 @@ export default function Register() {
           </div>
         </div>
 
-        {/* ── RIGHT PANEL (Illustration) ── */}
         <div style={styles.rightPanel}>
           <div style={styles.blob1} />
           <div style={styles.blob2} />
@@ -210,7 +201,7 @@ const styles = {
   card: {
     width: "100%",
     maxWidth: "1000px",
-    height: "650px", // Fixed height to match login
+    height: "650px", 
     backgroundColor: "var(--bg-card)",
     borderRadius: "24px",
     display: "flex",
@@ -218,7 +209,6 @@ const styles = {
     boxShadow: "var(--shadow-lg)",
   },
   
-  // Left Panel
   leftPanel: {
     width: "45%",
     backgroundColor: "var(--bg-secondary)",
@@ -364,7 +354,6 @@ const styles = {
     transition: "background 0.2s",
   },
 
-  // Right Panel
   rightPanel: {
     width: "55%",
     backgroundColor: "var(--accent-primary)",
@@ -411,7 +400,6 @@ const styles = {
     objectFit: "contain",
   },
 
-  // Blobs for background
   blob1: {
     position: "absolute",
     top: "-10%",

@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { 
   Search, Edit3, Trash2, Book, Hash, Tag, IndianRupee, Layers, X, 
   CheckCircle2, AlertCircle, Type, User, AlertTriangle, BookOpen, 
-  Eye, Star, TrendingUp, Plus, Bell, Sparkles, LayoutGrid, List
+  Plus, Bell, Sparkles, LayoutGrid, List
 } from "lucide-react";
 import { Server_URL } from "../../utils/config";
 import { showErrorToast, showSuccessToast } from "../../utils/toasthelper";
@@ -13,13 +13,11 @@ import "./viewbook.css";
 const ViewBooks = () => {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
-  const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("newest");
   const [selectedBook, setSelectedBook] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [viewMode, setViewMode] = useState("grid");
   const [formData, setFormData] = useState({
     title: "",
     author: "",
@@ -29,14 +27,12 @@ const ViewBooks = () => {
     totalCopies: "",
   });
 
-  useEffect(() => { fetchBooks(); }, []);
-
-  useEffect(() => {
-    if (!Array.isArray(books)) return;
+  const filteredBooks = useMemo(() => {
+    if (!Array.isArray(books)) return [];
     let filtered = books.filter(b => 
       (b.title || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
       (b.author || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (b.isbn || "").includes(searchTerm)
+      (b.isbn || "").toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     if (categoryFilter !== "all") {
@@ -44,18 +40,17 @@ const ViewBooks = () => {
     }
 
     if (sortOrder === "newest") {
-      filtered.sort((a, b) => {
-        if (b.createdAt && a.createdAt) return new Date(b.createdAt) - new Date(a.createdAt);
-        return b._id.localeCompare(a._id);
-      });
+      filtered.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    } else if (sortOrder === "oldest") {
+      filtered.sort((a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0));
     } else if (sortOrder === "popular") {
       filtered.sort((a, b) => (b.totalCopies - b.availableCopies) - (a.totalCopies - a.availableCopies));
     } else if (sortOrder === "title") {
       filtered.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
     }
 
-    setFilteredBooks(filtered);
-  }, [searchTerm, books, categoryFilter, sortOrder]);
+    return filtered;
+  }, [books, searchTerm, categoryFilter, sortOrder]);
 
   const fetchBooks = async () => {
     try {
@@ -64,10 +59,15 @@ const ViewBooks = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
       });
       setBooks(Array.isArray(response.data.books) ? response.data.books : []);
-    } catch (error) {
+    } catch {
       showErrorToast("Failed to fetch inventory");
     }
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchBooks();
+  }, []);
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to remove this book from the collection?")) return;
@@ -77,7 +77,7 @@ const ViewBooks = () => {
       });
       showSuccessToast("Book removed successfully");
       fetchBooks();
-    } catch (error) {
+    } catch {
       showErrorToast("Deletion failed");
     }
   };
@@ -103,12 +103,11 @@ const ViewBooks = () => {
       showSuccessToast("Inventory updated");
       setShowModal(false);
       fetchBooks();
-    } catch (error) {
+    } catch {
       showErrorToast("Update failed");
     }
   };
 
-  // Compute stats
   const totalBooks = books.length;
   const availableBooks = books.filter(b => b.availableCopies > 0).length;
   const borrowedBooks = books.reduce((acc, curr) => acc + (curr.totalCopies - curr.availableCopies), 0);
@@ -116,7 +115,6 @@ const ViewBooks = () => {
 
   return (
     <div className="inventory-container">
-      {/* ── HERO HEADER ── */}
       <header className="inventory-hero">
         <div className="hero-title-container">
           <h1 className="hero-title">Library Inventory</h1>
@@ -130,7 +128,6 @@ const ViewBooks = () => {
         </div>
       </header>
 
-      {/* ── SEARCH & FILTER BAR ── */}
       <div className="toolbar-container">
         <div className="search-bar-wrapper">
           <input 
@@ -166,7 +163,6 @@ const ViewBooks = () => {
         
       </div>
 
-      {/* ── STATS CARDS ── */}
       <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-icon purple"><BookOpen size={20} /></div>
@@ -198,17 +194,14 @@ const ViewBooks = () => {
         </div>
       </div>
 
-      {/* ── BOOK GRID ── */}
       <div className="books-grid">
         {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
             <div key={book._id} className="premium-book-card">
               <div className="pbc-glow-sweep"></div>
               
-              {/* Main Split Layout */}
               <div className="pbc-main-content">
                 
-                {/* Left: Cover */}
                 <div className="pbc-image-wrapper">
                   <img
                     src={book.coverImage || "https://images.unsplash.com/photo-1543005139-014524090bb0?w=800"}
@@ -218,7 +211,6 @@ const ViewBooks = () => {
                   <div className="category-pill">{book.category}</div>
                 </div>
                 
-                {/* Right: Details */}
                 <div className="pbc-details">
                   <div>
                     <h3 className="pbc-title">{book.title}</h3>
@@ -230,14 +222,10 @@ const ViewBooks = () => {
                     </div>
 
                     <div className="pbc-analytics-compact">
-                      <span title="Views"><Eye size={10} /> {book.views || 0}</span>
-                      <span title="Rating"><Star size={10} /> {book.rating || 0}</span>
-                      <span title="Copies"><Book size={10} /> {book.totalCopies}</span>
-                      {book.views > 100 && <span title="Trending" style={{ color: '#00FFB2' }}><TrendingUp size={10} /></span>}
+                      <span title="Copies"><Book size={10} /> {book.totalCopies} copies</span>
                     </div>
                   </div>
 
-                  {/* Status Badge */}
                   <div className="pbc-status-compact">
                     {book.availableCopies > 0 ? (
                       <span className="status-badge available">
@@ -252,7 +240,6 @@ const ViewBooks = () => {
                 </div>
               </div>
 
-              {/* Actions Row */}
               <div className="pbc-actions-row">
                 <button className="premium-btn btn-edit" onClick={() => handleEdit(book)}>
                   <Edit3 size={14} /> Edit
@@ -272,7 +259,6 @@ const ViewBooks = () => {
         )}
       </div>
 
-      {/* ── EDIT MODAL ── */}
       {showModal && (
         <div style={{ 
           position: 'fixed', inset: 0, zIndex: 2000, 

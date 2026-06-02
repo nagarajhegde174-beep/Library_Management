@@ -14,7 +14,7 @@ import {
 import { Server_URL } from "../../utils/config";
 import { getAuthToken } from "../../utils/auth";
 import { showSuccessToast, showErrorToast } from "../../utils/toasthelper";
-import "./fineconfig.css"; // Using the new premium CSS file
+import "./fineconfig.css"; 
 
 function FineConfig() {
   const [config, setConfig]   = useState({ ratePerDay: 5, maxFineCap: 500, gracePeriod: 0 });
@@ -23,15 +23,7 @@ function FineConfig() {
   const role = localStorage.getItem("role");
   const canEdit = role === "admin" || role === "librarian";
 
-  const headers = { Authorization: `Bearer ${getAuthToken()}` };
 
-  const fetchConfig = async () => {
-    try {
-      const res = await axios.get(`${Server_URL}admin/fine-config`, { headers });
-      setConfig(res.data.config);
-    } catch { showErrorToast("Failed to load fine config"); }
-    finally { setLoading(false); }
-  };
 
   const saveConfig = async (e) => {
     e.preventDefault();
@@ -41,7 +33,11 @@ function FineConfig() {
     }
     setSaving(true);
     try {
-      const res = await axios.put(`${Server_URL}admin/fine-config`, config, { headers });
+      const res = await axios.put(
+        `${Server_URL}admin/fine-config`,
+        config,
+        { headers: { Authorization: `Bearer ${getAuthToken()}` } }
+      );
       showSuccessToast(res.data.message);
       setConfig(res.data.config);
     } catch (err) {
@@ -49,9 +45,22 @@ function FineConfig() {
     } finally { setSaving(false); }
   };
 
-  useEffect(() => { fetchConfig(); }, []);
+  useEffect(() => {
+    const fetchConfig = async () => {
+      try {
+        const res = await axios.get(`${Server_URL}admin/fine-config`, {
+          headers: { Authorization: `Bearer ${getAuthToken()}` }
+        });
+        setConfig(res.data.config);
+      } catch {
+        showErrorToast("Failed to load fine config");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchConfig();
+  }, []);
 
-  // Calculate sample fine for 10 days late
   const sampleOverdueDays = 10;
   const billableDays = Math.max(0, sampleOverdueDays - config.gracePeriod);
   const sampleFine = Math.min(config.ratePerDay * billableDays, config.maxFineCap);
@@ -60,7 +69,6 @@ function FineConfig() {
     <div className="fc-page-wrapper">
       <div className="fc-content">
         
-        {/* HERO HEADER */}
         <header className="fc-header">
           <div className="fc-badge">
              <Settings size={14} /> Configuration
@@ -76,7 +84,6 @@ function FineConfig() {
         ) : (
           
           <div className="fc-grid">
-            {/* LEFT COLUMN: Config Form */}
             <div className="fc-glass-card">
               <div className="fc-card-header">
                 <div className="fc-card-icon">
@@ -87,7 +94,6 @@ function FineConfig() {
               
               <form onSubmit={saveConfig}>
                 
-                {/* Fine Rate */}
                 <div className="fc-form-group">
                   <label className="fc-label">
                     <IndianRupee size={16} /> Fine Rate (₹ per day)
@@ -105,7 +111,6 @@ function FineConfig() {
                   <p className="fc-helper">Amount charged for every day a book is kept past its due date.</p>
                 </div>
 
-                {/* Max Cap */}
                 <div className="fc-form-group">
                   <label className="fc-label">
                     <ShieldAlert size={16} /> Maximum Fine Cap (₹)
@@ -123,7 +128,6 @@ function FineConfig() {
                   <p className="fc-helper">The absolute highest possible fine amount per book.</p>
                 </div>
 
-                {/* Grace Period */}
                 <div className="fc-form-group">
                   <label className="fc-label">
                     <Calendar size={16} /> Grace Period (Days)
@@ -141,7 +145,6 @@ function FineConfig() {
                   <p className="fc-helper">Allowed delay after the due date before fines begin to accrue.</p>
                 </div>
 
-                {/* Action Area */}
                 {canEdit ? (
                   <button type="submit" className="fc-save-btn" disabled={saving}>
                     {saving ? (
@@ -161,7 +164,6 @@ function FineConfig() {
             </div>
 
 
-            {/* RIGHT COLUMN: Logic Previews */}
             <div>
               <div className="fc-glass-card" style={{ padding: '24px', marginBottom: '32px' }}>
                 <div className="fc-card-header" style={{ marginBottom: '20px' }}>
@@ -200,7 +202,6 @@ function FineConfig() {
                 </div>
               </div>
 
-              {/* Sample Calculation Card */}
               <div className="fc-calc-card">
                 <IndianRupee className="fc-calc-bg-icon" size={150} />
                 <div className="fc-calc-label"><Info size={14} /> Sample Scenario</div>

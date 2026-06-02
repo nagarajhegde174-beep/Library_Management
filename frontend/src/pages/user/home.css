@@ -182,7 +182,6 @@ body {
   gap: 15px;
 }
 
-/* Stats Section */
 .stats-section {
   padding: 60px 0;
   background-color: var(--bg-secondary);
@@ -224,7 +223,6 @@ body {
   color: var(--text-secondary);
 }
 
-/* Categories Section */
 .categories-section {
   padding: 60px 0;
   background: var(--bg-primary);
@@ -282,7 +280,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* New Arrivals Section */
 .na-section {
   padding: 4rem 0;
   background-color: var(--bg-secondary);
@@ -487,7 +484,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* Footer */
 .library-footer {
   background-color: var(--bg-dark);
   color: var(--text-on-accent);

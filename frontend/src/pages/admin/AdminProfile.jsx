@@ -19,7 +19,6 @@ export default function AdminProfile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   
-  // Real Statistics State
   const [stats, setStats] = useState({
     totalBooks: 0,
     activeMembers: 0,
@@ -32,11 +31,9 @@ export default function AdminProfile() {
       try {
         const headers = { Authorization: `Bearer ${getAuthToken()}` };
         
-        // 1. Fetch Profile
         const resProfile = await axios.get(`${Server_URL}users/profile`, { headers });
         setUser(resProfile.data.user || resProfile.data);
 
-        // 2. Fetch Users (for active members)
         try {
           const resUsers = await axios.get(`${Server_URL}users`, { headers });
           if (!resUsers.data.error) {
@@ -46,7 +43,6 @@ export default function AdminProfile() {
           }
         } catch (e) { console.error(e); }
 
-        // 3. Fetch Books
         try {
           const resBooks = await axios.get(`${Server_URL}books`, { headers });
           if (!resBooks.data.error) {
@@ -54,7 +50,6 @@ export default function AdminProfile() {
           }
         } catch (e) { console.error(e); }
 
-        // 4. Fetch Home Stats (for issued books)
         try {
           const resHome = await axios.get(`${Server_URL}home`, { headers });
           if (!resHome.data.error) {
@@ -63,7 +58,6 @@ export default function AdminProfile() {
           }
         } catch (e) { console.error(e); }
 
-        // 5. Fetch Pending Requests
         try {
           const resIssues = await axios.get(`${Server_URL}librarian/issuerequest`, { headers });
           if (!resIssues.data.error && resIssues.data.requests) {
@@ -106,7 +100,6 @@ export default function AdminProfile() {
     <div className="ap-page-wrapper">
       <div className="ap-content">
         
-        {/* ── PROFILE HERO SECTION ── */}
         <div className="ap-hero-card">
           <div className="ap-avatar-ring">
             <img src={avatarSrc} alt="Avatar" className="ap-avatar-img" onError={(e) => { e.target.src = "https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff"; }} />
@@ -118,7 +111,6 @@ export default function AdminProfile() {
           </div>
         </div>
 
-        {/* ── ACCOUNT INFORMATION ── */}
         <div>
           <h2 className="ap-stats-title">Account Information</h2>
           <div className="ap-details-grid" style={{ marginTop: '20px' }}>
@@ -159,7 +151,6 @@ export default function AdminProfile() {
           </div>
         </div>
 
-        {/* ── STATISTICS SECTION ── */}
         <div>
           <h2 className="ap-stats-title">System Overview</h2>
           <div className="ap-stats-grid" style={{ marginTop: '20px' }}>

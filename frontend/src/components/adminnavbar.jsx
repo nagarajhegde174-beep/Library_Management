@@ -13,6 +13,14 @@ export default function AdminNavbar() {
   const role     = localStorage.getItem("role");
   const navigate = useNavigate();
   const location = useLocation();
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+  if (location.pathname !== prevPathname) {
+    setPrevPathname(location.pathname);
+    setBooksOpen(false);
+    setAdminOpen(false);
+    setProfileOpen(false);
+    setMenuOpen(false);
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -26,11 +34,6 @@ export default function AdminNavbar() {
     document.addEventListener("mousedown", h);
     return () => document.removeEventListener("mousedown", h);
   }, []);
-
-  
-  useEffect(() => {
-    setBooksOpen(false); setAdminOpen(false); setProfileOpen(false); setMenuOpen(false);
-  }, [location.pathname]);
 
   
   const openBooks  = () => { clearTimeout(booksTimer.current); setBooksOpen(true); };
@@ -303,3 +306,4 @@ export default function AdminNavbar() {
     </>
   );
 }
+

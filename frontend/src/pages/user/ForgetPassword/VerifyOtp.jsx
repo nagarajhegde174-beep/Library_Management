@@ -33,7 +33,6 @@ export default function VerifyOTP() {
     <div className="auth-page-container">
       <div className="auth-card">
         
-        {/* ── LEFT PANEL (Form) ── */}
         <div className="auth-left-panel">
           <div className="auth-form-container">
             <div className="auth-header">
@@ -46,7 +45,6 @@ export default function VerifyOTP() {
 
             <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
               
-              {/* Email (Hidden or Read-only) */}
               <div className="auth-field-group">
                 <input
                   type="email"
@@ -65,7 +63,6 @@ export default function VerifyOTP() {
                 {errors.email && <span className="auth-error">{errors.email.message}</span>}
               </div>
 
-              {/* OTP */}
               <div className="auth-field-group">
                 <input
                   type="text"
@@ -84,13 +81,11 @@ export default function VerifyOTP() {
                 {errors.otp && <span className="auth-error">{errors.otp.message}</span>}
               </div>
 
-              {/* Verify OTP Button */}
               <button type="submit" disabled={isSubmitting} className="auth-submit-btn">
                 {isSubmitting ? <span className="auth-spinner" /> : "Verify OTP"}
               </button>
             </form>
 
-            {/* Footer / Resend OTP */}
             <div className="auth-footer-row">
               <span className="auth-footer-text">Didn't receive the code?</span>
               <button onClick={handleResend} className="resend-otp-btn">Resend OTP</button>
@@ -99,7 +94,6 @@ export default function VerifyOTP() {
           </div>
         </div>
 
-        {/* ── RIGHT PANEL (Illustration) ── */}
         <div className="auth-right-panel">
           <div className="auth-blob-1" />
           <div className="auth-blob-2" />

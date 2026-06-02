@@ -1,5 +1,5 @@
 import "../../animations.css";
-import "./librarianrequest.css"; // <-- New Premium CSS
+import "./librarianrequest.css"; 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Server_URL } from "../../utils/config";
@@ -12,7 +12,6 @@ import {
 
 const headers = () => ({ Authorization: `Bearer ${getAuthToken()}` });
 
-// ── Minimum date = tomorrow ──────────────────────────────────────────────────
 function tomorrowStr() {
   const d = new Date();
   d.setDate(d.getDate() + 1);
@@ -40,7 +39,6 @@ export default function LibrarianRequests() {
 
   useEffect(() => { fetchRequests(); }, []);
 
-  // ── APPROVE ───────────────────────────────────────────────────────────────
   const approveRequest = async (id) => {
     const dueDate = dueDates[id];
     if (!dueDate) return showErrorToast("Please select a due date before approving");
@@ -61,7 +59,6 @@ export default function LibrarianRequests() {
     }
   };
 
-  // ── REJECT ────────────────────────────────────────────────────────────────
   const rejectRequest = async (id) => {
     const reason = rejectReason[id];
     if (!reason || reason.trim() === "")
@@ -94,7 +91,6 @@ export default function LibrarianRequests() {
     <div className="lr-page">
       <div className="lr-container">
         
-        {/* Hero Header */}
         <header className="lr-hero-header">
           <div className="lr-title-group">
             <h1 className="lr-title">
@@ -120,7 +116,6 @@ export default function LibrarianRequests() {
               
               const userInitial = (user.name || "U").charAt(0).toUpperCase();
 
-              // Badge Setup
               let badgeClass = "requested";
               let badgeText = "Pending";
               if (req.status === "Issued") { badgeClass = "issued"; badgeText = "Approved"; }
@@ -129,7 +124,6 @@ export default function LibrarianRequests() {
               return (
                 <div key={req._id} className="lr-row-card">
                   
-                  {/* Left: User Profile */}
                   <div className="lr-user-cell">
                     <div className="lr-avatar-wrapper">
                       <div className="lr-avatar">{userInitial}</div>
@@ -148,7 +142,6 @@ export default function LibrarianRequests() {
                     </div>
                   </div>
 
-                  {/* Center: Book Info */}
                   <div className="lr-book-cell">
                     <img 
                       src={book.coverImage || "https://images.unsplash.com/photo-1543005139-014524090bb0?w=200"} 
@@ -161,7 +154,6 @@ export default function LibrarianRequests() {
                     </div>
                   </div>
 
-                  {/* Right: Status & Actions */}
                   <div className="lr-actions-cell">
                     
                     <div className="lr-status-row">
@@ -170,7 +162,6 @@ export default function LibrarianRequests() {
                       </span>
                     </div>
 
-                    {/* Alerts directly in the action cell for compactness */}
                     {isRestricted && (
                       <div className="lr-glass-alert red">
                         <Lock size={16} /> Restricted: Overdue Books
@@ -183,7 +174,6 @@ export default function LibrarianRequests() {
                       </div>
                     )}
 
-                    {/* Pending Action Controls */}
                     {req.status === "Requested" && !isRestricted && !isExpired && (
                       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-end', marginTop: '8px' }}>
                         
@@ -221,7 +211,6 @@ export default function LibrarianRequests() {
                       </div>
                     )}
 
-                    {/* Rejection Reason Form */}
                     {showReject[req._id] && req.status === "Requested" && (
                       <div className="lr-reject-box">
                         <label>Reason for Rejection *</label>
@@ -242,7 +231,6 @@ export default function LibrarianRequests() {
                       </div>
                     )}
 
-                    {/* Show Reason if Already Rejected */}
                     {req.status === "Rejected" && req.rejectionReason && (
                       <div className="lr-glass-alert red" style={{ width: '100%', justifyContent: 'flex-end', background: 'transparent', border: 'none', padding: '0', marginTop: '4px' }}>
                         <span><strong style={{color: '#fca5a5'}}>Reason:</strong> {req.rejectionReason}</span>

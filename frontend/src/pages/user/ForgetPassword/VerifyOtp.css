@@ -20,7 +20,6 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* Left Panel (Form side) */
 .auth-left-panel {
   width: 45%;
   background-color: var(--bg-secondary);
@@ -171,7 +170,6 @@
   opacity: 0.8;
 }
 
-/* Right Panel (Banner side) */
 .auth-right-panel {
   width: 55%;
   background-color: var(--accent-primary);
@@ -223,7 +221,6 @@
   object-fit: contain;
 }
 
-/* Background decorative blobs */
 .auth-blob-1 {
   position: absolute;
   top: -10%;

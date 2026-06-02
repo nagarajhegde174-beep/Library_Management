@@ -29,7 +29,6 @@ const AddBookForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
 
-  // Watch the file input to create a live preview
   const coverImageFile = watch("coverImage");
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const AddBookForm = () => {
   }, [coverImageFile]);
 
   const removeImage = (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     setValue("coverImage", null);
     setImagePreview(null);
   };
@@ -93,7 +92,6 @@ const AddBookForm = () => {
     <div className="addbook-page">
       <div className="addbook-container">
         
-        {/* ── PREMIUM HERO HEADER ── */}
         <header className="ab-hero-header">
           <div>
             <h1 className="ab-title">Add New Book</h1>
@@ -106,10 +104,8 @@ const AddBookForm = () => {
           </div>
         </header>
 
-        {/* ── MAIN FORM ── */}
         <form onSubmit={handleSubmit(onSubmit)} className="ab-form-grid">
           
-          {/* CARD 1: Basic Information */}
           <div className="ab-section-card">
             <h3 className="ab-section-title"><FileText size={20} /> Basic Information</h3>
             
@@ -157,7 +153,6 @@ const AddBookForm = () => {
             </div>
           </div>
 
-          {/* CARD 2: Publication & Inventory */}
           <div className="ab-section-card">
             <h3 className="ab-section-title"><Building2 size={20} /> Publication & Inventory</h3>
             
@@ -204,7 +199,6 @@ const AddBookForm = () => {
             </div>
           </div>
 
-          {/* CARD 3: Book Presentation (File Upload) */}
           <div className="ab-section-card">
             <h3 className="ab-section-title"><ImageIcon size={20} /> Book Presentation</h3>
             
@@ -239,7 +233,6 @@ const AddBookForm = () => {
             </div>
           </div>
 
-          {/* CARD 4: Description & Metadata */}
           <div className="ab-section-card">
             <h3 className="ab-section-title"><FileText size={20} /> Description & Metadata</h3>
             
@@ -255,7 +248,6 @@ const AddBookForm = () => {
             </div>
           </div>
 
-          {/* ── FORM ACTIONS ── */}
           <div className="ab-form-actions">
             <button type="button" className="ab-btn-secondary" onClick={onReset} disabled={isSubmitting}>
               Reset Details

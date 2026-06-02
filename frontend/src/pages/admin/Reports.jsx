@@ -54,12 +54,9 @@ export default function Reports() {
         </div>
       </div>
 
-      {/* Report Card */}
       <div className="report-glass-card">
-        {/* Glowing Gradient Orb in background */}
         <div className="rgc-glow-orb"></div>
 
-        {/* Icon + Title */}
         <div className="rgc-header">
           <div className="rgc-icon-container">
             <AlertTriangle size={24} />
@@ -70,7 +67,6 @@ export default function Reports() {
           </div>
         </div>
 
-        {/* What's included */}
         <div className="rgc-details">
           <h4 className="rgc-details-title">REPORT INCLUDES</h4>
           <div className="rgc-checklist">
@@ -90,7 +86,6 @@ export default function Reports() {
           </div>
         </div>
 
-        {/* Download button */}
         <button
           className={`premium-download-btn ${loading ? 'loading' : ''}`}
           onClick={downloadReport}
@@ -110,7 +105,6 @@ export default function Reports() {
         )}
       </div>
 
-      {/* Info note */}
       <div className="floating-notice-panel">
         <AlertTriangle size={18} className="notice-icon" />
         <p>

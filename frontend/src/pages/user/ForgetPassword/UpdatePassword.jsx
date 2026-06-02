@@ -35,7 +35,6 @@ export default function ResetPassword() {
     <div className="auth-page-container">
       <div className="auth-card">
         
-        {/* ── LEFT PANEL (Form) ── */}
         <div className="auth-left-panel">
           <div className="auth-form-container">
             <div className="auth-header">
@@ -45,7 +44,6 @@ export default function ResetPassword() {
 
             <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
               
-              {/* Email */}
               <div className="auth-field-group">
                 <input
                   type="email"
@@ -64,7 +62,6 @@ export default function ResetPassword() {
                 {errors.email && <span className="auth-error">{errors.email.message}</span>}
               </div>
 
-              {/* New Password */}
               <div className="auth-field-group">
                 <div style={{ position: "relative" }}>
                   <input
@@ -91,7 +88,6 @@ export default function ResetPassword() {
                 {errors.newPassword && <span className="auth-error">{errors.newPassword.message}</span>}
               </div>
 
-              {/* Confirm Password */}
               <div className="auth-field-group">
                 <div style={{ position: "relative" }}>
                   <input
@@ -116,7 +112,6 @@ export default function ResetPassword() {
                 {errors.confirmPassword && <span className="auth-error">{errors.confirmPassword.message}</span>}
               </div>
 
-              {/* Reset Password Button */}
               <button type="submit" disabled={isSubmitting} className="auth-submit-btn">
                 {isSubmitting ? <span className="auth-spinner" /> : "Reset Password"}
               </button>
@@ -124,7 +119,6 @@ export default function ResetPassword() {
           </div>
         </div>
 
-        {/* ── RIGHT PANEL (Illustration) ── */}
         <div className="auth-right-panel">
           <div className="auth-blob-1" />
           <div className="auth-blob-2" />

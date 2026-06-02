@@ -298,7 +298,6 @@
   color: var(--status-info);
 }
 
-/* ── LEDGER ROWS ── */
 .fm-rows-container {
   display: flex;
   flex-direction: column;
@@ -506,7 +505,6 @@
   margin: 0;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .fm-row-card {
     grid-template-columns: 1fr;

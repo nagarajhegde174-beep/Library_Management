@@ -7,7 +7,7 @@ import api from '../../lib/api';
 const AboutUs = () => {
   const [data, setData] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => {             
     let alive = true;
     (async () => {
       try {
@@ -22,7 +22,6 @@ const AboutUs = () => {
   return (
     <div style={styles.page}>
       
-      {/* ── HERO SECTION ── */}
       <section style={styles.heroSection}>
         <div style={styles.glowTopRight} />
         <div style={styles.glowBottomLeft} />
@@ -59,7 +58,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* ── STATS SECTION ── */}
       <section style={styles.section}>
         <div style={styles.statsGrid}>
           {[
@@ -88,7 +86,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* ── HISTORY TIMELINE ── */}
       <section style={styles.section}>
         <div style={styles.sectionHeader}>
           <h2 style={styles.sectionTitle}>Our Journey</h2>
@@ -119,7 +116,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* ── FACILITIES SECTION ── */}
       <section style={styles.section}>
         <div style={styles.sectionHeader}>
           <h2 style={styles.sectionTitle}>Our Facilities</h2>
@@ -151,7 +147,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* ── CTA SECTION ── */}
       <section style={styles.ctaSection}>
         <div style={styles.ctaGlow} />
         <motion.div 

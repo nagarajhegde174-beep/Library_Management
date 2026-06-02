@@ -64,22 +64,20 @@ function App() {
         if (decoded.role === "admin" || decoded.role === "librarian") {
           navigate("/admin");
         }
-      } catch (err) {
+      } catch {
         localStorage.removeItem("authToken");
       }
     }
-  }, [location.pathname]);
+  }, [location.pathname, navigate]);
 
   return (
     <>
     <Suspense fallback={<Preloader />}>
       <Routes>
-        {/* ── Separate Login Pages ───────────────────────── */}
         <Route path="/login-portal"    element={<LoginPortal />} />
         <Route path="/admin-login"     element={<AdminLogin />} />
         <Route path="/librarian-login" element={<LibrarianLogin />} />
 
-        {/* ── User / Public routes ──────────────────────── */}
         <Route path="/" element={<UserLayout />}>
           <Route index                  element={<Home />} />
           <Route path="books"           element={<Books />} />
@@ -93,13 +91,11 @@ function App() {
           <Route path="forgetPassword"  element={<ForgotPassword />} />
           <Route path="verifyotp"       element={<VerifyOTP />} />
           <Route path="resetpass"       element={<ResetPassword />} />
-          {/* ✅ NEW user feature routes */}
           <Route path="reservations"    element={<Reservations />} />
           <Route path="my-books"        element={<MyBooks />} />
           <Route path="my-fines"        element={<MyFines />} />
         </Route>
 
-        {/* ── Admin / Librarian routes ───────────────────── */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route element={<AdminShell />}>
             <Route index               element={<DashboardHome />} />
@@ -118,7 +114,7 @@ function App() {
           </Route>
         </Route>
 
-        {/* ── User profile ──────────────────────────────── */}
+        
         <Route path="/user" element={<UserLayout />}>
           <Route index element={<ProfilePage />} />
         </Route>

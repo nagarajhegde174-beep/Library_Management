@@ -35,7 +35,6 @@ export default function AdminShell() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // --- Search State ---
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState({ books: [], members: [] });
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
@@ -50,7 +49,6 @@ export default function AdminShell() {
     window.location.href = "/admin-login";
   };
 
-  // Fetch admin profile to display real name and picture
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -68,7 +66,6 @@ export default function AdminShell() {
     fetchProfile();
   }, [role]);
 
-  // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -259,7 +256,6 @@ export default function AdminShell() {
               />
               <Search size={18} className="header-search-icon" />
 
-              {/* Global Search Dropdown */}
               {showSearchDropdown && (
                 <div className="global-search-dropdown">
                   {searchResults.books.length === 0 && searchResults.members.length === 0 ? (
@@ -307,9 +303,7 @@ export default function AdminShell() {
             </div>
           </div>
           <div className="header-right">
-            {/* Theme Switcher */}
             <ThemeSwitcher variant="inline" />
-            {/* Profile Dropdown Widget */}
             <div className="profile-widget-container" ref={dropdownRef}>
               <div 
                 className={`profile-widget ${isDropdownOpen ? 'open' : ''}`}
@@ -326,7 +320,6 @@ export default function AdminShell() {
                 <ChevronDown size={16} className="profile-arrow" />
               </div>
 
-              {/* Dropdown Menu */}
               <div className={`profile-dropdown ${isDropdownOpen ? 'show' : ''}`}>
                 <Link to="/admin/profile" className="dropdown-item" onClick={() => setIsDropdownOpen(false)}>
                   <UserCircle size={18} /> My Profile
@@ -340,7 +333,6 @@ export default function AdminShell() {
           </div>
         </header>
 
-        {/* PAGE CONTENT */}
         <div className="section-viewport">
           <Outlet context={{ profile }} />
         </div>

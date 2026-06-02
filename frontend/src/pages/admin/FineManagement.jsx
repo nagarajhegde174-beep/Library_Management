@@ -74,7 +74,6 @@ export default function FineManagement() {
       <div className="fm-texture"></div>
       
       <div className="fm-container">
-        {/* Header */}
         <header className="fm-hero-header">
           <div className="fm-badge-icon">
             <WalletCards size={16} /> Finance
@@ -83,7 +82,6 @@ export default function FineManagement() {
           <p className="fm-subtitle">Monitor system-wide fines, verify payments, and clear outstanding balances.</p>
         </header>
 
-        {/* Stats Grid */}
         <div className="fm-stats-grid">
           {statCards.map(c => (
             <div 
@@ -110,7 +108,6 @@ export default function FineManagement() {
           ))}
         </div>
 
-        {/* Filters & Search */}
         <div className="fm-filters-container">
           <div className="fm-tabs">
             {[
@@ -140,7 +137,6 @@ export default function FineManagement() {
           </div>
         </div>
 
-        {/* Ledger Rows Area */}
         <div className="fm-rows-container">
           {displayed.length === 0 ? (
             <div className="fm-empty-card">
@@ -154,26 +150,22 @@ export default function FineManagement() {
             displayed.map((f) => (
               <div key={f._id} className="fm-row-card">
                 
-                {/* Member Info */}
                 <div className="fm-cell">
                   <span className="fm-member-name">{f.memberId?.name || "Unknown Member"}</span>
                   <span className="fm-member-id">{f.memberId?.membershipId || "No ID"}</span>
                 </div>
 
-                {/* Book Info & Overdue */}
                 <div className="fm-cell">
                   <span className="fm-book-title">{f.bookId?.title || "Unknown Book"}</span>
                   <span className="fm-overdue-badge">{f.daysOverdue} Days Overdue</span>
                 </div>
 
-                {/* Amount */}
                 <div className="fm-cell" style={{ alignItems: 'flex-start' }}>
                   <span className={`fm-amount ${f.paidStatus ? 'paid' : ''}`}>
                     ₹{f.amount}
                   </span>
                 </div>
 
-                {/* Status & Actions */}
                 <div className="fm-status-cell">
                   {f.paidStatus ? (
                     <span className="fm-status-pill paid">

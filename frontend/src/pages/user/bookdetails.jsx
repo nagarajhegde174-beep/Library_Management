@@ -15,7 +15,7 @@ function BookDetails() {
     const { id } = useParams();
     const [book, setBook] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null); 
     const [isIssuing, setIsIssuing] = useState(false);
     const [isReserving, setIsReserving] = useState(false);
     const [activeReservation, setActiveReservation] = useState(null);

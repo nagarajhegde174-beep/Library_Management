@@ -1,12 +1,5 @@
-/* ══════════════════════════════════════════════════════════
-   ADMIN DASHBOARD CSS — Theme-Aware
-   All colors use CSS variables from the active theme.
-   The :root block has been removed and lives in themes/*.css
-   ══════════════════════════════════════════════════════════ */
-
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
 ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
@@ -21,13 +14,11 @@
   background: var(--bg-primary);
 }
 
-/* ── Layout Structure ── */
 .dashboard-layout {
   display: flex;
   width: 100%;
 }
 
-/* ── Sidebar ── */
 .admin-sidebar {
   width: var(--sidebar-width, 280px);
   background: var(--gradient-sidebar);
@@ -270,7 +261,6 @@
   filter: drop-shadow(0 0 8px var(--accent-primary));
 }
 
-/* ── Main Content Area ── */
 .admin-main {
   flex: 1;
   padding: 2.5rem 3rem;
@@ -307,7 +297,6 @@
   z-index: 1;
 }
 
-/* ── Dashboard Container ── */
 .admin-dashboard-container {
   display: flex;
   flex-direction: column;
@@ -315,7 +304,6 @@
   width: 100%;
 }
 
-/* ── Top Hero Grid ── */
 .dash-hero-grid {
   display: flex;
   gap: 1.5rem;
@@ -485,7 +473,6 @@
 .icon-orange { color: var(--status-warning); }
 .icon-green  { color: var(--status-success); }
 
-/* ── Sparklines Summary Cards ── */
 .sparkline-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -553,7 +540,6 @@
   width: 100%;
 }
 
-/* ── Middle Core Charts Grid ── */
 .core-charts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -722,7 +708,6 @@
 .pill-badge.returned{ background: var(--status-success-soft); color: var(--status-success); border: 1px solid var(--status-success-border); }
 .pill-badge.overdue { background: var(--accent-tertiary-soft); color: var(--accent-tertiary); border: 1px solid var(--accent-tertiary-soft); }
 
-/* Activity Feed */
 .feed-panel {
   display: flex;
   flex-direction: column;
@@ -781,7 +766,6 @@
   color: var(--text-muted);
 }
 
-/* ── Reports Section ── */
 .reports-container {
   padding: 3rem;
   max-width: 800px;

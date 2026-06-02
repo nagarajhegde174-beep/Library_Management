@@ -1,5 +1,4 @@
 
-
 .mm-page {
   min-height: 100vh;
   background: var(--bg-primary);
@@ -203,7 +202,6 @@
   flex-wrap: wrap;
 }
 
-/* ── CENTER: BADGES & DATES ── */
 .mm-badges-cell {
   display: flex;
   flex-direction: column;
@@ -252,7 +250,6 @@
   color: var(--text-muted);
 }
 
-/* ── RIGHT: STATUS & ACTIONS ── */
 .mm-actions-cell {
   display: flex;
   flex-direction: column;
@@ -313,7 +310,6 @@
   color: var(--text-on-accent);
 }
 
-/* ── SET VALIDITY PANE ── */
 .mm-validity-pane {
   grid-column: 1 / -1;
   margin-top: 10px;
@@ -418,7 +414,6 @@
   color: var(--text-primary);
 }
 
-/* ── EMPTY STATE ── */
 .mm-empty-card {
   text-align: center;
   padding: 80px 40px;
@@ -429,7 +424,6 @@
   box-shadow: var(--shadow-card);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .mm-row-card {
     grid-template-columns: 1fr;

@@ -18,7 +18,6 @@ import {
 import { Server_URL } from "../../utils/config";
 import "./profile.css";
 import { getAuthToken } from "../../utils/auth";
-import { showErrorToast, showSuccessToast } from "../../utils/toasthelper";
 
 function ProfilePage() {
   const [user, setUser] = useState(null);

@@ -1,10 +1,5 @@
-/* ══════════════════════════════════════════════════════════
-   LIBNOVA DEEP INDIGO THEME — Premium Dark Indigo Dashboard
-   ══════════════════════════════════════════════════════════ */
-
 [data-theme="deep-indigo"] {
 
-  /* ── Core Backgrounds ─────────────────────────────────── */
   --bg-primary:        #0D0D1A;
   --bg-secondary:      #12122B;
   --bg-tertiary:       #0A0A18;
@@ -21,7 +16,6 @@
   --surface:           #18183A;
   --surface-alt:       #12122B;
 
-  /* ── Public / Navbar Backgrounds ──────────────────────── */
   --navbar-public-bg:  #0D0D1A;
   --navbar-public-text:#EEF2FF;
   --footer-bg:         #0D0D1A;
@@ -33,14 +27,12 @@
   --public-secondary:  #818CF8;
   --public-accent:     #A78BFA;
 
-  /* ── Text ─────────────────────────────────────────────── */
   --text-primary:      #EEF2FF;
   --text-secondary:    #818CF8;
   --text-muted:        #4F4F8F;
   --text-on-accent:    #ffffff;
   --text-inverse:      #0D0D1A;
 
-  /* ── Borders ──────────────────────────────────────────── */
   --border-subtle:     rgba(99, 102, 241, 0.05);
   --border-color:      rgba(99, 102, 241, 0.1);
   --border-medium:     rgba(99, 102, 241, 0.15);
@@ -50,7 +42,6 @@
   --border-danger:     rgba(239, 68, 68, 0.35);
   --glass-border:      rgba(99, 102, 241, 0.3);
 
-  /* ── Brand Accents ────────────────────────────────────── */
   --accent-primary:          #6366F1;
   --accent-primary-light:    #818CF8;
   --accent-primary-hover:    #7577f5;
@@ -68,7 +59,6 @@
   --accent-indigo:           #6366F1;
   --accent-cyan:             #818CF8;
 
-  /* ── Gradients ────────────────────────────────────────── */
   --gradient-primary:    linear-gradient(135deg, #6366F1, #A78BFA);
   --gradient-btn:        linear-gradient(135deg, #6366F1, #A78BFA);
   --gradient-btn-purple: linear-gradient(135deg, #4F46E5, #6366F1);
@@ -81,7 +71,6 @@
   --gradient-public-btn: linear-gradient(135deg, #4F46E5, #6366F1);
   --gradient-report-icon:linear-gradient(135deg, rgba(129, 140, 248, 0.2), rgba(99, 102, 241, 0.15));
 
-  /* ── Sidebar Navigation ───────────────────────────────── */
   --sidebar-active-bg:     linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(129, 140, 248, 0.2));
   --sidebar-active-bar:    #818CF8;
   --sidebar-active-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
@@ -90,7 +79,6 @@
   --sidebar-section-label: rgba(129, 140, 248, 0.5);
   --sidebar-nav-btn-bg:    rgba(99, 102, 241, 0.05);
 
-  /* ── Status Colors ────────────────────────────────────── */
   --status-success:        #10B981;
   --status-success-soft:   rgba(16, 185, 129, 0.1);
   --status-success-border: rgba(16, 185, 129, 0.3);
@@ -109,7 +97,6 @@
   --status-logout-hover:   #fecaca;
   --status-logout-bg:      rgba(239, 68, 68, 0.15);
 
-  /* ── Shadows ──────────────────────────────────────────── */
   --shadow-sm:    0 4px 20px rgba(0, 0, 0, 0.5);
   --shadow-md:    0 8px 30px rgba(0, 0, 0, 0.6);
   --shadow-lg:    0 14px 40px rgba(99, 102, 241, 0.3);
@@ -118,17 +105,14 @@
   --shadow-input-focus: 0 0 0 3px rgba(99, 102, 241, 0.2);
   --shadow-btn:   0 8px 20px rgba(99, 102, 241, 0.35);
 
-  /* ── Glass Effect ─────────────────────────────────────── */
   --glass-bg:     rgba(99, 102, 241, 0.04);
   --glass-bg2:    rgba(99, 102, 241, 0.06);
   --glass-bg3:    rgba(99, 102, 241, 0.1);
 
-  /* ── Ambient Glows ────────────────────────────────────── */
   --ambient-purple:  rgba(99, 102, 241, 0.1);
   --ambient-cyan:    rgba(129, 140, 248, 0.08);
   --ambient-purple2: rgba(99, 102, 241, 0.18);
 
-  /* ── Charts ───────────────────────────────────────────── */
   --chart-1:          #818CF8;
   --chart-2:          #6366F1;
   --chart-3:          #EC4899;
@@ -139,25 +123,21 @@
   --chart-legend:     #EEF2FF;
   --chart-tooltip-bg: #12122B;
 
-  /* ── Scrollbar ────────────────────────────────────────── */
   --scrollbar-track:       #12122B;
   --scrollbar-thumb:       #6366F1;
   --scrollbar-thumb-hover: #818CF8;
 
-  /* ── Preloader ────────────────────────────────────────── */
   --preloader-bg:            #0D0D1A;
   --preloader-spinner:       #6366F1;
   --preloader-spinner-track: rgba(99, 102, 241, 0.2);
   --preloader-text:          #818CF8;
 
-  /* ── Structural ───────────────────────────────────────── */
   --radius-sm:    8px;
   --radius-md:    14px;
   --radius-lg:    20px;
   --radius-xl:    24px;
   --sidebar-width: 280px;
 
-  /* ── Legacy Aliases ───────────────────────────────────── */
   --bg-main:       #0D0D1A;
   --bg-sidebar:    #12122B;
   --primary:       #6366F1;

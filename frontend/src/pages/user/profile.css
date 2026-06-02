@@ -282,7 +282,6 @@
   }
 }
 
-/* My Books Tab Styles */
 .borrow-item {
   background: var(--bg-card);
   backdrop-filter: blur(12px);

@@ -26,7 +26,6 @@ const ContactUs = () => {
 
   return (
     <div style={{ background: "var(--secondary-soft)", minHeight: "100vh", paddingBottom: "6rem" }}>
-      {/* HERO SECTION */}
       <section style={{
         background: "linear-gradient(135deg, var(--primary-deep), #3b2e7d)",
         padding: "6rem 2rem",
@@ -53,7 +52,6 @@ const ContactUs = () => {
           overflow: "hidden",
           border: "none"
         }}>
-          {/* Form Content */}
           <div style={{ padding: "4rem" }}>
             <div style={{ marginBottom: "2.5rem" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "var(--accent-purple)", fontWeight: 700, marginBottom: "1rem" }}>
@@ -114,7 +112,6 @@ const ContactUs = () => {
             </form>
           </div>
 
-          {/* Side Illustration/Image */}
           <div style={{ 
             background: "url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80') center/cover",
             position: "relative"

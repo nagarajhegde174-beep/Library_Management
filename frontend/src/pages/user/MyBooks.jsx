@@ -63,14 +63,12 @@ export default function MyBooks() {
     <div style={{ padding: "24px", maxWidth: "900px", margin: "0 auto" }}>
       <UserDashboardStats />
 
-      {/* Page header */}
       <div style={{ marginBottom: "20px" }}>
         <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#F8FAFC", display: "flex", alignItems: "center", gap: "10px" }}>
           <BookOpen size={24} color="#8B5CF6" /> Borrowed Books
         </h2>
       </div>
 
-      {/* Restriction banner */}
       {isRestricted && (
         <div style={{
           background: "rgba(239, 68, 68, 0.1)", border: "1px solid rgba(239, 68, 68, 0.3)", borderRadius: "10px",
@@ -86,7 +84,6 @@ export default function MyBooks() {
         </div>
       )}
 
-      {/* Account expiry banner */}
       {isExpired && (
         <div style={{
           background: "rgba(249, 115, 22, 0.1)", border: "1px solid rgba(249, 115, 22, 0.3)", borderRadius: "10px",
@@ -104,7 +101,6 @@ export default function MyBooks() {
         </div>
       )}
 
-      {/* Account validity info */}
       {accountEnd && !isExpired && (
         <div style={{
           background: "rgba(56, 189, 248, 0.1)", border: "1px solid rgba(56, 189, 248, 0.3)", borderRadius: "10px",

@@ -167,7 +167,6 @@ export default function ReturnRequest() {
                     </div>
                   </div>
 
-                  {/* Center: Book Info & Dates */}
                   <div className="rr-book-cell">
                     <img 
                       src={book.coverImage || "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=200"} 
@@ -183,7 +182,6 @@ export default function ReturnRequest() {
                     </div>
                   </div>
 
-                  {/* Right: Status & Actions */}
                   <div className="rr-actions-cell">
                     
                     <div className="rr-status-row">

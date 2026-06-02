@@ -11,12 +11,10 @@ import "./AdminDashboard.css";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, ArcElement, Filler);
 
-// Helper: read CSS variable values from active theme
 function getCSSVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
-// Reusable Sparkline Component
 const Sparkline = ({ data, color }) => {
   const chartData = {
     labels: ['1','2','3','4','5','6','7'],
@@ -56,26 +54,34 @@ export default function DashboardHome() {
   const context = useOutletContext();
   const { theme } = useTheme();
 
-  // Read theme colors for charts (updates when theme changes)
-  const tc = useMemo(() => ({
-    c1: getCSSVar('--chart-1'),
-    c2: getCSSVar('--chart-2'),
-    c3: getCSSVar('--chart-3'),
-    c4: getCSSVar('--chart-4'),
-    c5: getCSSVar('--chart-5'),
-    grid: getCSSVar('--chart-grid'),
-    tick: getCSSVar('--chart-tick'),
-    legend: getCSSVar('--chart-legend'),
-    tooltipBg: getCSSVar('--chart-tooltip-bg'),
-  }), [theme]);
+  const tc = useMemo(() => {
+    void theme;
+    return {
+      c1: getCSSVar('--chart-1'),
+      c2: getCSSVar('--chart-2'),
+      c3: getCSSVar('--chart-3'),
+      c4: getCSSVar('--chart-4'),
+      c5: getCSSVar('--chart-5'),
+      grid: getCSSVar('--chart-grid'),
+      tick: getCSSVar('--chart-tick'),
+      legend: getCSSVar('--chart-legend'),
+      tooltipBg: getCSSVar('--chart-tooltip-bg'),
+    };
+  }, [theme]);
 
   const [totalUser, setTotalUser] = useState(0);
   const [totalBooks, setTotalBooks] = useState(0);
   const [availableBooks, setAvailableBooks] = useState(0);
-  const [categoryData, setCategoryData] = useState({
-    labels: [],
-    datasets: [{ data: [], backgroundColor: ['#00E5FF', '#9D4EDD', '#FF4D9D', '#F59E0B', '#10B981'], borderWidth: 0, hoverOffset: 4 }],
-  });
+  const [rawCategoryCount, setRawCategoryCount] = useState({});
+  const categoryData = useMemo(() => ({
+    labels: Object.keys(rawCategoryCount),
+    datasets: [{
+      data: Object.values(rawCategoryCount),
+      backgroundColor: [tc.c1, tc.c2, tc.c3, tc.c4, tc.c5],
+      borderWidth: 0,
+      hoverOffset: 4
+    }],
+  }), [rawCategoryCount, tc]);
   const [occupancyPercent, setOccupancyPercent] = useState(0);
   const [borrowedBooks, setBorrowedBooks] = useState(0);
   const [opStats, setOpStats] = useState({ overdueBooks: 0, unpaidFines: 0, pendingReturns: 0, pendingReservations: 0 });
@@ -115,15 +121,7 @@ export default function DashboardHome() {
             return acc;
           }, {});
 
-          setCategoryData({
-            labels: Object.keys(categoryCount),
-            datasets: [{
-              data: Object.values(categoryCount),
-              backgroundColor: [tc.c1, tc.c2, tc.c3, tc.c4, tc.c5],
-              borderWidth: 0,
-              hoverOffset: 4
-            }],
-          });
+          setRawCategoryCount(categoryCount);
         }
 
         const homeRes = await axios.get(Server_URL + "home");
@@ -144,7 +142,9 @@ export default function DashboardHome() {
           if (!statsRes.data.error) {
             setOpStats(statsRes.data);
           }
-        } catch (_) {}
+        } catch {
+          // Ignore dashboard-stats fetching errors
+        }
 
         let issuedRequests = [];
         try {
@@ -170,9 +170,10 @@ export default function DashboardHome() {
             }));
             setRecentIssuedBooks(formatted);
           }
-        } catch (_) {}
+        } catch {
+          // Ignore requests fetching errors
+        }
 
-        // Build Activity Feed
         let activities = [];
         allBooks.slice(0, 3).forEach(b => {
           activities.push({ date: new Date(b.createdAt || Date.now()), text: `New book '${b.title}' added`, type: "add" });
@@ -214,9 +215,7 @@ export default function DashboardHome() {
     fetchData();
   }, []);
 
-  // -- Realistic Mock Data & Charts --
   
-  // 1. Borrow Activity (Vertical Bar)
   const barChartData = {
     labels: opStats?.charts?.last6MonthsLabels || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [{
@@ -236,7 +235,6 @@ export default function DashboardHome() {
     }
   };
 
-  // 2. Members Growth (Smooth Line)
   const lineChartData = {
     labels: opStats?.charts?.last6MonthsLabels || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [{
@@ -258,7 +256,6 @@ export default function DashboardHome() {
     }
   };
 
-  // 3. Fine Analytics (Area)
   const fineAreaData = {
     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
     datasets: [{
@@ -272,7 +269,6 @@ export default function DashboardHome() {
     }]
   };
 
-  // 4. Reservations (Stacked Area)
   const resStackedData = {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
     datasets: [
@@ -305,17 +301,14 @@ export default function DashboardHome() {
     }
   };
 
-  // Calculations for Overdue Ring
-  const totalBorrowed = borrowedBooks || 1; // avoid division by zero
+  const totalBorrowed = borrowedBooks || 1; 
   const overduePercent = Math.min(100, Math.round(((opStats?.overdueBooks || 0) / totalBorrowed) * 100)) || 0;
 
   return (
     <div className="admin-dashboard-container">
       
-      {/* ── TOP SECTION ── */}
       <div className="dash-hero-grid">
         
-        {/* Welcome Hero */}
         <div className="hero-card">
           <div className="hero-content">
             <div className="hero-header">
@@ -347,7 +340,6 @@ export default function DashboardHome() {
           </div>
         </div>
 
-        {/* Quick Actions */}
         <div className="quick-action-card">
           <h3 className="section-title">Quick Actions</h3>
           <div className="qa-grid-new">
@@ -361,7 +353,6 @@ export default function DashboardHome() {
 
       </div>
 
-      {/* ── SPARKLINE SUMMARY CARDS ── */}
       <div className="sparkline-grid">
         <div className="spark-card">
           <div className="sc-header">
@@ -430,16 +421,13 @@ export default function DashboardHome() {
         </div>
       </div>
 
-      {/* ── MIDDLE 6 CORE GRAPHS ── */}
       <div className="core-charts-grid">
         
-        {/* 1. Borrow Activity */}
         <div className="graph-panel">
           <h3 className="panel-title">Borrow Activity</h3>
           <div className="graph-wrapper"><Bar data={barChartData} options={barOptions} /></div>
         </div>
 
-        {/* 2. Book Categories */}
         <div className="graph-panel">
           <h3 className="panel-title">Book Categories</h3>
           <div className="graph-wrapper donut-wrapper">
@@ -447,25 +435,21 @@ export default function DashboardHome() {
           </div>
         </div>
 
-        {/* 3. Members Growth */}
         <div className="graph-panel">
           <h3 className="panel-title">Members Growth</h3>
           <div className="graph-wrapper"><Line data={lineChartData} options={lineOptions} /></div>
         </div>
 
-        {/* 4. Fine Analytics */}
         <div className="graph-panel">
           <h3 className="panel-title">Fine Analytics</h3>
           <div className="graph-wrapper"><Line data={fineAreaData} options={lineOptions} /></div>
         </div>
 
-        {/* 5. Reservations */}
         <div className="graph-panel">
           <h3 className="panel-title">Reservations</h3>
           <div className="graph-wrapper"><Line data={resStackedData} options={stackedOptions} /></div>
         </div>
 
-        {/* 6. Overdue Books (Radial Ring) */}
         <div className="graph-panel radial-panel">
           <h3 className="panel-title">Overdue Books</h3>
           <div className="radial-wrapper">
@@ -485,10 +469,8 @@ export default function DashboardHome() {
 
       </div>
 
-      {/* ── BOTTOM ROW ── */}
       <div className="bottom-workflow-grid">
         
-        {/* Table */}
         <div className="graph-panel table-panel">
           <div className="panel-header-flex">
             <h3 className="panel-title">Recent Issued Books</h3>
@@ -524,7 +506,6 @@ export default function DashboardHome() {
           </div>
         </div>
 
-        {/* Activity Feed */}
         <div className="graph-panel feed-panel">
           <h3 className="panel-title">Live Activity Feed</h3>
           <div className="feed-timeline">

@@ -1,7 +1,6 @@
 
 [data-theme="default"] {
 
-  /* ── Core Backgrounds ─────────────────────────────────── */
   --bg-primary:        #090914;
   --bg-secondary:      #121225;
   --bg-tertiary:       #0B1120;
@@ -18,7 +17,6 @@
   --surface:           #ffffff;
   --surface-alt:       #ecf0f1;
 
-  /* ── Public / Navbar Backgrounds ──────────────────────── */
   --navbar-public-bg:  #2c3e50;
   --navbar-public-text:#ffffff;
   --footer-bg:         #2c3e50;
@@ -30,14 +28,12 @@
   --public-secondary:  #3498db;
   --public-accent:     #e74c3c;
 
-  /* ── Text ─────────────────────────────────────────────── */
   --text-primary:      #F3F4FF;
   --text-secondary:    #8b8b9f;
   --text-muted:        #6b6b80;
   --text-on-accent:    #ffffff;
   --text-inverse:      #0F172A;
 
-  /* ── Borders ──────────────────────────────────────────── */
   --border-subtle:     rgba(255, 255, 255, 0.03);
   --border-color:      rgba(255, 255, 255, 0.05);
   --border-medium:     rgba(255, 255, 255, 0.08);
@@ -47,7 +43,6 @@
   --border-danger:     rgba(239, 68, 68, 0.3);
   --glass-border:      rgba(157, 78, 221, 0.35);
 
-  /* ── Brand Accents ────────────────────────────────────── */
   --accent-primary:          #9D4EDD;
   --accent-primary-light:    #C77DFF;
   --accent-primary-hover:    #b055f5;
@@ -65,7 +60,6 @@
   --accent-indigo:           #6366F1;
   --accent-cyan:             #06b6d4;
 
-  /* ── Gradients ────────────────────────────────────────── */
   --gradient-primary:    linear-gradient(135deg, #8B5CF6, #EC4899);
   --gradient-btn:        linear-gradient(135deg, #8B5CF6, #EC4899);
   --gradient-btn-purple: linear-gradient(135deg, #7C3AED, #5D26FF);
@@ -78,7 +72,6 @@
   --gradient-public-btn: linear-gradient(135deg, #2c3e50, #3d5166);
   --gradient-report-icon:linear-gradient(135deg, rgba(53, 242, 255, 0.15), rgba(123, 97, 255, 0.15));
 
-  /* ── Sidebar Navigation ───────────────────────────────── */
   --sidebar-active-bg:     linear-gradient(135deg, rgba(91, 120, 255, 0.22), rgba(123, 97, 255, 0.18));
   --sidebar-active-bar:    #35F2FF;
   --sidebar-active-shadow: 0 0 30px rgba(77, 163, 255, 0.35);
@@ -87,7 +80,6 @@
   --sidebar-section-label: rgba(255, 255, 255, 0.4);
   --sidebar-nav-btn-bg:    rgba(255, 255, 255, 0.03);
 
-  /* ── Status Colors ────────────────────────────────────── */
   --status-success:        #10B981;
   --status-success-soft:   rgba(16, 185, 129, 0.1);
   --status-success-border: rgba(16, 185, 129, 0.3);
@@ -106,7 +98,6 @@
   --status-logout-hover:   #fecaca;
   --status-logout-bg:      rgba(239, 68, 68, 0.15);
 
-  /* ── Shadows ──────────────────────────────────────────── */
   --shadow-sm:    0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-md:    0 8px 30px rgba(0, 0, 0, 0.5);
   --shadow-lg:    0 14px 40px rgba(157, 78, 221, 0.25);
@@ -115,17 +106,14 @@
   --shadow-input-focus: 0 0 0 3px rgba(139, 92, 246, 0.15);
   --shadow-btn:   0 8px 20px rgba(236, 72, 153, 0.3);
 
-  /* ── Glass Effect ─────────────────────────────────────── */
   --glass-bg:     rgba(255, 255, 255, 0.03);
   --glass-bg2:    rgba(255, 255, 255, 0.04);
   --glass-bg3:    rgba(255, 255, 255, 0.06);
 
-  /* ── Ambient Glows (radial gradients used as backgrounds) */
   --ambient-purple:  rgba(139, 92, 246, 0.08);
   --ambient-cyan:    rgba(6, 182, 212, 0.08);
   --ambient-purple2: rgba(123, 97, 255, 0.15);
 
-  /* ── Charts ───────────────────────────────────────────── */
   --chart-1:          #00E5FF;
   --chart-2:          #9D4EDD;
   --chart-3:          #FF4D9D;
@@ -136,12 +124,10 @@
   --chart-legend:     #F3F4FF;
   --chart-tooltip-bg: #121225;
 
-  /* ── Scrollbar ────────────────────────────────────────── */
   --scrollbar-track:       #121225;
   --scrollbar-thumb:       #9D4EDD;
   --scrollbar-thumb-hover: #C77DFF;
 
-  /* ── Preloader ────────────────────────────────────────── */
   --preloader-bg:            #090914;
   --preloader-spinner:       #8b5cf6;
   --preloader-spinner-track: rgba(228, 221, 245, 0.3);

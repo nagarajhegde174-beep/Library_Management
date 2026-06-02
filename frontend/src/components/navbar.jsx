@@ -31,7 +31,6 @@ export default function Navbar() {
       <nav style={styles.nav}>
         <div style={styles.navContainer}>
           
-          {/* LOGO */}
           <Link to="/" style={styles.brand}>
             <div style={styles.logoBox}>
               <img src="/eagle-logo.png" alt="LibNova" style={styles.brandLogo} />
@@ -39,7 +38,6 @@ export default function Navbar() {
             <span style={styles.brandText}>LibNova</span>
           </Link>
 
-          {/* DESKTOP LINKS */}
           <ul style={styles.desktopLinks} className="desktop-nav">
             {NAV_LINKS.filter(link => token || !['/reservations', '/my-books'].includes(link.to)).map(link => {
               const isActive = location.pathname === link.to;
@@ -60,15 +58,12 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* RIGHT ICONS & AUTH */}
           <div style={styles.rightGroup}>
 
-            {/* Theme Switcher */}
             <div className="desktop-nav">
               <ThemeSwitcher variant="inline" />
             </div>
 
-            {/* Profile / Auth */}
             {token ? (
               <div style={{ position: "relative" }}>
                 <button 
@@ -111,7 +106,6 @@ export default function Navbar() {
               </div>
             )}
 
-            {/* Mobile Menu Toggle */}
             <button className="hamburger" style={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X size={24} color="var(--navbar-public-text, #F8FAFC)" /> : <Menu size={24} color="var(--navbar-public-text, #F8FAFC)" />}
             </button>
@@ -119,7 +113,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* MOBILE MENU */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div 
@@ -133,7 +126,6 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            {/* Mobile Theme Switcher */}
             <div style={{ padding: '12px 24px', borderBottom: '1px solid var(--border-color)' }}>
               <ThemeSwitcher variant="inline" />
             </div>

@@ -26,7 +26,7 @@ const ROLES = [
   },
 ];
 
-function RoleCardHorizontal({ role, delay }) {
+function RoleCardHorizontal({ role }) {
   const [hov, setHov] = useState(false);
   const navigate = useNavigate();
 
@@ -116,7 +116,6 @@ export default function LoginPortal() {
   return (
     <>
       <div className="animated-bg">
-        {/* Floating animated orbs in background */}
         <div className="orb orb-1"></div>
         <div className="orb orb-2"></div>
         <div className="orb orb-3"></div>
@@ -126,7 +125,6 @@ export default function LoginPortal() {
       <div style={styles.page}>
         <div style={styles.card}>
           
-          {/* ── LEFT PANEL (Glassmorphic) ── */}
           <div style={styles.leftPanel}>
             <div style={styles.contentContainer}>
               
@@ -144,15 +142,14 @@ export default function LoginPortal() {
               </div>
 
               <div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
-                {ROLES.map((role, i) => (
-                  <RoleCardHorizontal key={role.key} role={role} delay={i + 1} />
+                {ROLES.map((role) => (
+                  <RoleCardHorizontal key={role.key} role={role} />
                 ))}
               </div>
               
             </div>
           </div>
 
-          {/* ── RIGHT PANEL (Vibrant Gradient) ── */}
           <div style={styles.rightPanel}>
             <div style={styles.blob1} />
             <div style={styles.blob2} />
@@ -231,7 +228,6 @@ const styles = {
     boxShadow: "var(--shadow-lg), 0 0 0 1px var(--border-color) inset",
   },
   
-  // Left Panel
   leftPanel: {
     width: "45%",
     display: "flex",
@@ -261,7 +257,6 @@ const styles = {
     lineHeight: 1.5,
   },
 
-  // Right Panel
   rightPanel: {
     width: "55%",
     background: "var(--gradient-btn)",
@@ -311,7 +306,6 @@ const styles = {
     filter: "drop-shadow(0 20px 30px var(--shadow-color))",
   },
 
-  // Blobs inside right panel
   blob1: {
     position: "absolute",
     top: "-10%",

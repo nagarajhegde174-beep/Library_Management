@@ -4,11 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import './index.css'
 import App from './App.jsx';
-import { ThemeProvider } from './context/ThemeContext.jsx';
+import { ThemeProvider } from './context/ThemeProvider.jsx';
 
-// ── Stale token cleanup ──────────────────────────────────
-// Tokens signed before the admin-id fix don't have an `id` field.
-// Clear them so the user is forced to re-login cleanly.
+
 try {
   const token = localStorage.getItem('authToken');
   if (token) {

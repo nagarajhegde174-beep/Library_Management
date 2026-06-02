@@ -70,7 +70,6 @@ export default function ViewAllCategories() {
     <div className="categories-viewport" style={{ background: "var(--secondary-soft)", minHeight: "100vh" }}>
       <div className="section-viewport" style={{ display: "flex", gap: "3rem", alignItems: "flex-start" }}>
         
-        {/* SIDEBAR NAVIGATION */}
         <aside style={{ 
           width: "280px", 
           position: "sticky", 
@@ -124,7 +123,6 @@ export default function ViewAllCategories() {
           </ul>
         </aside>
 
-        {/* MAIN CONTENT GRID */}
         <main style={{ flex: 1 }}>
           <div style={{ marginBottom: "3rem" }}>
             <h1 style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--primary-deep)", marginBottom: "0.75rem" }}>Explore Categories</h1>

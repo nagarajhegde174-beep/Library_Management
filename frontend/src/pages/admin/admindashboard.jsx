@@ -1,2 +1,2 @@
-/** @deprecated Use DashboardHome + AdminShell via router. Kept for lazy-import compatibility. */
+/** @deprecated Use DashboardHome + AdminShell  */
 export { default } from "./DashboardHome";

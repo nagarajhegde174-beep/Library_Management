@@ -17,8 +17,8 @@ export default function ManageMembers() {
   const [members,  setMembers]  = useState([]);
   const [loading,  setLoading]  = useState(true);
   const [search,   setSearch]   = useState("");
-  const [expanded, setExpanded] = useState({}); // { [id]: boolean }
-  const [validity, setValidity] = useState({}); // { [id]: { start, end } }
+  const [expanded, setExpanded] = useState({}); 
+  const [validity, setValidity] = useState({}); 
   const [saving,   setSaving]   = useState(null);
 
   const fetchMembers = async () => {
@@ -79,7 +79,6 @@ export default function ManageMembers() {
     <div className="mm-page">
       <div className="mm-container">
         
-        {/* Hero Header */}
         <header className="mm-hero-header">
           <h1 className="mm-title">
             <div className="mm-title-icon"><Users size={22} /></div>
@@ -98,7 +97,6 @@ export default function ManageMembers() {
           </div>
         </header>
 
-        {/* Content Area */}
         {filtered.length === 0 ? (
           <div className="mm-empty-card">
             <Users size={48} color="#64748b" style={{ marginBottom:"12px" }} />
@@ -121,7 +119,6 @@ export default function ManageMembers() {
               return (
                 <div key={m._id} className="mm-row-card">
                   
-                  {/* Left: User Identity */}
                   <div className="mm-user-cell">
                     <div className="mm-avatar">
                       {userInitial}
@@ -138,7 +135,6 @@ export default function ManageMembers() {
                     </div>
                   </div>
 
-                  {/* Center: Badges & Dates */}
                   <div className="mm-badges-cell">
                     <div className="mm-tags-row">
                       {isRestricted && (
@@ -168,7 +164,6 @@ export default function ManageMembers() {
                     )}
                   </div>
 
-                  {/* Right: Actions */}
                   <div className="mm-actions-cell">
                     
                     <button 
@@ -189,7 +184,6 @@ export default function ManageMembers() {
                     </button>
                   </div>
 
-                  {/* Account Validity Form (collapsible) */}
                   {showValidity && (
                     <div className="mm-validity-pane">
                       <h4 className="mm-validity-title">Update Account Validity Period</h4>

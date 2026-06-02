@@ -6,7 +6,6 @@ import {
   CheckCircle2, Clock, Calendar, Hash,
   Eye, RefreshCcw, MoreHorizontal, User
 } from "lucide-react";
-import { showSuccessToast, showErrorToast, showInfoToast } from "../../utils/toasthelper";
 import "./booksborrowed.css";
 
 export default function BooksBorrowed() {
@@ -36,14 +35,12 @@ export default function BooksBorrowed() {
 
 
 
-  // Filter requests
   const filteredRequests = requests.filter(req => {
     const titleMatch = req.bookId?.title?.toLowerCase().includes(searchTerm.toLowerCase());
     const userMatch = req.userId?.name?.toLowerCase().includes(searchTerm.toLowerCase());
     return titleMatch || userMatch;
   });
 
-  // Derived Stats
   const totalBorrowed = requests.length;
   const overdueBooks = requests.filter(r => r.status === "Overdue" || new Date(r.dueDate) < new Date()).length;
   const returnedToday = requests.filter(r => r.status === "Returned").length; // Mock metric
@@ -52,7 +49,6 @@ export default function BooksBorrowed() {
     <div className="borrowed-page">
       <div className="borrowed-container">
         
-        {/* ── HERO HEADER ── */}
         <header className="bb-hero-header">
           <div className="bb-title-group">
             <h1 className="bb-title">
@@ -63,7 +59,6 @@ export default function BooksBorrowed() {
           </div>
         </header>
 
-        {/* ── STATS DASHBOARD ── */}
         <div className="bb-stats-grid">
           <div className="bb-stat-card">
             <div className="bb-stat-icon purple"><Library size={20} /></div>
@@ -88,7 +83,6 @@ export default function BooksBorrowed() {
           </div>
         </div>
 
-        {/* ── TOOLBAR ── */}
         <div className="bb-toolbar">
           <div className="bb-search-wrapper">
             <Search size={18} className="bb-search-icon" />
@@ -105,10 +99,8 @@ export default function BooksBorrowed() {
           </button>
         </div>
 
-        {/* ── HYBRID ROWS CONTAINER ── */}
         <div className="bb-rows-container">
           {loading ? (
-            // Shimmer Loading Skeleton
             [...Array(4)].map((_, i) => (
               <div key={i} className="bb-row-card" style={{ opacity: 0.5, animationDelay: `${i * 0.1}s` }}>
                 <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
@@ -121,18 +113,15 @@ export default function BooksBorrowed() {
               </div>
             ))
           ) : filteredRequests.length === 0 ? (
-            // Empty State
             <div style={{ textAlign: "center", padding: "4rem", background: "rgba(15,23,42,0.4)", borderRadius: "20px", border: "1px dashed rgba(255,255,255,0.1)" }}>
               <Library size={48} style={{ color: "#4B5563", margin: "0 auto 1rem" }} />
               <h4 style={{ color: "#9CA3AF", fontWeight: "600", margin: 0 }}>No borrowed books found.</h4>
             </div>
           ) : (
-            // Hybrid Cards
             filteredRequests.map((req) => {
               const userName = req.userId?.name || "Unknown User";
               const userInitial = userName.charAt(0).toUpperCase();
               
-              // Determine status and badge styling
               let badgeClass = "issued";
               let statusText = req.status || "Issued";
               
@@ -146,7 +135,6 @@ export default function BooksBorrowed() {
               return (
                 <div className="bb-row-card" key={req._id}>
                   
-                  {/* Left: User Profile */}
                   <div className="bb-user-cell">
                     <div className="bb-avatar-wrapper">
                       <div className="bb-avatar">{userInitial}</div>
@@ -158,7 +146,6 @@ export default function BooksBorrowed() {
                     </div>
                   </div>
 
-                  {/* Center: Book Info */}
                   <div className="bb-book-cell">
                     <div className="bb-book-details">
                       <h5>{req.bookId?.title || "Unknown Book"}</h5>
@@ -166,7 +153,6 @@ export default function BooksBorrowed() {
                     </div>
                   </div>
 
-                  {/* Right: Dates & Status */}
                   <div className="bb-timeline-cell">
                     <div className="bb-date-row">
                       <Clock size={12} />

@@ -1,6 +1,4 @@
-/* ══════════════════════════════════════════════════════
-   PREMIUM SAAS REPORTS MODULE
-   ══════════════════════════════════════════════════════ */
+
 
 .reports-container {
   padding: 3rem;
@@ -16,13 +14,13 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── PAGE HEADER ── */
+
 .reports-header {
   margin-bottom: 2.5rem;
   position: relative;
 }
 
-/* Subtle animated glow behind heading */
+
 .reports-header::before {
   content: '';
   position: absolute;
@@ -74,7 +72,6 @@
   margin: 0;
 }
 
-/* ── REPORT GLASS CARD ── */
 .report-glass-card {
   background: rgba(15, 18, 35, 0.72);
   backdrop-filter: blur(20px);
@@ -133,7 +130,6 @@
   margin: 6px 0 0;
 }
 
-/* ── CHECKLIST ROWS ── */
 .rgc-details {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -184,7 +180,6 @@
   font-weight: 500;
 }
 
-/* ── DOWNLOAD BUTTON ── */
 .premium-download-btn {
   background: linear-gradient(135deg, #2563EB, #4F46E5, #7C3AED);
   background-size: 200% 200%;

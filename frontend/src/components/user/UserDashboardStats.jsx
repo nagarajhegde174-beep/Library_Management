@@ -60,7 +60,6 @@ export default function UserDashboardStats() {
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px", marginBottom: "24px" }}>
-      {/* Active Borrows */}
       <div style={{ background: "rgba(255,255,255,0.03)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "12px", padding: "16px", display: "flex", alignItems: "center", gap: "16px" }}>
         <div style={{ background: "rgba(139,92,246,0.15)", color: "#8B5CF6", padding: "12px", borderRadius: "10px" }}>
           <BookOpen size={24} />
@@ -71,7 +70,6 @@ export default function UserDashboardStats() {
         </div>
       </div>
 
-      {/* Total Reservations */}
       <div style={{ background: "rgba(255,255,255,0.03)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "12px", padding: "16px", display: "flex", alignItems: "center", gap: "16px" }}>
         <div style={{ background: "rgba(236,72,153,0.15)", color: "#EC4899", padding: "12px", borderRadius: "10px" }}>
           <Clock size={24} />
@@ -82,7 +80,6 @@ export default function UserDashboardStats() {
         </div>
       </div>
 
-      {/* Overdue */}
       <div style={{ background: "rgba(255,255,255,0.03)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "12px", padding: "16px", display: "flex", alignItems: "center", gap: "16px" }}>
         <div style={{ background: "rgba(239,68,68,0.15)", color: "#EF4444", padding: "12px", borderRadius: "10px" }}>
           <AlertTriangle size={24} />

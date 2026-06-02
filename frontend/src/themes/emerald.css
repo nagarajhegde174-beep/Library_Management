@@ -1,10 +1,5 @@
-/* ══════════════════════════════════════════════════════════
-   LIBNOVA EMERALD THEME — Green Enterprise Dashboard
-   ══════════════════════════════════════════════════════════ */
-
 [data-theme="emerald"] {
 
-  /* ── Core Backgrounds ─────────────────────────────────── */
   --bg-primary:        #030F0A;
   --bg-secondary:      #041410;
   --bg-tertiary:       #051810;
@@ -21,7 +16,6 @@
   --surface:           #071A12;
   --surface-alt:       #041410;
 
-  /* ── Public / Navbar Backgrounds ──────────────────────── */
   --navbar-public-bg:  #041410;
   --navbar-public-text:#ECFDF5;
   --footer-bg:         #030F0A;
@@ -33,14 +27,12 @@
   --public-secondary:  #34D399;
   --public-accent:     #6EE7B7;
 
-  /* ── Text ─────────────────────────────────────────────── */
   --text-primary:      #ECFDF5;
   --text-secondary:    #6EE7B7;
   --text-muted:        #064E34;
   --text-on-accent:    #ffffff;
   --text-inverse:      #030F0A;
 
-  /* ── Borders ──────────────────────────────────────────── */
   --border-subtle:     rgba(16, 185, 129, 0.05);
   --border-color:      rgba(16, 185, 129, 0.1);
   --border-medium:     rgba(16, 185, 129, 0.15);
@@ -50,7 +42,6 @@
   --border-danger:     rgba(239, 68, 68, 0.35);
   --glass-border:      rgba(16, 185, 129, 0.3);
 
-  /* ── Brand Accents ────────────────────────────────────── */
   --accent-primary:          #10B981;
   --accent-primary-light:    #34D399;
   --accent-primary-hover:    #059669;
@@ -68,7 +59,6 @@
   --accent-indigo:           #6366F1;
   --accent-cyan:             #34D399;
 
-  /* ── Gradients ────────────────────────────────────────── */
   --gradient-primary:    linear-gradient(135deg, #10B981, #34D399);
   --gradient-btn:        linear-gradient(135deg, #10B981, #34D399);
   --gradient-btn-purple: linear-gradient(135deg, #059669, #10B981);
@@ -81,7 +71,6 @@
   --gradient-public-btn: linear-gradient(135deg, #047857, #10B981);
   --gradient-report-icon:linear-gradient(135deg, rgba(110, 231, 183, 0.15), rgba(16, 185, 129, 0.12));
 
-  /* ── Sidebar Navigation ───────────────────────────────── */
   --sidebar-active-bg:     linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.15));
   --sidebar-active-bar:    #34D399;
   --sidebar-active-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
@@ -90,7 +79,6 @@
   --sidebar-section-label: rgba(110, 231, 183, 0.5);
   --sidebar-nav-btn-bg:    rgba(16, 185, 129, 0.04);
 
-  /* ── Status Colors ────────────────────────────────────── */
   --status-success:        #10B981;
   --status-success-soft:   rgba(16, 185, 129, 0.12);
   --status-success-border: rgba(16, 185, 129, 0.35);
@@ -109,7 +97,6 @@
   --status-logout-hover:   #fecaca;
   --status-logout-bg:      rgba(239, 68, 68, 0.15);
 
-  /* ── Shadows ──────────────────────────────────────────── */
   --shadow-sm:    0 4px 20px rgba(0, 0, 0, 0.5);
   --shadow-md:    0 8px 30px rgba(0, 0, 0, 0.6);
   --shadow-lg:    0 14px 40px rgba(16, 185, 129, 0.25);
@@ -118,17 +105,14 @@
   --shadow-input-focus: 0 0 0 3px rgba(16, 185, 129, 0.2);
   --shadow-btn:   0 8px 20px rgba(16, 185, 129, 0.35);
 
-  /* ── Glass Effect ─────────────────────────────────────── */
   --glass-bg:     rgba(16, 185, 129, 0.04);
   --glass-bg2:    rgba(16, 185, 129, 0.06);
   --glass-bg3:    rgba(16, 185, 129, 0.1);
 
-  /* ── Ambient Glows ────────────────────────────────────── */
   --ambient-purple:  rgba(16, 185, 129, 0.08);
   --ambient-cyan:    rgba(52, 211, 153, 0.07);
   --ambient-purple2: rgba(16, 185, 129, 0.15);
 
-  /* ── Charts ───────────────────────────────────────────── */
   --chart-1:          #34D399;
   --chart-2:          #10B981;
   --chart-3:          #6EE7B7;
@@ -139,25 +123,21 @@
   --chart-legend:     #ECFDF5;
   --chart-tooltip-bg: #041410;
 
-  /* ── Scrollbar ────────────────────────────────────────── */
   --scrollbar-track:       #041410;
   --scrollbar-thumb:       #10B981;
   --scrollbar-thumb-hover: #34D399;
 
-  /* ── Preloader ────────────────────────────────────────── */
   --preloader-bg:            #030F0A;
   --preloader-spinner:       #10B981;
   --preloader-spinner-track: rgba(16, 185, 129, 0.2);
   --preloader-text:          #6EE7B7;
 
-  /* ── Structural ───────────────────────────────────────── */
   --radius-sm:    8px;
   --radius-md:    14px;
   --radius-lg:    20px;
   --radius-xl:    24px;
   --sidebar-width: 280px;
 
-  /* ── Legacy Aliases ───────────────────────────────────── */
   --bg-main:       #030F0A;
   --bg-sidebar:    #041410;
   --primary:       #10B981;

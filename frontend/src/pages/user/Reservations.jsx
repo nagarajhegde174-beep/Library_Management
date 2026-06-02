@@ -52,7 +52,6 @@ export default function Reservations() {
     <div style={{ padding: "24px", maxWidth: "900px", margin: "0 auto" }}>
       <UserDashboardStats />
 
-      {/* Page header */}
       <div style={{ marginBottom: "20px" }}>
         <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#F8FAFC", display: "flex", alignItems: "center", gap: "10px" }}>
           <Clock size={24} color="#8B5CF6" /> Reservation Notifications

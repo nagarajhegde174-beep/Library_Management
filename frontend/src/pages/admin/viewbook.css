@@ -296,7 +296,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── BOOK CARD ── */
 .premium-book-card {
   background: var(--bg-card);
   backdrop-filter: blur(12px);
@@ -375,7 +374,6 @@
   letter-spacing: 0.05em;
 }
 
-/* Details Wrapper (Right) */
 .pbc-details {
   flex: 1;
   display: flex;
@@ -445,7 +443,6 @@
   color: var(--accent-primary);
 }
 
-/* Status Badge */
 .pbc-status-compact {
   margin-top: auto;
 }
@@ -485,7 +482,6 @@
   100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
 }
 
-/* Actions Row */
 .pbc-actions-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -532,7 +528,6 @@
   box-shadow: 0 6px 20px var(--status-danger-soft);
 }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 1200px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }

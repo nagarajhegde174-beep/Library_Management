@@ -18,7 +18,7 @@ function MyFines() {
       });
       setFines(res.data.fines || []);
       setTotalDue(res.data.totalDue || 0);
-    } catch (err) {
+    } catch {
       showErrorToast("Failed to fetch fines");
     } finally {
       setLoading(false);
@@ -55,7 +55,6 @@ function MyFines() {
           <h1 style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--primary-deep)" }}>My Fines & Dues</h1>
         </div>
 
-        {/* SUMMARY DASHBOARD */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",

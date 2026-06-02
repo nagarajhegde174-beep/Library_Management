@@ -27,7 +27,6 @@ export default function ForgotPassword() {
     <div className="auth-page-container">
       <div className="auth-card">
         
-        {/* ── LEFT PANEL (Form) ── */}
         <div className="auth-left-panel">
           <div className="auth-form-container">
             <div className="auth-header">
@@ -37,7 +36,6 @@ export default function ForgotPassword() {
 
             <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
               
-              {/* Email */}
               <div className="auth-field-group">
                 <input
                   type="email"
@@ -54,13 +52,11 @@ export default function ForgotPassword() {
                 {errors.email && <span className="auth-error">{errors.email.message}</span>}
               </div>
 
-              {/* Send OTP Button */}
               <button type="submit" disabled={isSubmitting} className="auth-submit-btn">
                 {isSubmitting ? <span className="auth-spinner" /> : "Send OTP"}
               </button>
             </form>
 
-            {/* Footer / Login Link */}
             <div className="auth-footer-row">
               <span className="auth-footer-text">Remember your password?</span>
               <Link to="/login" className="auth-signup-btn">Log in</Link>
@@ -69,7 +65,6 @@ export default function ForgotPassword() {
           </div>
         </div>
 
-        {/* ── RIGHT PANEL (Illustration) ── */}
         <div className="auth-right-panel">
           <div className="auth-blob-1" />
           <div className="auth-blob-2" />

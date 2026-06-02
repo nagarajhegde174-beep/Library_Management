@@ -1,11 +1,6 @@
-/* ══════════════════════════════════════════════════════════
-   PREMIUM SAAS "ADD BOOK" MODULE
-   100% Theme-Aware — All colors use CSS variables
-   ══════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-/* ── Page Wrapper ───────────────────────────────────────── */
 .addbook-page {
   font-family: 'Plus Jakarta Sans', sans-serif;
   min-height: 100vh;
@@ -30,7 +25,6 @@
   pointer-events: none;
 }
 
-/* Subtle floating noise/particles overlay */
 .addbook-page::after {
   content: '';
   position: fixed;
@@ -41,7 +35,6 @@
   opacity: 0.4;
 }
 
-/* ── Main Container ──────────────────────────────────────── */
 .addbook-container {
   width: 100%;
   max-width: 1150px;
@@ -60,7 +53,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Premium Hero Header ───────────────────────────────── */
 .ab-hero-header {
   display: flex;
   justify-content: space-between;
@@ -121,7 +113,6 @@
   100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
 }
 
-/* ── Form Section Cards ────────────────────────────────── */
 .ab-form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -164,7 +155,6 @@
   color: var(--accent-primary-light);
 }
 
-/* ── Input Groups & Fields ─────────────────────────────── */
 .ab-form-group {
   display: flex;
   flex-direction: column;
@@ -247,7 +237,6 @@
   color: var(--text-muted);
 }
 
-/* Custom Select Dropdown Styling */
 .ab-select {
   cursor: pointer;
   appearance: none;
@@ -262,7 +251,6 @@
   padding: 12px;
 }
 
-/* ── Custom File Upload Dropzone ───────────────────────── */
 .ab-upload-zone {
   height: 280px;
   border: 2px dashed var(--border-accent);
@@ -327,7 +315,6 @@
   margin: 0;
 }
 
-/* Image Preview State */
 .ab-image-preview-container {
   width: 100%;
   height: 280px;
@@ -368,7 +355,6 @@
   filter: brightness(1.2);
 }
 
-/* ── Error Messages ────────────────────────────────────── */
 .ab-error-text {
   font-size: 0.8rem;
   color: var(--status-danger);
@@ -379,7 +365,6 @@
   font-weight: 600;
 }
 
-/* ── Form Actions / Buttons ────────────────────────────── */
 .ab-form-actions {
   display: flex;
   justify-content: flex-end;
@@ -466,7 +451,6 @@
   to { transform: rotate(360deg); }
 }
 
-/* ── Responsive Grid ───────────────────────────────────── */
 @media (max-width: 900px) {
   .ab-form-grid {
     grid-template-columns: 1fr;
