@@ -181,8 +181,8 @@ userController.addContact = async (req, res) => {
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // keep
-    pass: process.env.EMAIL_PASS, // keep
+    user: process.env.EMAIL_USER, 
+    pass: process.env.EMAIL_PASS, 
   },
 });
 
@@ -281,7 +281,6 @@ userController.updateProfile = async (req, res) => {
 };
 
 
-// ── GET: My Borrows (with dynamic fine calculation) ──
 userController.myBorrows = async (req, res) => {
   try {
     const { BorrowModel } = require("../model/BorrowModel");
@@ -314,7 +313,6 @@ userController.myBorrows = async (req, res) => {
   }
 };
 
-// ── PUT: Request Return ───────────────────────────────────────────────────────
 userController.requestReturn = async (req, res) => {
   try {
     const { BorrowModel } = require("../model/BorrowModel");

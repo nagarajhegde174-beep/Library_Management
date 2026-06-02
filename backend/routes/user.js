@@ -23,7 +23,6 @@ router.post("/forgot-password",  userController.forgotPassword);
 router.post("/verify-otp",       userController.verifyOTP);
 router.post("/reset-password",   userController.resetPassword);
 
-// ── NEW: My borrows + return request ─────────────────────────────────────────
 router.get("/myborrows",           userAuth, checkRole(["user"]), userController.myBorrows);
 router.put("/returnrequest/:id",   userAuth, checkRole(["user"]), userController.requestReturn);
 

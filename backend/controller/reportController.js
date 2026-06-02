@@ -1,9 +1,3 @@
-/**
- * reportController.js
- * Generates a PDF report of users with books overdue > 10 days.
- * Uses PDFKit for clean table-style output.
- */
-
 const PDFDocument = require("pdfkit");
 const { BorrowModel } = require("../model/BorrowModel");
 const { FineConfigModel } = require("../model/FineConfigModel");
@@ -16,13 +10,11 @@ reportController.generateOverdueReport = async (req, res) => {
     const now = new Date();
     const tenDaysAgo = new Date(now - 10 * 24 * 60 * 60 * 1000);
 
-    // Get config for fine rate
     let config = await FineConfigModel.findOne();
     const ratePerDay  = config?.ratePerDay  || 10;
     const maxFineCap  = config?.maxFineCap  || 500;
     const gracePeriod = config?.gracePeriod || 0;
 
-    // Find all issued books overdue by more than 10 days
     const overdueRecords = await BorrowModel.find({
       status:  "Issued",
       dueDate: { $lt: tenDaysAgo },
@@ -31,7 +23,6 @@ reportController.generateOverdueReport = async (req, res) => {
       .populate("bookId", "title author")
       .sort({ dueDate: 1 });
 
-    // Build report rows
     const rows = overdueRecords.map((record) => {
       const overdueDays = Math.floor((now - new Date(record.dueDate)) / (1000 * 60 * 60 * 24));
       const fineAmount  = calculateFine(record.dueDate, null, ratePerDay, maxFineCap, gracePeriod);
@@ -49,18 +40,15 @@ reportController.generateOverdueReport = async (req, res) => {
     });
 
     if (rows.length === 0) {
-      // Return a "no data" PDF
       return generateEmptyReport(res, now);
     }
 
-    // ── Build PDF ──────────────────────────────────────────────────────────
     const doc = new PDFDocument({ margin: 40, size: "A4", layout: "landscape" });
 
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader("Content-Disposition", `attachment; filename="overdue-report-${now.toISOString().slice(0,10)}.pdf"`);
     doc.pipe(res);
 
-    // Title
     doc.fontSize(18).font("Helvetica-Bold")
        .text("Library Management System", { align: "center" });
     doc.fontSize(13).font("Helvetica")
@@ -69,7 +57,6 @@ reportController.generateOverdueReport = async (req, res) => {
        .text(`Generated on: ${now.toLocaleString()}`, { align: "center" });
     doc.moveDown(1.5);
 
-    // Table headers
     const cols = [
       { label: "Student Name",  width: 110 },
       { label: "Year/Stream",   width: 80  },
@@ -83,7 +70,6 @@ reportController.generateOverdueReport = async (req, res) => {
     const rowHeight = 22;
     const startX    = 30;
 
-    // Draw header row
     doc.rect(startX, tableTop, cols.reduce((a,c) => a + c.width, 0), rowHeight)
        .fill("#1e3a5f");
 
@@ -94,7 +80,6 @@ reportController.generateOverdueReport = async (req, res) => {
       cx += col.width;
     }
 
-    // Draw data rows
     rows.forEach((row, i) => {
       const y = tableTop + rowHeight + i * rowHeight;
       const bg = i % 2 === 0 ? "#f8fafc" : "#ffffff";
@@ -118,12 +103,10 @@ reportController.generateOverdueReport = async (req, res) => {
       });
     });
 
-    // Border around full table
     const tableHeight = rowHeight + rows.length * rowHeight;
     doc.rect(startX, tableTop, cols.reduce((a,c) => a + c.width, 0), tableHeight)
        .stroke("#94a3b8");
 
-    // Summary
     doc.moveDown(2);
     const totalFine = overdueRecords.reduce((sum, r) =>
       sum + calculateFine(r.dueDate, null, ratePerDay, maxFineCap, gracePeriod), 0);

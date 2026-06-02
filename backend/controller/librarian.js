@@ -12,7 +12,6 @@ const {
 
 const librarianController = {};
 
-// ── GET: All Issued Books ────────────────────────────────────────────────────
 librarianController.bookIssued = async (req, res) => {
   try {
     const requests = await BorrowModel.find({ status: "Issued" })
@@ -25,7 +24,6 @@ librarianController.bookIssued = async (req, res) => {
   }
 };
 
-// ── GET: Pending Issue Requests ──────────────────────────────────────────────
 librarianController.issueRequest = async (req, res) => {
   try {
     const requests = await BorrowModel.find({ status: "Requested" })
@@ -38,11 +36,10 @@ librarianController.issueRequest = async (req, res) => {
   }
 };
 
-// ── PUT: APPROVE request — now requires dueDate in body ─────────────────────
 librarianController.approveRequest = async (req, res) => {
   try {
     const borrowId = req.params.id;
-    const { dueDate } = req.body; // ← REQUIRED from frontend
+    const { dueDate } = req.body; 
 
     if (!mongoose.Types.ObjectId.isValid(borrowId))
       return res.status(400).json({ message: "Invalid borrow id" });
@@ -80,14 +77,14 @@ librarianController.approveRequest = async (req, res) => {
 
     borrow.status    = "Issued";
     borrow.issueDate = new Date();
-    borrow.dueDate   = parsedDue;               // ← manual due date
+    borrow.dueDate   = parsedDue;              
     borrow.approvedBy = req.userInfo?.id || null;
     await borrow.save();
 
     await BookModel.updateOne({ _id: book._id }, { $inc: { availableCopies: -1 } });
     clearCache("homeData");
 
-    // Send approval email (non-blocking)
+    // Send approval email 
     try {
       const user = await UserModel.findById(borrow.userId);
       const tpl  = bookApprovedTemplate({ userName: user.name, bookTitle: book.title, dueDate: parsedDue });
@@ -103,7 +100,6 @@ librarianController.approveRequest = async (req, res) => {
   }
 };
 
-// ── PUT: REJECT request — new endpoint ──────────────────────────────────────
 librarianController.rejectRequest = async (req, res) => {
   try {
     const borrowId = req.params.id;
@@ -125,7 +121,6 @@ librarianController.rejectRequest = async (req, res) => {
     borrow.rejectionReason = String(reason).trim();
     await borrow.save();
 
-    // Send rejection email (non-blocking)
     try {
       const book = await BookModel.findById(borrow.bookId);
       const tpl  = bookRejectedTemplate({
@@ -145,7 +140,6 @@ librarianController.rejectRequest = async (req, res) => {
   }
 };
 
-// ── GET: Pending Return Requests ─────────────────────────────────────────────
 librarianController.returnRequest = async (req, res) => {
   try {
     const requests = await BorrowModel.find({ status: "Requested Return" })
@@ -164,7 +158,6 @@ librarianController.returnRequest = async (req, res) => {
   }
 };
 
-// ── PUT: APPROVE return request ──────────────────────────────────────────────
 librarianController.approveReturnRequest = async (req, res) => {
   try {
     const borrowId = req.params.id;
@@ -176,7 +169,6 @@ librarianController.approveReturnRequest = async (req, res) => {
     if (borrow.status !== "Requested Return")
       return res.status(400).json({ message: "Book return not requested or already processed" });
 
-    // Restore book copy
     const book = await BookModel.findById(borrow.bookId);
     if (book && book.availableCopies < book.totalCopies) {
       book.availableCopies += 1;
@@ -187,7 +179,6 @@ librarianController.approveReturnRequest = async (req, res) => {
     borrow.returnDate = new Date();
     borrow.approvedBy = req.userInfo?.id || null;
 
-    // Save final fine to FineModel if overdue
     const { FineModel } = require("../model/FineModel");
     const { FineConfigModel } = require("../model/FineConfigModel");
     const calculateFine = require("../utils/fineCalculator");
@@ -214,7 +205,6 @@ librarianController.approveReturnRequest = async (req, res) => {
       );
     }
 
-    // ── Auto-lift restriction if no more overdue books ────────────────────
     const user = await UserModel.findById(borrow.userId._id || borrow.userId);
     if (user && user.isRestricted) {
       const overdueCount = await BorrowModel.countDocuments({
@@ -237,7 +227,6 @@ librarianController.approveReturnRequest = async (req, res) => {
   }
 };
 
-// ── PUT: REJECT return request ──────────────────────────────────────────────
 librarianController.rejectReturnRequest = async (req, res) => {
   try {
     const borrowId = req.params.id;
@@ -254,13 +243,11 @@ librarianController.rejectReturnRequest = async (req, res) => {
     if (borrow.status !== "Requested Return")
       return res.status(400).json({ message: "Book return not requested or already processed" });
 
-    // Mark as return_rejected
     borrow.status          = "return_rejected";
     borrow.rejectedBy      = req.userInfo?.id || null;
     borrow.rejectionReason = String(reason).trim();
     await borrow.save();
 
-    // Optionally send email notification (non-blocking)
     try {
       const book = await BookModel.findById(borrow.bookId);
       const tpl  = bookRejectedTemplate({
@@ -280,7 +267,6 @@ librarianController.rejectReturnRequest = async (req, res) => {
   }
 };
 
-// ── PUT: DIRECT RETURN ───────────────────────────────────────────────────────
 librarianController.directReturn = async (req, res) => {
   try {
     const borrowId = req.params.id;
@@ -307,7 +293,6 @@ librarianController.directReturn = async (req, res) => {
     borrow.returnDate = new Date();
     borrow.approvedBy = req.userInfo?.id || null;
 
-    // Calculate fine if overdue
     const { FineModel } = require("../model/FineModel");
     const { FineConfigModel } = require("../model/FineConfigModel");
     const calculateFine = require("../utils/fineCalculator");
@@ -334,7 +319,6 @@ librarianController.directReturn = async (req, res) => {
       );
     }
 
-    // Auto-lift restriction if no more overdue books
     const user = await UserModel.findById(borrow.userId._id || borrow.userId);
     if (user && user.isRestricted) {
       const overdueCount = await BorrowModel.countDocuments({

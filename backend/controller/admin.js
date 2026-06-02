@@ -17,12 +17,12 @@ adminController.login = async (req, res) => {
     const envEmail = (process.env.ADMIN_EMAIL || "").trim().toLowerCase();
     const envPass  = (process.env.ADMIN_PASSWORD || "").trim();
     if (envEmail && envPass && email === envEmail && password === envPass) {
-      // Always fetch from DB so we get the real _id for addedBy references
+      
       const envAdmin = await UserModel.findOne({ email: { $regex: `^${email}$`, $options: "i" } });
       const adminId  = envAdmin ? envAdmin._id : null;
       const adminName = envAdmin ? envAdmin.name : "Admin";
       if (!adminId) {
-        // Admin exists in .env but NOT in DB yet — guide them to run seedAdmin.js
+        
         return res.status(500).json({ message: "Admin user not found in database. Please run: node seedAdmin.js" });
       }
       const token = jwt.sign(
@@ -163,7 +163,7 @@ adminController.updateFineConfig = async (req, res) => {
   }
 };
 
-// ── NEW: Set Account Validity (start + end date) ─────────────────────────────
+
 adminController.setAccountValidity = async (req, res) => {
   try {
     const { id } = req.params;
@@ -186,8 +186,8 @@ adminController.setAccountValidity = async (req, res) => {
 
     user.accountStartDate = startDate;
     user.accountEndDate   = endDate;
-    user.accountExpired   = false;           // reset expired flag
-    user.status           = "Active";        // re-activate if was expired
+    user.accountExpired   = false;           
+    user.status           = "Active";        
     await user.save();
 
     res.status(200).json({ message: "Account validity updated", user });
@@ -197,7 +197,7 @@ adminController.setAccountValidity = async (req, res) => {
   }
 };
 
-// ── NEW: Dashboard Stats for admin panel ─────────────────────────────────────
+
 adminController.dashboardStats = async (req, res) => {
   try {
     const { FineModel } = require("../model/FineModel");
@@ -224,7 +224,7 @@ adminController.dashboardStats = async (req, res) => {
       });
     } catch (_) {}
 
-    // --- Dynamic Chart Data Calculations ---
+    
 
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const last6MonthsLabels = [];
@@ -239,7 +239,7 @@ adminController.dashboardStats = async (req, res) => {
       return 5 - monthsDiff;
     };
 
-    // 1. Borrow Activity
+    
     const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 5, 1);
     const recentBorrows = await BorrowModel.find({ createdAt: { $gte: sixMonthsAgo } });
     const monthlyBorrows = [0, 0, 0, 0, 0, 0];
@@ -248,7 +248,7 @@ adminController.dashboardStats = async (req, res) => {
       if (idx >= 0 && idx < 6) monthlyBorrows[idx]++;
     });
 
-    // 2. Members Growth
+    
     const recentMembers = await UserModel.find({ createdAt: { $gte: sixMonthsAgo }, role: "user" });
     const initialMembers = await UserModel.countDocuments({ createdAt: { $lt: sixMonthsAgo }, role: "user" });
     let currentTotal = initialMembers;
@@ -263,7 +263,7 @@ adminController.dashboardStats = async (req, res) => {
       monthlyMembers[i] = currentTotal;
     }
 
-    // 3. Fine Analytics (Last 4 weeks)
+    
     const fourWeeksAgo = new Date();
     fourWeeksAgo.setDate(now.getDate() - 28);
     const recentFines = await FineModel.find({ date: { $gte: fourWeeksAgo } });
@@ -274,7 +274,7 @@ adminController.dashboardStats = async (req, res) => {
       if (weekIdx >= 0 && weekIdx < 4) weeklyFines[weekIdx] += f.amount;
     });
 
-    // 4. Reservations (Mon-Fri)
+    
     const tempNow = new Date();
     const dayOfWeek = tempNow.getDay();
     const diffToMon = tempNow.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
@@ -312,7 +312,6 @@ adminController.dashboardStats = async (req, res) => {
   }
 };
 
-// ── NEW: Waive / remove a fine ───────────────────────────────────────────────
 adminController.waiveFine = async (req, res) => {
   try {
     const { FineModel } = require("../model/FineModel");

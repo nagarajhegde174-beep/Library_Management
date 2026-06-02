@@ -1,17 +1,10 @@
-/**
- * emailService.js
- * Centralised Nodemailer helper + email templates.
- * All templates are functions returning { subject, html }.
- */
-
 const nodemailer = require("nodemailer");
 
-// ── Transporter ──────────────────────────────────────────────────────────────
 const transporter = nodemailer.createTransport({
-  service: "gmail",                     // change to your SMTP if needed
+  service: "gmail",                     
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,       // use App Password for Gmail
+    pass: process.env.EMAIL_PASS,       
   },
 });
 
@@ -31,9 +24,7 @@ async function sendEmail(to, subject, html) {
   await transporter.sendMail(mailOptions);
 }
 
-// ── Email Templates ──────────────────────────────────────────────────────────
 
-/** Called when a book is approved with a due date */
 function bookApprovedTemplate({ userName, bookTitle, dueDate }) {
   return {
     subject: `📚 Book Issued: ${bookTitle}`,
@@ -64,7 +55,6 @@ function bookApprovedTemplate({ userName, bookTitle, dueDate }) {
   };
 }
 
-/** Called when a book request is rejected */
 function bookRejectedTemplate({ userName, bookTitle, reason }) {
   return {
     subject: `Book Request Rejected: ${bookTitle}`,
@@ -88,7 +78,6 @@ function bookRejectedTemplate({ userName, bookTitle, reason }) {
   };
 }
 
-/** Called by cron job when book is overdue (day 1+) */
 function overdueWarningTemplate({ userName, bookTitle, dueDate, overdueDays, fineAmount }) {
   return {
     subject: `⚠️ Overdue Book: ${bookTitle} — Fine Started`,
@@ -127,7 +116,6 @@ function overdueWarningTemplate({ userName, bookTitle, dueDate, overdueDays, fin
   };
 }
 
-/** Called by cron job when book is 10+ days overdue (escalation) */
 function escalationWarningTemplate({ userName, bookTitle, dueDate, overdueDays, fineAmount }) {
   return {
     subject: `🚨 URGENT: ${overdueDays}-Day Overdue — Notice Board Warning`,
@@ -170,7 +158,6 @@ function escalationWarningTemplate({ userName, bookTitle, dueDate, overdueDays, 
   };
 }
 
-/** Called when account is nearing expiry */
 function accountExpiryWarningTemplate({ userName, endDate }) {
   return {
     subject: `📅 Library Account Expiring Soon`,

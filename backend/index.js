@@ -57,7 +57,6 @@ const uri  = process.env.MONGO_URI;
     await mongoose.connect(uri, { dbName: process.env.DB_NAME || "library" });
     console.log("Connected DB:", mongoose.connection.db.databaseName);
 
-    // ── Start cron jobs AFTER DB is ready ────────────────────────────────
     const { startAllCronJobs } = require("./utils/cronJobs");
     startAllCronJobs();
 

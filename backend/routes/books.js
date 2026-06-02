@@ -28,8 +28,8 @@ router.post(
   "/borrow/request-issue/:bookid",
   userAuth,
   checkRole("user"),
-  checkAccountValidity,   // ← blocks if account expired
-  checkRestriction,       // ← blocks if user has overdue books
+  checkAccountValidity,  
+  checkRestriction,       
   booksController.reqIssueBook,
 );
 

@@ -7,7 +7,7 @@ const { clearCache } = require("../utils/cache");
 
 booksController.addNewBook = async (req, res) => {
   try {
-    // Guard: token must contain id (old env-admin tokens didn't include it)
+   
     if (!req.userInfo?.id) {
       return res.status(401).json({
         error: true,
@@ -25,8 +25,8 @@ booksController.addNewBook = async (req, res) => {
       coverImage,
       price,
       description,
-      publisher, //  NEW
-      publicationYear, //  NEW
+      publisher,
+      publicationYear,
     } = req.body;
     const { id } = req.userInfo;
 
@@ -52,8 +52,8 @@ booksController.addNewBook = async (req, res) => {
       cloudinaryId: cloudinaryId,
       price,
       description,
-      publisher: publisher || "", //  NEW
-      publicationYear: publicationYear || null, //  NEW
+      publisher: publisher || "", 
+      publicationYear: publicationYear || null, 
     });
 
     await newBook.save();
@@ -133,13 +133,11 @@ booksController.getLatestBooks = async (req, res) => {
 
     const bookIds = books.map((book) => book._id);
 
-    // Fetch the issues related to these books
+    
     const issuedBooks = await BorrowModel.find({
       bookId: { $in: bookIds },
-      status: "Issued", // Only consider issued books
-    }).populate("userId"); // Populate student details from the 'Student' collection
-
-    // Get the unique active students from the issued books
+      status: "Issued", 
+    }).populate("userId"); 
     const activeStudents = new Set(
       issuedBooks
         .filter((issue) => issue.userId)
@@ -311,7 +309,7 @@ booksController.reqIssueBook = async (req, res) => {
     const userid = req.userInfo.id;
     const { bookid } = req.params;
 
-    // Check if book exists
+  
     const book = await BookModel.findById(bookid);
     if (!book) {
       return res.status(404).json({ error: true, message: "Book not found" });
@@ -323,7 +321,7 @@ booksController.reqIssueBook = async (req, res) => {
         .json({ error: true, message: "No available copies to issue" });
     }
 
-    // Check if user already has 4 issued/requested books
+    
     const currentCount = await BorrowModel.countDocuments({
       userId: userid,
       status: { $in: ["Requested", "Issued"] },
@@ -336,7 +334,7 @@ booksController.reqIssueBook = async (req, res) => {
       });
     }
 
-    // Check if this specific book is already requested/issued by the user
+    
     const existingRequest = await BorrowModel.findOne({
       userId: userid,
       bookId: bookid,
@@ -416,7 +414,7 @@ booksController.returnBook = async (req, res) => {
   try {
     const issueId = req.params.id;
 
-    // Find issued book entry
+    
     const issuedBook = await BorrowModel.findById(issueId);
     if (!issuedBook) {
       return res.status(404).json({ message: "Issued record not found" });
@@ -426,7 +424,7 @@ booksController.returnBook = async (req, res) => {
       return res.status(400).json({ message: "Book already returned" });
     }
 
-    // Update status and set return date
+    
     issuedBook.status = "Returned";
     issuedBook.returnDate = new Date();
     await issuedBook.save();
@@ -453,21 +451,21 @@ booksController.requestReturnBook = async (req, res) => {
       return res.status(404).json({ message: "Borrow record not found" });
     }
 
-    // Check if the book belongs to the logged-in user
+    
     if (borrowRecord.userId.toString() !== req.userInfo.id.toString()) {
       return res
         .status(403)
         .json({ message: "Unauthorized to request return for this book" });
     }
 
-    // Check if status is 'Issued'
+    
     if (borrowRecord.status !== "Issued") {
       return res.status(400).json({
         message: "Only books with status 'Issued' can be requested for return",
       });
     }
 
-    // Update status to "Requested Return"
+   
     borrowRecord.status = "Requested Return";
     await borrowRecord.save();
 
@@ -512,4 +510,4 @@ booksController.getCategories = async (req, res) => {
 
 module.exports = { booksController };
 
-// status:"Issued"
+

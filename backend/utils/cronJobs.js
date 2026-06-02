@@ -1,17 +1,3 @@
-/**
- * cronJobs.js
- * 
- * Scheduled tasks that run automatically:
- * 1. Daily at midnight → check overdue books, send emails, apply restrictions
- * 2. Daily at midnight → check account expiry, mark expired accounts
- * 3. Daily → check accounts expiring in 3 days, send warning
- * 
- * How it works (beginner-friendly):
- * - node-cron fires a function at the scheduled time (like a timer)
- * - "0 0 * * *" = run at 00:00 (midnight) every day
- * - Each job runs independently
- */
-
 const cron = require("node-cron");
 const { BorrowModel } = require("../model/BorrowModel");
 const { UserModel }   = require("../model/UserModel");
@@ -24,9 +10,7 @@ const {
   accountExpiryWarningTemplate,
 } = require("./emailService");
 
-// ─────────────────────────────────────────────────────────────────────────────
-// JOB 1: Daily Overdue Check  (runs at midnight every day)
-// ─────────────────────────────────────────────────────────────────────────────
+
 function startOverdueCronJob() {
   cron.schedule("0 0 * * *", async () => {
     console.log("[CRON] Running daily overdue check:", new Date().toLocaleString());
@@ -34,13 +18,12 @@ function startOverdueCronJob() {
     try {
       const now = new Date();
 
-      // Load fine configuration
+      
       let config = await FineConfigModel.findOne();
       const ratePerDay  = config?.ratePerDay  || 10;
       const maxFineCap  = config?.maxFineCap  || 500;
       const gracePeriod = config?.gracePeriod || 0;
 
-      // Get all currently issued books that are past due date
       const overdueBooks = await BorrowModel.find({
         status:  "Issued",
         dueDate: { $lt: now },
@@ -53,10 +36,8 @@ function startOverdueCronJob() {
         const overdueDays = Math.floor((now - new Date(borrow.dueDate)) / (1000 * 60 * 60 * 24));
         const fineAmount  = calculateFine(borrow.dueDate, null, ratePerDay, maxFineCap, gracePeriod);
 
-        // Update fine in DB
         borrow.fineAmount = fineAmount;
 
-        // ── Apply restriction to user ──────────────────────────────────────
         if (!user.isRestricted) {
           await UserModel.findByIdAndUpdate(user._id, {
             isRestricted:     true,
@@ -65,14 +46,11 @@ function startOverdueCronJob() {
           console.log(`[CRON] Restricted user: ${user.name} (${user.email})`);
         }
 
-        // ── Send overdue email (once per day, avoid duplicate) ────────────
         const lastSent = borrow.overduEmailSentAt;
         const oneDayAgo = new Date(now - 24 * 60 * 60 * 1000);
 
         if (!lastSent || lastSent < oneDayAgo) {
-          // Only send escalation if 10+ days overdue
           if (overdueDays >= 10) {
-            // Only send escalation once (or re-send every 3 days)
             const lastEsc = borrow.escalationEmailSentAt;
             const threeDaysAgo = new Date(now - 3 * 24 * 60 * 60 * 1000);
 
@@ -93,7 +71,6 @@ function startOverdueCronJob() {
               }
             }
           } else {
-            // Regular overdue warning
             try {
               const tpl = overdueWarningTemplate({
                 userName:    user.name,
@@ -114,7 +91,6 @@ function startOverdueCronJob() {
         await borrow.save();
       }
 
-      // ── Auto-lift restrictions for users who have no more overdue books ──
       const restrictedUsers = await UserModel.find({ isRestricted: true, role: "user" });
       for (const u of restrictedUsers) {
         const stillOverdue = await BorrowModel.countDocuments({
@@ -140,9 +116,7 @@ function startOverdueCronJob() {
   console.log("[CRON] Daily overdue check scheduled (midnight)");
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// JOB 2: Account Expiry Check (runs at 1 AM every day)
-// ─────────────────────────────────────────────────────────────────────────────
+
 function startAccountExpiryCronJob() {
   cron.schedule("0 1 * * *", async () => {
     console.log("[CRON] Running account expiry check:", new Date().toLocaleString());
@@ -150,7 +124,6 @@ function startAccountExpiryCronJob() {
     try {
       const now = new Date();
 
-      // Mark accounts that have expired
       const expiredResult = await UserModel.updateMany(
         {
           role:           "user",
@@ -166,7 +139,6 @@ function startAccountExpiryCronJob() {
       );
       console.log(`[CRON] Marked ${expiredResult.modifiedCount} account(s) as expired.`);
 
-      // For expired users who still have issued books → mark as forced return pending
       const expiredUsers = await UserModel.find({
         role:           "user",
         accountExpired: true,
@@ -180,7 +152,6 @@ function startAccountExpiryCronJob() {
         );
       }
 
-      // Send expiry warning for accounts expiring in 3 days
       const threeDaysFromNow = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
       const soonToExpire = await UserModel.find({
         role:           "user",
@@ -207,9 +178,6 @@ function startAccountExpiryCronJob() {
   console.log("[CRON] Account expiry check scheduled (1 AM daily)");
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Export: call startAllCronJobs() from index.js after DB connects
-// ─────────────────────────────────────────────────────────────────────────────
 function startAllCronJobs() {
   startOverdueCronJob();
   startAccountExpiryCronJob();

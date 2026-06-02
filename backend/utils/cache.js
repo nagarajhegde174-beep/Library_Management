@@ -1,6 +1,5 @@
-// utils/cache.js
 const cache = {};
-const ttl = 10 * 60 * 1000; // 1 minute
+const ttl = 10 * 60 * 1000; 
 
 function setCache(key, data) {
   cache[key] = {

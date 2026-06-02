@@ -19,17 +19,13 @@ const UserSchema = new Schema({
   profilePicture: { type: String, default: "" },
   cloudinaryId:   { type: String, default: "" },
 
-  // ── NEW: Account Validity ──────────────────────────────────────────────────
-  accountStartDate: { type: Date, default: null },   // set by admin when creating/editing
-  accountEndDate:   { type: Date, default: null },   // after this date account becomes inactive
-  accountExpired:   { type: Boolean, default: false },// flag set by cron job
+  accountStartDate: { type: Date, default: null },   
+  accountEndDate:   { type: Date, default: null },   
+  accountExpired:   { type: Boolean, default: false },
 
-  // ── NEW: Overdue Restriction ───────────────────────────────────────────────
-  isRestricted:     { type: Boolean, default: false },// true = blocked from new requests/issues
-  restrictionReason:{ type: String,  default: "" },   // e.g. "Overdue: Book Title"
+  isRestricted:     { type: Boolean, default: false },
+  restrictionReason:{ type: String,  default: "" },   
 
-  // ── NEW: Email Escalation Tracking ────────────────────────────────────────
-  // Stored per-borrow in BorrowSchema, but user-level flag to avoid spam
   lastOverdueEmailAt:    { type: Date, default: null },
   lastEscalationEmailAt: { type: Date, default: null },
 

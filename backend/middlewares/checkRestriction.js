@@ -1,12 +1,3 @@
-/**
- * checkRestriction.js
- * 
- * Middleware: blocks a user from making new borrow requests or issues
- * if they have overdue books (isRestricted = true).
- * 
- * How to use:  router.post("/borrow", userAuth, checkRestriction, ...)
- */
-
 const { UserModel } = require("../model/UserModel");
 
 const checkRestriction = async (req, res, next) => {

@@ -10,21 +10,17 @@ const BorrowSchema = new Schema(
     fineAmount: { type: Number, default: 0 },
     status: {
       type: String,
-      // Updated: added specific rejected statuses
       enum: ["Requested", "Issued", "Rejected", "Requested Return", "Returned", "borrow_rejected", "return_rejected", "renewal_rejected"],
       default: "Requested",
     },
     approvedBy: { type: Schema.Types.ObjectId, ref: "User", default: null },
 
-    // ── NEW: Rejection fields ─────────────────────────────────────────────
     rejectedBy:      { type: Schema.Types.ObjectId, ref: "User", default: null },
     rejectionReason: { type: String, default: "" },
 
-    // ── NEW: Overdue email tracking (prevent duplicate sends) ─────────────
-    overduEmailSentAt:     { type: Date, default: null },  // first overdue email
-    escalationEmailSentAt: { type: Date, default: null },  // 10-day escalation email
+    overduEmailSentAt:     { type: Date, default: null },  
+    escalationEmailSentAt: { type: Date, default: null },  
 
-    // ── NEW: Mark forced-pending returns (account expired) ────────────────
     forcedReturnPending: { type: Boolean, default: false },
   },
   { timestamps: true },
