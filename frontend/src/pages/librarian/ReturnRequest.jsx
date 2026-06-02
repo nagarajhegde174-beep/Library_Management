@@ -50,32 +50,32 @@ export default function ReturnRequest() {
     }
   };
 
-  const rejectRequest = async (id) => {
-    const reason = window.prompt("Please enter the reason for rejecting this return request:");
-    if (reason === null) return; 
-    if (reason.trim() === "") {
-      showErrorToast("Rejection reason is required");
-      return;
-    }
+  // const rejectRequest = async (id) => {
+  //   const reason = window.prompt("Please enter the reason for rejecting this return request:");
+  //   if (reason === null) return; 
+  //   if (reason.trim() === "") {
+  //     showErrorToast("Rejection reason is required");
+  //     return;
+  //   }
 
-    try {
-      const url = Server_URL + "librarian/rejectreturnrequest/" + id;
-      const response = await axios.put(url, { reason }, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`
-        }
-      });
-      showSuccessToast(response.data.message || "Return request rejected!");
-      setRequests(prev => prev.filter(req => req._id !== id));
-    } catch (err) {
-      console.error("Error rejecting request", err);
-      showErrorToast("Failed to reject request");
-    }
-  };
+  //   try {
+  //     const url = Server_URL + "librarian/rejectreturnrequest/" + id;
+  //     const response = await axios.put(url, { reason }, {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("authToken")}`
+  //       }
+  //     });
+  //     showSuccessToast(response.data.message || "Return request rejected!");
+  //     setRequests(prev => prev.filter(req => req._id !== id));
+  //   } catch (err) {
+  //     console.error("Error rejecting request", err);
+  //     showErrorToast("Failed to reject request");
+  //   }
+  // };
 
-  // Calculations for stats
+  
   const pendingCount = requests.length;
-  // This is a placeholder for actual daily approvals since we don't store "approved today" in this state easily
+
   const approvedToday = Math.floor(Math.random() * 5) + 12; 
   const lateCount = requests.filter(req => (req.fine || 0) > 0).length;
 
@@ -208,13 +208,15 @@ export default function ReturnRequest() {
                         {approvingId === req._id ? "Processing..." : "Approve"}
                       </button>
                       
-                      <button
+                      {/* <button
                         className="rr-btn reject"
                         onClick={() => rejectRequest(req._id)}
                       >
                         <XCircle size={16} />
                         Reject
-                      </button>
+                      </button> */}
+
+
                     </div>
 
                   </div>

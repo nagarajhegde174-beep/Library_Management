@@ -1,10 +1,7 @@
-/* ══════════════════════════════════════════════════════════
-   LIBNOVA OCEAN THEME — Deep Blue Ocean Professional Dashboard
-   ══════════════════════════════════════════════════════════ */
 
 [data-theme="ocean"] {
 
-  /* ── Core Backgrounds ─────────────────────────────────── */
+  
   --bg-primary:        #040D18;
   --bg-secondary:      #061323;
   --bg-tertiary:       #071829;
@@ -21,7 +18,7 @@
   --surface:           #0A1F3A;
   --surface-alt:       #061323;
 
-  /* ── Public / Navbar Backgrounds ──────────────────────── */
+ 
   --navbar-public-bg:  #061323;
   --navbar-public-text:#E0F2FE;
   --footer-bg:         #040D18;
