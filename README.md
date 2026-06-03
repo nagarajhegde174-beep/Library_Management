@@ -1,4 +1,4 @@
-# LIBNOVA Library Management System
+# AVB LIBRARY Library Management System
 
 <div align="center">
 

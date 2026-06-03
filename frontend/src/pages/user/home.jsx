@@ -139,7 +139,7 @@ export default function Home() {
     dynamicTimeline.push({
       id: 'welcome',
       type: 'info',
-      text: 'Welcome to LibNova! Start exploring books.',
+      text: 'Welcome to AVB Library! Start exploring books.',
       time: 'Now',
       color: '#8B5CF6'
     });

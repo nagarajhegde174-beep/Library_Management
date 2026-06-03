@@ -33,9 +33,9 @@ export default function Navbar() {
           
           <Link to="/" style={styles.brand}>
             <div style={styles.logoBox}>
-              <img src="/eagle-logo.png" alt="LibNova" style={styles.brandLogo} />
+              <img src="/eagle-logo.png" alt="AVB Library" style={styles.brandLogo} />
             </div>
-            <span style={styles.brandText}>LibNova</span>
+            <span style={styles.brandText}>AVB Library</span>
           </Link>
 
           <ul style={styles.desktopLinks} className="desktop-nav">

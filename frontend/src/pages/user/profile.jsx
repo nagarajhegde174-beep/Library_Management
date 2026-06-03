@@ -88,7 +88,7 @@ function ProfilePage() {
       <div className="student-profile-inner">
         <header className="student-profile-hero">
           <span className="student-profile-badge">
-            <Bell size={14} /> My LibNova Account
+            <Bell size={14} /> My AVB Library Account
           </span>
           {user.profilePicture ? (
             <img 

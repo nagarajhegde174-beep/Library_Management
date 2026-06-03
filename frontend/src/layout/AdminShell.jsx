@@ -132,9 +132,9 @@ export default function AdminShell() {
       <aside className="admin-sidebar">
         <Link to="/admin" className="sidebar-logo">
           <div className="logo-box">
-            <img src="/eagle-logo.png" alt="LibNova eagle logo" className="logo-img" />
+            <img src="/eagle-logo.png" alt="AVB Library eagle logo" className="logo-img" />
           </div>
-          <span className="logo-text">LibNova</span>
+          <span className="logo-text">AVB Library</span>
         </Link>
 
         <nav className="admin-sidebar-nav">
@@ -240,7 +240,7 @@ export default function AdminShell() {
               <h2 className="header-title">
                 {profile.role === "librarian" ? "Librarian Dashboard" : "Admin Dashboard"}
               </h2>
-              <p className="header-subtitle">LibNova Management System</p>
+              <p className="header-subtitle">AVB Library Management System</p>
             </div>
           </div>
           

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ThemeContext, THEMES } from './ThemeContext';
 
-const STORAGE_KEY = 'libNova-theme';
+const STORAGE_KEY = 'avbLibrary-theme';
 const DEFAULT_THEME = 'default';   
 
 export function ThemeProvider({ children }) {

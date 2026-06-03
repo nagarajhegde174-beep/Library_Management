@@ -34,7 +34,7 @@ const AboutUs = () => {
             style={styles.badge}
           >
             <span style={styles.badgeDot} />
-            ABOUT LIBNOVA
+            ABOUT AVB LIBRARY
           </motion.div>
           
           <motion.h1 
@@ -53,7 +53,7 @@ const AboutUs = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             style={styles.heroSubtitle}
           >
-            LibNova is dedicated to supporting the academic and research needs of our students and faculty, providing equitable access to information resources and fostering information literacy.
+            AVB Library is dedicated to supporting the academic and research needs of our students and faculty, providing equitable access to information resources and fostering information literacy.
           </motion.p>
         </div>
       </section>

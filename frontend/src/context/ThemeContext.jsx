@@ -5,7 +5,7 @@ export const THEMES = [
     id: 'default',
     name: 'Default',
     label: 'Deep Navy',
-    description: 'LibNova signature dark theme',
+    description: 'AVB Library signature dark theme',
     colors: ['#9D4EDD', '#00E5FF', '#090914'],
   },
   {

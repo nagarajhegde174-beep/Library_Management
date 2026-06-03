@@ -130,7 +130,7 @@ export default function LoginPortal() {
               
               <div style={{ marginBottom: "3rem", textAlign: "left" }}>
                 <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
-                  <h1 style={styles.title}>LibNova</h1>
+                  <h1 style={styles.title}>AVB Library</h1>
                 </div>
                 
                 <h2 style={{...styles.title, fontSize: "36px", marginBottom: "10px"}}>

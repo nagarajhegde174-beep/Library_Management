@@ -28,7 +28,7 @@ const AdminFooter = () => {
           <div className="footer-column">
             <h3 className="footer-heading">About Us</h3>
             <p className="footer-about-text">
-              LibNova serves as the academic hub of our institution, 
+              AVB Library serves as the academic hub of our institution, 
               providing resources and services to support learning, teaching, 
               and research for our students and faculty.
             </p>
@@ -86,7 +86,7 @@ const AdminFooter = () => {
 
         <div className="footer-bottom">
           <div className="footer-copyright">
-            &copy; {new Date().getFullYear()} LibNova. All rights reserved.
+            &copy; {new Date().getFullYear()} AVB Library. All rights reserved.
           </div>
           <div className="footer-legal">
             <Link to="/privacy" className="legal-link" onClick={handleLinkClick}>Privacy Policy</Link>

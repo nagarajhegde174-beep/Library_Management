@@ -186,8 +186,8 @@ export default function AdminNavbar() {
 
           {/* Brand */}
           <Link to="/admin" className="acn-brand">
-            <img src="/eagle-logo.png" alt="LibNova" className="acn-brand-logo" />
-            LibNova
+            <img src="/eagle-logo.png" alt="AVB Library" className="acn-brand-logo" />
+            AVB Library
           </Link>
 
           {/* Desktop nav */}
