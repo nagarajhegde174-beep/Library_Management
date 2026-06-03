@@ -22,6 +22,12 @@ export default function AdminLogin() {
       const role  = res?.data?.user?.role;
       if (!token) throw new Error("Invalid response");
 
+      if (role !== "admin") {
+        showErrorToast("Access Denied: This portal is only for Administrators.");
+        setLoading(false);
+        return;
+      }
+
       localStorage.setItem("authToken", token);
       localStorage.setItem("role", role || "admin");
       showSuccessToast("Welcome, Administrator!");

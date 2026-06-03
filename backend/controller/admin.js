@@ -35,8 +35,8 @@ adminController.login = async (req, res) => {
 
     const user = await UserModel.findOne({ email: { $regex: `^${email}$`, $options: "i" } });
     if (!user) return res.status(400).json({ message: "Invalid email or password" });
-    if (!["admin","librarian"].includes(user.role))
-      return res.status(403).json({ message: "Access denied." });
+    if (user.role !== "admin")
+      return res.status(403).json({ message: "Access Denied: This portal is only for Administrators." });
     if (user.status === "Inactive")
       return res.status(403).json({ message: "Account deactivated. Contact admin." });
 

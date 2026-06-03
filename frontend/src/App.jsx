@@ -5,6 +5,7 @@ import './App.css';
 import UserLayout from "./layout/userlayout";
 import AdminLayout from "./layout/adminlayout";
 import ThemeSwitcher from "./components/ThemeSwitcher";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 const Login          = lazy(() => import("./pages/user/login"));
@@ -44,6 +45,7 @@ const AdminProfile    = lazy(() => import('./pages/admin/AdminProfile'));
 const LoginPortal    = lazy(() => import('./pages/auth/LoginPortal'));
 const LibrarianLogin = lazy(() => import('./pages/auth/LibrarianLogin'));
 const StudentLogin   = lazy(() => import('./pages/auth/StudentLogin'));
+const AccessDenied   = lazy(() => import('./pages/auth/AccessDenied'));
 
 const Preloader = () => (
   <div className="preloader">
@@ -58,14 +60,22 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    if (token && location.pathname === "/") {
+    if (token) {
       try {
         const decoded = jwtDecode(token);
-        if (decoded.role === "admin" || decoded.role === "librarian") {
-          navigate("/admin");
+        const loginPaths = ["/login-portal", "/admin-login", "/librarian-login", "/login", "/student-login"];
+        if (location.pathname === "/" || loginPaths.includes(location.pathname)) {
+          if (decoded.role === "admin" || decoded.role === "librarian") {
+            navigate("/admin", { replace: true });
+          } else if (decoded.role === "user") {
+            if (location.pathname !== "/") {
+              navigate("/", { replace: true });
+            }
+          }
         }
       } catch {
         localStorage.removeItem("authToken");
+        localStorage.removeItem("role");
       }
     }
   }, [location.pathname, navigate]);
@@ -77,6 +87,7 @@ function App() {
         <Route path="/login-portal"    element={<LoginPortal />} />
         <Route path="/admin-login"     element={<AdminLogin />} />
         <Route path="/librarian-login" element={<LibrarianLogin />} />
+        <Route path="/access-denied"   element={<AccessDenied />} />
 
         <Route path="/" element={<UserLayout />}>
           <Route index                  element={<Home />} />
@@ -91,32 +102,42 @@ function App() {
           <Route path="forgetPassword"  element={<ForgotPassword />} />
           <Route path="verifyotp"       element={<VerifyOTP />} />
           <Route path="resetpass"       element={<ResetPassword />} />
-          <Route path="reservations"    element={<Reservations />} />
-          <Route path="my-books"        element={<MyBooks />} />
-          <Route path="my-fines"        element={<MyFines />} />
+          
+          <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
+            <Route path="reservations"    element={<Reservations />} />
+            <Route path="my-books"        element={<MyBooks />} />
+            <Route path="my-fines"        element={<MyFines />} />
+          </Route>
         </Route>
 
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route element={<AdminShell />}>
-            <Route index               element={<DashboardHome />} />
-            <Route path="addbook"      element={<AddBookForm />} />
-            <Route path="viewbook"     element={<ViewBooks />} />
-            <Route path="addlibrarian" element={<AddLibrarian />} />
-            <Route path="issuerequest" element={<LibrarianRequests />} />
-            <Route path="returnrequest" element={<ReturnRequest />} />
-            <Route path="issued"       element={<BooksBorrowed />} />
-            <Route path="members"      element={<ManageMembers />} />
-            <Route path="reservations" element={<AllReservations />} />
-            <Route path="fines"        element={<FineManagement />} />
-            <Route path="fine-config"  element={<FineConfig />} />
-            <Route path="reports"      element={<Reports />} />
-            <Route path="profile"      element={<AdminProfile />} />
+        <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin", "librarian"]} />}>
+          <Route element={<AdminLayout />}>
+            <Route element={<AdminShell />}>
+              <Route index               element={<DashboardHome />} />
+              <Route path="addbook"      element={<AddBookForm />} />
+              <Route path="viewbook"     element={<ViewBooks />} />
+              <Route path="issuerequest" element={<LibrarianRequests />} />
+              <Route path="returnrequest" element={<ReturnRequest />} />
+              <Route path="issued"       element={<BooksBorrowed />} />
+              <Route path="members"      element={<ManageMembers />} />
+              <Route path="reservations" element={<AllReservations />} />
+              <Route path="fines"        element={<FineManagement />} />
+              <Route path="fine-config"  element={<FineConfig />} />
+              <Route path="reports"      element={<Reports />} />
+              <Route path="profile"      element={<AdminProfile />} />
+              
+              <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+                <Route path="addlibrarian" element={<AddLibrarian />} />
+              </Route>
+            </Route>
           </Route>
         </Route>
 
         
         <Route path="/user" element={<UserLayout />}>
-          <Route index element={<ProfilePage />} />
+          <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
+            <Route index element={<ProfilePage />} />
+          </Route>
         </Route>
       </Routes>
     </Suspense>

@@ -20,13 +20,14 @@ export default function LibrarianLogin() {
       const res = await axios.post(`${Server_URL}users/login`, {
         email: data.email,
         password: data.password,
+        role: "librarian",
       });
       const token = res?.data?.token;
       const role  = res?.data?.user?.role;
       if (!token || !role) throw new Error("Invalid login response");
 
       if (role !== "librarian") {
-        showErrorToast("Access denied. Librarian credentials required.");
+        showErrorToast("Access Denied: This portal is only for Librarians.");
         setLoading(false);
         return;
       }

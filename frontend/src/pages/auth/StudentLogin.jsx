@@ -11,20 +11,26 @@ export default function StudentLogin() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [loginError, setLoginError] = useState("");
 
   const onSubmit = async (data) => {
     setLoading(true);
+    setLoginError("");
     try {
       const res = await axios.post(`${Server_URL}users/login`, {
         email: data.email,
         password: data.password,
+        role: "user",
       });
       const token = res?.data?.token;
       const role  = res?.data?.user?.role;
       if (!token || !role) throw new Error("Invalid login response");
 
       if (role !== "user") {
-        showErrorToast("This login is for students only.");
+        const denyMsg = "Access Denied: This portal is only for Students.";
+        setLoginError(denyMsg);
+        showErrorToast(denyMsg);
+        setLoading(false);
         return;
       }
       localStorage.setItem("authToken", token);
@@ -33,6 +39,7 @@ export default function StudentLogin() {
       navigate("/");
     } catch (error) {
       const msg = error?.response?.data?.message || error?.message || "Login failed.";
+      setLoginError(msg);
       showErrorToast(msg);
     } finally {
       setLoading(false);
@@ -78,6 +85,12 @@ export default function StudentLogin() {
                 </div>
                 {errors.password && <span style={styles.error}>{errors.password.message}</span>}
               </div>
+
+              {loginError && (
+                <div style={styles.errorAlert}>
+                  {loginError}
+                </div>
+              )}
 
               <div style={styles.forgotContainer}>
                 <Link to="/forgetPassword" style={styles.forgotLink}>Forgot Password?</Link>
@@ -209,6 +222,16 @@ const styles = {
     color: "var(--status-danger)",
     fontSize: "12px",
     marginTop: "6px",
+  },
+  errorAlert: {
+    color: "var(--status-danger)",
+    fontSize: "13px",
+    textAlign: "center",
+    fontWeight: "500",
+    backgroundColor: "var(--status-danger-soft)",
+    padding: "8px",
+    borderRadius: "8px",
+    marginTop: "10px",
   },
   forgotContainer: {
     marginTop: "-8px",

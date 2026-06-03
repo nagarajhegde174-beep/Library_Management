@@ -89,6 +89,16 @@ userController.login = async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
+    const expectedRole = req.body?.role;
+    if (expectedRole && user.role !== expectedRole) {
+      if (expectedRole === "user") {
+        return res.status(403).json({ message: "Access Denied: This portal is only for Students." });
+      }
+      if (expectedRole === "librarian") {
+        return res.status(403).json({ message: "Access Denied: This portal is only for Librarians." });
+      }
+    }
+
     if (user.status === "Inactive") {
       return res
         .status(403)
