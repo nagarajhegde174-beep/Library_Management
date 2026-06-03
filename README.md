@@ -11,3 +11,27 @@
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-Image_Storage-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
 
 ### A full-stack, role-based Library Management System for managing books, borrowing, reservations, fines, users, and analytics.
+
+---
+
+## Overview
+
+The **AGC Library Management System** is a production-style MERN stack web application built to digitize academic library operations. It replaces manual book issuing, return tracking, fine management, and reservation workflows with a centralized web platform.
+
+The system supports three user roles: **Admin**, **Librarian**, and **Student**. Each role has a dedicated workflow, protected access, and features designed around real library operations.
+
+---
+
+## Key Highlights
+
+- Role-based authentication and authorization using JWT
+- Separate dashboards and workflows for Admin, Librarian, and Student users
+- Book catalog management with Cloudinary image upload
+- Borrow request, return request, and reservation management
+- Overdue fine configuration, generation, and payment tracking
+- Analytics and reports for library activity
+- Email-based OTP and notification flow using Nodemailer
+- Responsive React frontend built with Vite
+- REST API backend using Node.js, Express, MongoDB, and Mongoose
+
+---
