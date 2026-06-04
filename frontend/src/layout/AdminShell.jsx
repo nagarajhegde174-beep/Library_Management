@@ -45,8 +45,15 @@ export default function AdminShell() {
     `admin-nav-btn${isActive ? " active" : ""}`;
 
   const handleLogout = () => {
+    const role = localStorage.getItem("role");
     localStorage.clear();
-    window.location.href = "/admin-login";
+    if (role === "librarian") {
+      window.location.href = "/librarian-login";
+    } else if (role === "admin") {
+      window.location.href = "/admin-login";
+    } else {
+      window.location.href = "/login-portal";
+    }
   };
 
   useEffect(() => {

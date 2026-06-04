@@ -10,7 +10,7 @@ export default function AdminLayout() {
 
   useEffect(() => {
     if (!isAuthorized) {
-      navigate("/login");
+      navigate("/login-portal");
     }
   }, [isAuthorized, navigate]);
 
