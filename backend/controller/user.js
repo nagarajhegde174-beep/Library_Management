@@ -255,9 +255,9 @@ userController.resetPassword = async (req, res) => {
   const newPassword = String(req.body?.newPassword || "").trim();
   try {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await UserModel.findOneAndUpdate({ email }, { password: hashedPassword });
+    const user = await UserModel.findOneAndUpdate({ email }, { password: hashedPassword }, { new: true });
     await OtpModel.deleteOne({ email }); // Clean up OTP
-    return res.json({ message: "Password reset successful" });
+    return res.json({ message: "Password reset successful", role: user?.role || "user" });
   } catch (err) {
     return res.status(500).json({ message: "Server error" });
   }

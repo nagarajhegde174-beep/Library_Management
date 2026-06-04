@@ -11,7 +11,7 @@ export default function ResetPassword() {
   const { 
     register, 
     handleSubmit, 
-    watch, 
+    getValues, 
     formState: { errors, isSubmitting } 
   } = useForm();
   const navigate = useNavigate();
@@ -25,7 +25,14 @@ export default function ResetPassword() {
     try {
       const res = await axios.post(`${Server_URL}users/reset-password`, data);
       showSuccessToast(res.data.message || "Password reset successfully!");
-      navigate("/login");
+      const role = res.data.role;
+      if (role === "librarian") {
+        navigate("/librarian-login");
+      } else if (role === "admin") {
+        navigate("/admin-login");
+      } else {
+        navigate("/login");
+      }
     } catch (err) {
       showErrorToast(err.response?.data?.message || "Failed to reset password");
     }
@@ -98,7 +105,7 @@ export default function ResetPassword() {
                     {...register("confirmPassword", {
                       required: "Please confirm your password",
                       validate: (value) => 
-                        value === watch("newPassword") || "Passwords do not match"
+                        value === getValues("newPassword") || "Passwords do not match"
                     })}
                   />
                   <button
