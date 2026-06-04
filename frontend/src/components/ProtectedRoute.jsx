@@ -8,7 +8,7 @@ export default function ProtectedRoute({ allowedRoles }) {
 
   if (!token) {
     const isAdminPath = location.pathname.startsWith("/admin");
-    return <Navigate to={isAdminPath ? "/admin-login" : "/login"} state={{ from: location }} replace />;
+    return <Navigate to={isAdminPath ? "/login-portal" : "/login"} state={{ from: location }} replace />;
   }
 
   let role = null;
@@ -25,7 +25,7 @@ export default function ProtectedRoute({ allowedRoles }) {
     localStorage.removeItem("authToken");
     localStorage.removeItem("role");
     const isAdminPath = location.pathname.startsWith("/admin");
-    return <Navigate to={isAdminPath ? "/admin-login" : "/login"} state={{ from: location }} replace />;
+    return <Navigate to={isAdminPath ? "/login-portal" : "/login"} state={{ from: location }} replace />;
   }
 
   if (!allowedRoles.includes(role)) {
