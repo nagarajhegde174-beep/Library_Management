@@ -26,8 +26,13 @@ reservationController.cancelReservation = async (req, res) => {
     const userId = req.userInfo.id;
     const reservation = await ReservationModel.findById(req.params.id);
     if (!reservation) return res.status(404).json({ error: true, message: "Reservation not found" });
-    if (reservation.userId.toString() !== userId.toString())
+    if (
+      req.userInfo.role !== "admin" &&
+      req.userInfo.role !== "librarian" &&
+      reservation.userId.toString() !== userId.toString()
+    ) {
       return res.status(403).json({ error: true, message: "Unauthorized" });
+    }
     if (["Fulfilled","Cancelled","Expired"].includes(reservation.status))
       return res.status(400).json({ error: true, message: "Reservation cannot be cancelled." });
     reservation.status = "Cancelled";

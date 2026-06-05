@@ -39,31 +39,34 @@ export default function Home() {
            let timelineEvents = [];
            
            borrowsData.forEach(b => {
-             if (b.status === "Issued") {
+             if (b.status === "Issued" || b.status === "Requested Return") {
                activeBorrows++;
                if (b.bookId) activeBorrowsList.push(b.bookId);
                
                const dueDate = new Date(b.dueDate);
                const now = new Date();
-               const diffDays = Math.ceil((dueDate - now) / (1000 * 60 * 60 * 24));
                
-               if (diffDays < 0) {
+               if (now > dueDate) {
                  overdue++;
+                 const diffDays = Math.max(1, Math.ceil((now - dueDate) / (1000 * 60 * 60 * 24)));
                  timelineEvents.push({
                    id: `overdue-${b._id}`,
                    type: 'reminder',
-                   text: `"${b.bookId?.title || 'A book'}" is overdue by ${Math.abs(diffDays)} days.`,
+                   text: `"${b.bookId?.title || 'A book'}" is overdue by ${diffDays} days.`,
                    time: 'Urgent',
                    color: '#EF4444'
                  });
-               } else if (diffDays <= 2) {
-                 timelineEvents.push({
-                   id: `duesoon-${b._id}`,
-                   type: 'reminder',
-                   text: `"${b.bookId?.title || 'A book'}" is due in ${diffDays} days.`,
-                   time: 'Soon',
-                   color: '#F59E0B'
-                 });
+               } else {
+                 const diffDays = Math.ceil((dueDate - now) / (1000 * 60 * 60 * 24));
+                 if (diffDays <= 2) {
+                   timelineEvents.push({
+                     id: `duesoon-${b._id}`,
+                     type: 'reminder',
+                     text: `"${b.bookId?.title || 'A book'}" is due in ${diffDays} days.`,
+                     time: 'Soon',
+                     color: '#F59E0B'
+                   });
+                 }
                }
              }
            });

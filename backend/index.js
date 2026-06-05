@@ -19,10 +19,13 @@ const report      = require("./routes/report.js");
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://library-management-app-karan.vercel.app",
+  "http://localhost:5174",
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:5174",
+  // "https://library-management-app-karan.vercel.app",
 ];
 
-app.use(cors({
+app.use(cors({     
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) callback(null, true);
     else callback(new Error("Not allowed by CORS"));

@@ -402,6 +402,7 @@
 .ar-actions-cell {
   display: flex;
   justify-content: flex-end;
+  gap: 8px;
 }
 
 .ar-btn {
@@ -440,6 +441,19 @@
 .ar-btn.fulfill:hover {
   background: rgba(16, 185, 129, 0.2);
   box-shadow: 0 6px 20px var(--status-success-soft);
+  transform: translateY(-2px);
+  color: var(--text-on-accent);
+}
+
+.ar-btn.cancel {
+  background: var(--status-danger-soft);
+  color: var(--status-danger);
+  border: 1px solid var(--status-danger-border);
+}
+
+.ar-btn.cancel:hover {
+  background: var(--status-danger-soft2);
+  box-shadow: 0 6px 20px var(--status-danger-soft2);
   transform: translateY(-2px);
   color: var(--text-on-accent);
 }

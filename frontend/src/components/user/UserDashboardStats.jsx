@@ -29,7 +29,7 @@ export default function UserDashboardStats() {
         let overdue = 0;
 
         borrowsData.forEach(b => {
-          if (b.status === "Issued") {
+          if (b.status === "Issued" || b.status === "Requested Return") {
             activeBorrows++;
             if (new Date() > new Date(b.dueDate)) {
               overdue++;

@@ -136,7 +136,7 @@ booksController.getLatestBooks = async (req, res) => {
     
     const issuedBooks = await BorrowModel.find({
       bookId: { $in: bookIds },
-      status: "Issued", 
+      status: { $in: ["Issued", "Requested Return"] }, 
     }).populate("userId"); 
     const activeStudents = new Set(
       issuedBooks
@@ -266,7 +266,7 @@ booksController.issueBook = async (req, res) => {
 
     const issuedBooksCount = await BorrowModel.countDocuments({
       userId: userid,
-      status: "Issued",
+      status: { $in: ["Issued", "Requested Return"] },
     });
 
     if (issuedBooksCount >= 4) {
@@ -324,7 +324,7 @@ booksController.reqIssueBook = async (req, res) => {
     
     const currentCount = await BorrowModel.countDocuments({
       userId: userid,
-      status: { $in: ["Requested", "Issued"] },
+      status: { $in: ["Requested", "Issued", "Requested Return"] },
     });
 
     if (currentCount >= 4) {
@@ -338,7 +338,7 @@ booksController.reqIssueBook = async (req, res) => {
     const existingRequest = await BorrowModel.findOne({
       userId: userid,
       bookId: bookid,
-      status: { $in: ["Requested", "Issued"] },
+      status: { $in: ["Requested", "Issued", "Requested Return"] },
     });
 
     if (existingRequest) {

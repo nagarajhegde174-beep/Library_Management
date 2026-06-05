@@ -14,7 +14,7 @@ const librarianController = {};
 
 librarianController.bookIssued = async (req, res) => {
   try {
-    const requests = await BorrowModel.find({ status: "Issued" })
+    const requests = await BorrowModel.find({ status: { $in: ["Issued", "Requested Return"] } })
       .populate("userId", "name email year stream")
       .populate("bookId", "title coverImage category")
       .sort({ createdAt: -1 });
@@ -67,7 +67,7 @@ librarianController.approveRequest = async (req, res) => {
       return res.status(403).json({ message: "User is restricted due to overdue books. Cannot approve new request." });
 
     // Max 4 books per user
-    const issuedCount = await BorrowModel.countDocuments({ userId: borrow.userId, status: "Issued" });
+    const issuedCount = await BorrowModel.countDocuments({ userId: borrow.userId, status: { $in: ["Issued", "Requested Return"] } });
     if (issuedCount >= 4)
       return res.status(400).json({ message: "User already has 4 issued books" });
 
@@ -209,7 +209,7 @@ librarianController.approveReturnRequest = async (req, res) => {
     if (user && user.isRestricted) {
       const overdueCount = await BorrowModel.countDocuments({
         userId: user._id,
-        status: "Issued",
+        status: { $in: ["Issued", "Requested Return"] },
         dueDate: { $lt: new Date() },
       });
       if (overdueCount === 0) {
@@ -323,7 +323,7 @@ librarianController.directReturn = async (req, res) => {
     if (user && user.isRestricted) {
       const overdueCount = await BorrowModel.countDocuments({
         userId: user._id,
-        status: "Issued",
+        status: { $in: ["Issued", "Requested Return"] },
         dueDate: { $lt: new Date() },
       });
       if (overdueCount === 0) {

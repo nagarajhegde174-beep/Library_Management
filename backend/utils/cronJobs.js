@@ -25,7 +25,7 @@ function startOverdueCronJob() {
       const gracePeriod = config?.gracePeriod || 0;
 
       const overdueBooks = await BorrowModel.find({
-        status:  "Issued",
+        status:  { $in: ["Issued", "Requested Return"] },
         dueDate: { $lt: now },
       }).populate("userId", "name email isRestricted").populate("bookId", "title");
 
@@ -95,7 +95,7 @@ function startOverdueCronJob() {
       for (const u of restrictedUsers) {
         const stillOverdue = await BorrowModel.countDocuments({
           userId: u._id,
-          status: "Issued",
+          status: { $in: ["Issued", "Requested Return"] },
           dueDate: { $lt: now },
         });
         if (stillOverdue === 0) {
@@ -147,7 +147,7 @@ function startAccountExpiryCronJob() {
 
       for (const u of expiredUsers) {
         await BorrowModel.updateMany(
-          { userId: u._id, status: "Issued" },
+          { userId: u._id, status: { $in: ["Issued", "Requested Return"] } },
           { $set: { forcedReturnPending: true } }
         );
       }

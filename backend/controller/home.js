@@ -13,12 +13,12 @@ homeController.getHomeData = async (req, res) => {
     const totalCategories = categories.length;
 
    
-    const issuedCount = await BorrowModel.countDocuments({ status: "Issued" });
-    const borrowedCount = await BorrowModel.countDocuments({
+    const issuedCount = await BorrowModel.countDocuments({
       status: { $in: ["Issued", "Requested Return"] },
     });
+    const borrowedCount = issuedCount;
     const borrowerIds = await BorrowModel.distinct("userId", {
-      status: "Issued",
+      status: { $in: ["Issued", "Requested Return"] },
     });
     const totalBorrowers = borrowerIds.length;
 

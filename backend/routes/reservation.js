@@ -5,7 +5,7 @@ const { userAuth }  = require("../middlewares/userAuth");
 const { checkRole } = require("../middlewares/checkRole");
 
 router.post("/reserve/:bookId",  userAuth, checkRole(["user"]),                   reservationController.reserveBook);
-router.delete("/cancel/:id",     userAuth, checkRole(["user"]),                   reservationController.cancelReservation);
+router.delete("/cancel/:id",     userAuth, checkRole(["user", "admin", "librarian"]), reservationController.cancelReservation);
 router.get("/my",                userAuth, checkRole(["user"]),                   reservationController.getMyReservations);
 router.get("/",                  userAuth, checkRole(["admin","librarian"]),      reservationController.getAllReservations);
 router.put("/notify/:bookId",    userAuth, checkRole(["admin","librarian"]),      reservationController.notifyNextReservation);

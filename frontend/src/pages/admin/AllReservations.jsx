@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { 
   ClipboardList, 
@@ -33,15 +33,17 @@ export default function AllReservations() {
   const [search, setSearch]             = useState("");
   const headers = { Authorization: `Bearer ${getAuthToken()}` };
 
-  const fetchReservations = async () => {
+  const fetchReservations = useCallback(async () => {
     setLoading(true);
     try { 
-      const r = await axios.get(`${Server_URL}reservations`, { headers }); 
+      const r = await axios.get(`${Server_URL}reservations`, { 
+        headers: { Authorization: `Bearer ${getAuthToken()}` } 
+      }); 
       setReservations(r.data.reservations || []); 
     }
     catch { showErrorToast("Failed to fetch reservations"); }
     finally { setLoading(false); }
-  };
+  }, []);
 
   const notifyMember = async (bookId) => {
     try { 
@@ -62,7 +64,18 @@ export default function AllReservations() {
     }
   };
 
-  useEffect(() => { fetchReservations(); }, []);
+  const cancelReservation = async (id) => {
+    if (!window.confirm("Are you sure you want to cancel this reservation?")) return;
+    try {
+      const r = await axios.delete(`${Server_URL}reservations/cancel/${id}`, { headers });
+      showSuccessToast(r.data.message || "Reservation cancelled successfully.");
+      fetchReservations();
+    } catch (e) {
+      showErrorToast(e.response?.data?.message || "Failed to cancel reservation");
+    }
+  };
+
+  useEffect(() => { fetchReservations(); }, [fetchReservations]);
 
   const statuses  = ["All", "Pending", "Notified", "Fulfilled", "Cancelled", "Expired"];
   
@@ -224,6 +237,14 @@ export default function AllReservations() {
                         className="ar-btn fulfill"
                       >
                         <CheckCircle2 size={16} /> Fulfill
+                      </button>
+                    )}
+                    {["Pending", "Notified"].includes(r.status) && (
+                      <button
+                        onClick={() => cancelReservation(r._id)}
+                        className="ar-btn cancel"
+                      >
+                        <XCircle size={16} /> Cancel
                       </button>
                     )}
                   </div>
